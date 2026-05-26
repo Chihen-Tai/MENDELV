@@ -1,0 +1,27 @@
+{
+  "_comment": "Schema reference for LabeledReaction records. All fields required unless marked optional.",
+  "reactions": [
+    {
+      "reaction_id": "unique_stable_string_id",
+      "reaction_smiles": "reactant1.reactant2>>product1.product2",
+      "context": "ionic | radical | pericyclic | unknown",
+      "mechanism_type": "SN2",
+      "split": "train | val | test",
+      "group_roles": [
+        {
+          "group_id": "molN_grouptype_M",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [0, 1],
+          "role": "reactive_nucleophile | reactive_electrophile | reactive_radical | leaving_group | spectator",
+          "confidence": "manual",
+          "notes": "optional free-text or null"
+        }
+      ],
+      "reaction_center_atoms": [1, 2],
+      "metadata": {
+        "source": "benchmark | extended | generated"
+      }
+    }
+  ]
+}

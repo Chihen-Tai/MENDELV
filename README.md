@@ -1,46 +1,94 @@
 # MENDEL
 
-**Molecular Element-group NeDotiation for Energy Landscapes**
-
-A functional-group-level role prediction system for organic reactions. Given a molecule and reaction context, MENDEL identifies functional groups, predicts each group's role (electrophile / nucleophile / radical / leaving / spectator), and pairs this with a foundation MLIP for energy/force computation.
+**Molecular Entity Negotiation for Dynamic Energy Landscapes** — a fully local, functional-group-level reaction role prediction framework for organic chemistry.
 
 ---
 
-## Concept
+## Core Idea
 
-Each functional group is treated as an **agent** that predicts its own role in a reaction. Agents then negotiate to produce a coherent assignment.
+Each functional group in a molecule is treated as an **agent** that predicts its own role in a reaction, then negotiates with neighbouring groups to produce a coherent, conflict-free assignment.
 
 ```
-Molecule
-   │
-   ▼
-Functional group decomposition (RDKit + SMARTS)
-   │
-   ▼
-Each group → role prediction (small NN)
-   │
-   ▼
-Negotiation layer (rule-based)
-   │
-   ▼
-Foundation MLIP (MACE-OFF / MACE-MP-0) → E, F
-   │
-   ▼
-Output: roles + reaction center + energy + visualization
+reaction SMILES + context
+         │
+         ▼
+  functional group detection
+         │
+         ▼
+  per-group role prediction (agent)
+         │
+         ▼
+  negotiation layer
+         │
+         ▼
+  reaction center identification
+         │
+         ▼
+  (optional) MLIP energy / 3D visualization
+```
+
+Roles (mutually exclusive per group per step):
+
+| Role | Description |
+|------|-------------|
+| `reactive_nucleophile` | donates electrons |
+| `reactive_electrophile` | accepts electrons |
+| `reactive_radical` | radical center |
+| `leaving_group` | departs with electron pair |
+| `spectator` | uninvolved in this step |
+
+---
+
+## Phase 0 — Project Scaffold (current)
+
+Phase 0 sets up the project structure and defines the core data contracts used by all later phases.
+
+**What is implemented:**
+- `mendel/types.py` — enums and dataclasses (no chemistry, no ML)
+- `mendel/constants.py` — derived constant sets
+- `data/reactions.example.json` — schema examples (SN2, Diels-Alder, radical bromination)
+- Full test suite for the scaffold
+
+**What is NOT yet implemented:** reaction SMILES parsing, SMARTS matching, functional group detection, descriptors, role prediction, negotiation, MLIP, or visualization.
+
+---
+
+## Install
+
+```bash
+git clone <repo-url>
+cd mendel
+python -m pip install -e ".[dev]"
+```
+
+Requires Python ≥ 3.10. No heavy chemistry or ML dependencies in Phase 0.
+
+---
+
+## Run tests
+
+```bash
+pytest -q
 ```
 
 ---
 
-## Project Scope
+## Quick demo (Phase 0)
 
-| | |
-|---|---|
-| Group definition | SMARTS pattern matching (~20 predefined groups) |
-| Chemical scope | Small organic molecule reactions |
-| Agent capability | Role prediction only |
-| MLIP | Foundation model (no training) |
-| Timeline | ~6 weeks |
-| Cost | $0 (no API, fully local) |
+```python
+import mendel
+from mendel.types import ReactionContext, Role, ReactionRecord
+
+record = ReactionRecord(
+    reaction_id="sn2_demo",
+    reaction_smiles="CBr.[OH-]>>CO.[Br-]",
+    context=ReactionContext.ionic,
+)
+
+print(mendel.__version__)               # 0.1.0
+print(record.reaction_id)               # sn2_demo
+print(Role.reactive_nucleophile.value)  # reactive_nucleophile
+```
 
 ---
 
@@ -48,62 +96,44 @@ Output: roles + reaction center + energy + visualization
 
 ```
 mendel/
-├── README.md           ← this file
-├── DESIGN.md           ← full architecture spec
-├── BENCHMARK.md        ← benchmark reactions and expected outputs
-├── TEMPLATE.md         ← template for adding new functional groups
-└── groups/             ← per-group specifications
-    ├── alkene.md
-    ├── alkyne.md
-    ├── aromatic.md
-    ├── alcohol.md
-    ├── ether.md
-    ├── carbonyl.md
-    ├── carboxylic_acid.md
-    ├── ester.md
-    ├── amine.md
-    ├── amide.md
-    ├── halide.md
-    ├── nitrile.md
-    └── alpha_carbon.md   (contextual: sp³ C-H α to EWG)
+├── pyproject.toml          ← build and dev config
+├── README.md               ← this file
+├── LICENSE                 ← MIT
+├── .gitignore
+├── mendel/
+│   ├── __init__.py         ← package entry point, version
+│   ├── types.py            ← core enums and dataclasses
+│   └── constants.py        ← derived constant sets
+├── data/
+│   └── reactions.example.json
+├── docs/
+│   └── index.md
+├── tests/
+│   └── test_phase0_scaffold.py
+├── DESIGN.md               ← full architecture spec
+├── BENCHMARK.md            ← benchmark reactions
+├── TEMPLATE.md             ← template for new functional groups
+└── groups/                 ← per-group SMARTS specifications
 ```
-
----
-
-## Quick Start (planned)
-
-```python
-from mendel import MENDEL
-
-m = MENDEL()
-result = m.predict(
-    reactants=["CH3Br", "[OH-]"],
-    products=["CH3OH", "[Br-]"],
-    context="ionic"
-)
-
-print(result.roles)
-# {'halide': 'leaving_group',
-#  'hydroxide': 'nucleophile',
-#  'methyl': 'electrophile'}
-
-print(result.energy)        # MLIP energy
-print(result.reaction_center)  # atoms involved
-result.visualize()           # colored 3D structure
-```
-
----
-
-## Status
-
-Project specification phase. Implementation TBD.
 
 ---
 
 ## Design Principles
 
-- **Project, not research**: prioritize working demo over ML novelty
-- **Interpretable**: every prediction must be chemically explainable
-- **Modular**: each module can be swapped out
-- **Honest framing**: agent = group-level role predictor, no overclaiming
-- **Zero cost**: no API, fully local
+- **Functional group = agent** — the natural unit of chemical decision-making
+- **Interpretable** — every prediction is chemically explainable
+- **Modular** — each phase is independently swappable
+- **Zero cost** — no API calls, fully local
+
+---
+
+## Phase Roadmap
+
+| Phase | Goal |
+|-------|------|
+| 0 | Project scaffold and data contracts ✓ |
+| 1 | Functional group identifier (RDKit + SMARTS) |
+| 2 | Group descriptor builder |
+| 3 | Group agent role predictor (MLP) |
+| 4 | Negotiation layer + MLIP wrapper |
+| 5 | Benchmarking and visualization |

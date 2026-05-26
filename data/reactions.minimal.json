@@ -1,0 +1,62 @@
+{
+  "reactions": [
+    {
+      "reaction_id": "minimal_sn2",
+      "reaction_smiles": "CBr.[OH-]>>CO.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "SN2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [0, 1],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": null
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {}
+    },
+    {
+      "reaction_id": "minimal_aldol",
+      "reaction_smiles": "CC(=O)C>>CC(=O)CO",
+      "context": "ionic",
+      "mechanism_type": "Aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [1, 3],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": null
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [0, 1],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": null
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [2, 1],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": null
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {}
+    }
+  ]
+}

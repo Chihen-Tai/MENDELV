@@ -1,0 +1,85 @@
+[
+  {
+    "reaction_id": "sn2_methyl_bromide_oh",
+    "reaction_smiles": "CBr.[OH-]>>CO.[Br-]",
+    "context": "ionic",
+    "expected_roles": [
+      {
+        "group_id": "mol0_halide_0",
+        "role": "leaving_group",
+        "confidence": null,
+        "reason": "Bromide is an excellent leaving group in SN2"
+      },
+      {
+        "group_id": "mol1_alcohol_0",
+        "role": "reactive_nucleophile",
+        "confidence": null,
+        "reason": "Hydroxide is a strong nucleophile attacking the electrophilic carbon"
+      }
+    ],
+    "expected_reaction_center": [
+      { "molecule_index": 0, "atom_index": 0, "atom_map_num": null },
+      { "molecule_index": 0, "atom_index": 1, "atom_map_num": null }
+    ],
+    "metadata": {
+      "reaction_class": "SN2",
+      "notes": "Schema example only; not chemically validated"
+    }
+  },
+  {
+    "reaction_id": "diels_alder_butadiene_ethylene",
+    "reaction_smiles": "C=CC=C.C=C>>C1CCC=CC1",
+    "context": "pericyclic",
+    "expected_roles": [
+      {
+        "group_id": "mol0_alkene_diene_0",
+        "role": "reactive_nucleophile",
+        "confidence": null,
+        "reason": "Butadiene acts as the electron-rich diene"
+      },
+      {
+        "group_id": "mol1_alkene_0",
+        "role": "reactive_electrophile",
+        "confidence": null,
+        "reason": "Ethylene acts as the dienophile"
+      }
+    ],
+    "expected_reaction_center": [
+      { "molecule_index": 0, "atom_index": 0, "atom_map_num": null },
+      { "molecule_index": 0, "atom_index": 3, "atom_map_num": null },
+      { "molecule_index": 1, "atom_index": 0, "atom_map_num": null },
+      { "molecule_index": 1, "atom_index": 1, "atom_map_num": null }
+    ],
+    "metadata": {
+      "reaction_class": "Diels-Alder",
+      "notes": "Product is cyclohexene (one double bond retained)"
+    }
+  },
+  {
+    "reaction_id": "radical_bromination_methane",
+    "reaction_smiles": "C.BrBr>>CBr.Br",
+    "context": "radical",
+    "expected_roles": [
+      {
+        "group_id": "mol0_alpha_carbon_0",
+        "role": "reactive_radical",
+        "confidence": null,
+        "reason": "Methane C-H is the radical abstraction site"
+      },
+      {
+        "group_id": "mol1_halide_0",
+        "role": "reactive_radical",
+        "confidence": null,
+        "reason": "Bromine radical abstracts hydrogen"
+      }
+    ],
+    "expected_reaction_center": [
+      { "molecule_index": 0, "atom_index": 0, "atom_map_num": null },
+      { "molecule_index": 1, "atom_index": 0, "atom_map_num": null }
+    ],
+    "metadata": {
+      "reaction_class": "radical_halogenation",
+      "notes": "Schema example only; not chemically validated"
+    }
+  }
+]
