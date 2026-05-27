@@ -1,0 +1,269 @@
+{
+  "reactions": [
+    {
+      "reaction_id": "sn2_methyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][Br:2].[OH-:3]>>[CH3:1][OH:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "SN2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [0, 1],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; Br- is the leaving group"
+        }
+      ],
+      "reaction_center_atoms": [1, 2, 3],
+      "metadata": {
+        "source": "benchmark",
+        "nucleophile_note": "[OH-] (reactant 1) is the nucleophile but is not detected as a functional group — no C-O bond in free hydroxide"
+      }
+    },
+    {
+      "reaction_id": "e2_ethyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][CH2:2][Br:3].[OH-:4]>>[CH2:1]=[CH2:2].[Br-:3].[OH2:4]",
+      "context": "ionic",
+      "mechanism_type": "E2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [1, 2],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; Br- leaves as base removes beta proton"
+        }
+      ],
+      "reaction_center_atoms": [1, 2, 3, 4],
+      "metadata": {
+        "source": "benchmark",
+        "base_note": "[OH-] (reactant 1) acts as base but is not detected as a functional group — no C-O bond in free hydroxide"
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH2:6]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1",
+      "context": "pericyclic",
+      "mechanism_type": "Diels-Alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [0, 1],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene C1=C2 bond; acts as HOMO donor in [4+2] cycloaddition"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [2, 3],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene C3=C4 bond; part of the conjugated diene HOMO"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [0, 1],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Dienophile alkene; acts as LUMO acceptor in [4+2] cycloaddition"
+        }
+      ],
+      "reaction_center_atoms": [1, 2, 3, 4, 5, 6],
+      "metadata": {
+        "source": "benchmark",
+        "stereochemistry_note": "Suprafacial on both components; product is cyclohexene"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([OH])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "Aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [1, 2],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Carbonyl of nucleophile acetone; alpha deprotonation occurs here but the C=O itself is spectator"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [0, 1],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon (C1) deprotonated to form enolate; attacks the electrophilic carbonyl"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [3, 1],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon (C4) adjacent to carbonyl; symmetric enolisation site"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [1, 2],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Carbonyl of acceptor acetone; C=O carbon attacked by enolate nucleophile"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [0, 1],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon of acceptor acetone; not involved in the bond-forming step"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_1",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [3, 1],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon of acceptor acetone; not involved in the bond-forming step"
+        }
+      ],
+      "reaction_center_atoms": [2, 4, 6],
+      "metadata": {
+        "source": "benchmark",
+        "base_note": "Base-catalysed aldol; base not included as it is catalytic"
+      }
+    },
+    {
+      "reaction_id": "radical_bromination_methane",
+      "reaction_smiles": "[CH4:1].[Br:2][Br:3]>>[CH3:1][Br:2].[Br:3]",
+      "context": "radical",
+      "mechanism_type": "Radical bromination",
+      "split": "train",
+      "group_roles": [],
+      "reaction_center_atoms": [1, 2, 3],
+      "metadata": {
+        "source": "benchmark",
+        "detection_note": "Neither CH4 nor Br2 is detected as a functional group by identifier.py. CH4 has no heteroatom; Br2 has no C-Br bond. Reaction centre encoded via atom-map numbers only.",
+        "limitation": "Radical chain carriers are not representable in the current group schema"
+      }
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "reaction_smiles": "[CH3:1][c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:8][Br:9]>>[CH2:1]([Br:8])[c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:9]",
+      "context": "radical",
+      "mechanism_type": "Benzylic radical bromination",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [1, 2, 3, 4, 5, 6],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Phenyl ring stabilises the benzylic radical via resonance but does not itself react"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [0, 1],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "Benzylic CH3; H-abstraction by Br• forms a resonance-stabilised benzylic radical"
+        }
+      ],
+      "reaction_center_atoms": [1, 8, 9],
+      "metadata": {
+        "source": "extended",
+        "reagent_note": "Br2 (reactant 1) is not detected as a functional group — no C-Br bond present"
+      }
+    },
+    {
+      "reaction_id": "sn2_methyl_iodide_cyanide",
+      "reaction_smiles": "[CH3:1][I:2].[C-:3]#[N:4]>>[CH3:1][C:3]#[N:4].[I-:2]",
+      "context": "ionic",
+      "mechanism_type": "SN2",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [0, 1],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-I bond breaks; I- is the leaving group"
+        }
+      ],
+      "reaction_center_atoms": [1, 2, 3],
+      "metadata": {
+        "source": "extended",
+        "nucleophile_note": "[C-]#N cyanide anion is the nucleophile; not detected as a functional group because the nitrile SMARTS requires a C-C bond, not a C- anion"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[OH-:5]>>[CH3:1][C:2](=[O:3])[CH2:4][C:2]([OH])[CH3:1]",
+      "context": "ionic",
+      "mechanism_type": "Aldol",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [1, 2],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Carbonyl carbon is attacked by the enolate nucleophile"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [0, 1],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon deprotonated by OH- to form enolate"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [3, 1],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Symmetric alpha carbon; not the enolisation site in this labelling"
+        }
+      ],
+      "reaction_center_atoms": [2, 4],
+      "metadata": {
+        "source": "extended",
+        "base_note": "[OH-] (reactant 1) deprotonates the alpha carbon but is not detected as a functional group"
+      }
+    }
+  ]
+}

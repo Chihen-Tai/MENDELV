@@ -50,3 +50,11 @@ checkpoints/
 .idea/
 .vscode/
 *.swp
+
+# MENDEL generated artifacts
+models/
+reports/mlp_training_report.json
+reports/mlp_minimal_report.json
+.pytest_cache/
+__pycache__/
+*.pyc
