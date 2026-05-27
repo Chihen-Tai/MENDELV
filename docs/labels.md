@@ -112,11 +112,10 @@ See `data/label_schema.example.json` for the full field reference.
 
 ---
 
-## What Phase 5 Should Implement Next
+## Freeze Status
 
-`mendel/predictor.py` — rule-based role assignment:
+The labeled data schema is part of the Phase 0-6 pre-training freeze. The existing labels
+support rule-based smoke tests and provide the starting point for optional Phase 7 MLP role
+predictor training.
 
-- Input: `list[GroupDescriptor]` from Phase 3.
-- Output: `list[RoleAssignment]` with roles from the five-role taxonomy.
-- Ground truth for evaluation: `LabeledReaction.group_roles` from this module.
-- Target: ≥ 60 % role accuracy on the five benchmark reactions.
+Do not run `scripts/train_mlp.py` or `tests/test_mlp.py` as part of Phase 0-6 validation.

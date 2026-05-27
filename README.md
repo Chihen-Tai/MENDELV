@@ -2,32 +2,56 @@
 
 **Molecular Entity Negotiation for Dynamic Energy Landscapes** — a fully local, functional-group-level reaction role prediction framework for organic chemistry.
 
+Each functional group in a molecule is treated as an **agent** that observes its local chemical environment, predicts its own reaction role, then negotiates with neighbouring groups to produce a coherent, conflict-free assignment.
+
 ---
 
-## Core Idea
+## Quick Demo
 
-Each functional group in a molecule is treated as an **agent** that predicts its own role in a reaction, then negotiates with neighbouring groups to produce a coherent, conflict-free assignment.
+```python
+import mendel
+from mendel.negotiator import run_full_rule_pipeline
+
+result = run_full_rule_pipeline(
+    "CBr.[OH-]>>CO.[Br-]",
+    context="ionic",
+)
+
+print(mendel.__version__)       # 0.1.0
+print(result.mechanism_hint)    # sn2_or_e2_like
+```
+
+`import mendel` does not import PyTorch. Phase 7 MLP APIs must be imported directly from `mendel.mlp`.
+
+---
+
+## Pipeline
 
 ```
 reaction SMILES + context
          │
          ▼
-  functional group detection
+  functional group detection       (identifier.py — RDKit SMARTS, 3-pass)
          │
          ▼
-  per-group role prediction (agent)
+  per-group descriptor building    (descriptor.py — 55-dim feature vector)
          │
          ▼
-  negotiation layer
+  per-group role prediction        (predictor.py — rule-based baseline)
          │
          ▼
-  reaction center identification
+  negotiation / conflict resolution (negotiator.py — mechanism hints, reaction center)
          │
          ▼
-  (optional) MLIP energy / 3D visualization
+  [optional] MLP role predictor    (mlp.py — learned, Phase 7)
+         │
+         ▼
+  [future] MLIP energy / forces    (Phase 8 — MACE/Transition1x)
 ```
 
-Roles (mutually exclusive per group per step):
+### Roles
+
+Five mutually exclusive roles per functional group per reaction step:
 
 | Role | Description |
 |------|-------------|
@@ -39,56 +63,113 @@ Roles (mutually exclusive per group per step):
 
 ---
 
-## Phase 0 — Project Scaffold (current)
-
-Phase 0 sets up the project structure and defines the core data contracts used by all later phases.
-
-**What is implemented:**
-- `mendel/types.py` — enums and dataclasses (no chemistry, no ML)
-- `mendel/constants.py` — derived constant sets
-- `data/reactions.example.json` — schema examples (SN2, Diels-Alder, radical bromination)
-- Full test suite for the scaffold
-
-**What is NOT yet implemented:** reaction SMILES parsing, SMARTS matching, functional group detection, descriptors, role prediction, negotiation, MLIP, or visualization.
-
----
-
 ## Install
 
 ```bash
 git clone <repo-url>
 cd mendel
-python -m pip install -e ".[dev]"
+conda create -n mendel python=3.12
+conda activate mendel
+pip install -e ".[dev]"          # Phases 0–6 + tests
+pip install -e ".[ml]"           # Phase 7 only — installs torch
 ```
 
-Requires Python ≥ 3.10. No heavy chemistry or ML dependencies in Phase 0.
+Requires Python ≥ 3.10 and RDKit.
 
 ---
 
-## Run tests
+## Current Status
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| 0 | Project scaffold and data contracts | ✓ |
+| 1 | Reaction SMILES parser | ✓ |
+| 2 | Functional group identifier (RDKit + SMARTS) | ✓ |
+| 3 | Group descriptor builder (55-dim) | ✓ |
+| 4 | Labeled data schema | ✓ |
+| 5 | Rule-based role predictor | ✓ |
+| 6 | Negotiation layer | ✓ |
+| 6.5 | Dataset curation / draft label generation | ✓ |
+| 7 | MLP role predictor training | ✓ (needs more curated data) |
+| 8 | MLIP/MACE/Transition1x integration | future |
+
+---
+
+## Validation
+
+### Phase 0–6 (no PyTorch required)
 
 ```bash
-pytest -q
+PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
+  tests/test_phase0_scaffold.py tests/test_parser.py \
+  tests/test_identifier.py tests/test_descriptor.py \
+  tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
+```
+
+### Phase 6.5 — curation
+
+```bash
+pytest tests/test_curation.py -q
+```
+
+### Phase 7 — MLP (requires `pip install -e ".[ml]"`)
+
+```bash
+pytest tests/test_mlp.py -q
 ```
 
 ---
 
-## Quick demo (Phase 0)
+## Dataset Curation (Phase 6.5)
 
-```python
-import mendel
-from mendel.types import ReactionContext, Role, ReactionRecord
+Before Phase 7 training can produce meaningful results, a curated labeled dataset must be built. Phase 6.5 generates draft labels from the rule-based pipeline for manual review.
 
-record = ReactionRecord(
-    reaction_id="sn2_demo",
-    reaction_smiles="CBr.[OH-]>>CO.[Br-]",
-    context=ReactionContext.ionic,
-)
+```bash
+# Generate draft labels from 5 core benchmark reactions
+python scripts/draft_labels.py \
+  --core \
+  --output data/reactions.draft.core.json \
+  --report reports/draft_core_report.json
 
-print(mendel.__version__)               # 0.1.0
-print(record.reaction_id)               # sn2_demo
-print(Role.reactive_nucleophile.value)  # reactive_nucleophile
+# Generate draft labels from all 15 extended reactions
+python scripts/draft_labels.py \
+  --core --extended \
+  --output data/reactions.draft.json \
+  --report reports/draft_report.json
 ```
+
+Draft records carry `confidence="draft"` and `needs_manual_review=true`. A chemist must inspect and correct roles, change the split to `train`/`val`/`test`, and set `needs_manual_review=false` before adding records to `data/reactions.json`.
+
+See [docs/curation.md](docs/curation.md) for the full curation workflow.
+
+---
+
+## MLP Training (Phase 7)
+
+Trains a small PyTorch MLP (55 → hidden → 5) on descriptor vectors. Does **not** require MACE, MLIP, or any energy model.
+
+**Smoke test** (minimal dataset, no curated labels needed):
+
+```bash
+python scripts/train_mlp.py \
+  --data data/reactions.minimal.json \
+  --output models/role_mlp_minimal.pt \
+  --report reports/mlp_minimal_report.json \
+  --epochs 3 --hidden-dim 16 --batch-size 4 \
+  --allow-draft-labels
+```
+
+**Full training** (requires curated `data/reactions.json`):
+
+```bash
+python scripts/train_mlp.py \
+  --data data/reactions.json \
+  --output models/role_mlp.pt \
+  --report reports/mlp_training_report.json \
+  --epochs 100
+```
+
+See [docs/mlp.md](docs/mlp.md) for the full API reference.
 
 ---
 
@@ -96,44 +177,55 @@ print(Role.reactive_nucleophile.value)  # reactive_nucleophile
 
 ```
 mendel/
-├── pyproject.toml          ← build and dev config
-├── README.md               ← this file
-├── LICENSE                 ← MIT
-├── .gitignore
 ├── mendel/
-│   ├── __init__.py         ← package entry point, version
+│   ├── __init__.py         ← public entry point (no PyTorch)
 │   ├── types.py            ← core enums and dataclasses
-│   └── constants.py        ← derived constant sets
+│   ├── constants.py        ← derived constant sets
+│   ├── parser.py           ← reaction SMILES parser
+│   ├── identifier.py       ← functional group identifier
+│   ├── descriptor.py       ← 55-dim descriptor builder
+│   ├── labels.py           ← labeled data schema
+│   ├── predictor.py        ← rule-based role predictor
+│   ├── negotiator.py       ← negotiation layer
+│   ├── curation.py         ← draft label generation (Phase 6.5)
+│   └── mlp.py              ← MLP role predictor (Phase 7)
+├── scripts/
+│   ├── draft_labels.py     ← CLI: generate draft labels
+│   └── train_mlp.py        ← CLI: train MLP
 ├── data/
-│   └── reactions.example.json
-├── docs/
-│   └── index.md
+│   ├── reactions.json               ← curated labeled reactions
+│   ├── reactions.minimal.json       ← 2-reaction subset for fast tests
+│   ├── reactions.example.json       ← schema reference
+│   └── draft_inputs.example.json   ← draft input format reference
 ├── tests/
-│   └── test_phase0_scaffold.py
+│   ├── test_phase0_scaffold.py
+│   ├── test_parser.py
+│   ├── test_identifier.py
+│   ├── test_descriptor.py
+│   ├── test_labels.py
+│   ├── test_predictor.py
+│   ├── test_negotiator.py
+│   ├── test_curation.py
+│   └── test_mlp.py
+├── docs/
+│   ├── index.md
+│   ├── descriptor.md
+│   ├── labels.md
+│   ├── predictor.md
+│   ├── negotiator.md
+│   ├── curation.md
+│   └── mlp.md
+├── groups/                 ← per-group SMARTS specifications
 ├── DESIGN.md               ← full architecture spec
 ├── BENCHMARK.md            ← benchmark reactions
-├── TEMPLATE.md             ← template for new functional groups
-└── groups/                 ← per-group SMARTS specifications
+└── TEMPLATE.md             ← template for adding a new functional group
 ```
 
 ---
 
 ## Design Principles
 
-- **Functional group = agent** — the natural unit of chemical decision-making
+- **Functional group = agent** — the natural unit of organic chemistry decision-making
 - **Interpretable** — every prediction is chemically explainable
-- **Modular** — each phase is independently swappable
-- **Zero cost** — no API calls, fully local
-
----
-
-## Phase Roadmap
-
-| Phase | Goal |
-|-------|------|
-| 0 | Project scaffold and data contracts ✓ |
-| 1 | Functional group identifier (RDKit + SMARTS) |
-| 2 | Group descriptor builder |
-| 3 | Group agent role predictor (MLP) |
-| 4 | Negotiation layer + MLIP wrapper |
-| 5 | Benchmarking and visualization |
+- **Modular** — each phase is independently testable and swappable
+- **Fully local** — no API calls, no external services

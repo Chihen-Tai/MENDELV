@@ -135,13 +135,11 @@ match in Phase 2 and therefore no descriptor or role.
 
 ---
 
-## What Phase 6 Should Implement Next
+## Freeze Status
 
-`mendel/negotiation.py` — rule-based conflict resolution:
+The rule-based predictor is implemented and included in the Phase 0-6 pre-training freeze.
+Its raw local predictions are consumed by `mendel.negotiator` for Phase 6 global
+consistency.
 
-- Input: `list[RolePrediction]` for all groups in one reaction.
-- Output: `list[RolePrediction]` with conflicts resolved.
-- Key rules: at most one nucleophile and one electrophile per step; `leaving_group` takes
-  priority over `reactive_electrophile` for halides; aromatic groups are spectator unless
-  explicitly reactive.
-- Target: raise benchmark accuracy from the Phase 5 baseline toward ≥ 80 %.
+The next phase is optional Phase 7 MLP role predictor training. Do not run
+`scripts/train_mlp.py` or `tests/test_mlp.py` as part of Phase 0-6 validation.

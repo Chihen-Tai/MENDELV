@@ -1,0 +1,32 @@
+[
+  {
+    "reaction_id": "example_sn2_methyl_bromide_oh",
+    "reaction_smiles": "[CH3:1][Br:2].[OH-:3]>>[CH3:1][OH:3].[Br-:2]",
+    "context": "ionic",
+    "mechanism_type": "SN2",
+    "split": "draft",
+    "metadata": {
+      "note": "core benchmark SN2; hydroxide attacks carbon, bromide leaves"
+    }
+  },
+  {
+    "reaction_id": "example_diels_alder_butadiene_ethylene",
+    "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH2:6]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1",
+    "context": "pericyclic",
+    "mechanism_type": "Diels-Alder",
+    "split": "draft",
+    "metadata": {
+      "note": "core benchmark Diels-Alder; butadiene (diene) + ethylene (dienophile)"
+    }
+  },
+  {
+    "reaction_id": "example_aldol_acetone_self",
+    "reaction_smiles": "CC(=O)C.CC(=O)C>>CC(=O)CC(O)C",
+    "context": "ionic",
+    "mechanism_type": "Aldol",
+    "split": "draft",
+    "metadata": {
+      "note": "acetone self-aldol; no atom mapping; product may be simplified"
+    }
+  }
+]

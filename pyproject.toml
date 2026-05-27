@@ -12,6 +12,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+ml = [
+    "torch>=2.0",
+]
 dev = [
     "pytest>=8.0",
     "ruff>=0.4",
@@ -25,6 +28,10 @@ include = ["mendel*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v"
+markers = [
+    "phase7: tests for Phase 7 MLP role predictor training and inference",
+    "ml: tests that require optional ML dependencies such as torch",
+]
 
 [tool.ruff]
 line-length = 100

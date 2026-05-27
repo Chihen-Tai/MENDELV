@@ -3,7 +3,7 @@
 `mendel/descriptor.py` — Phase 3
 
 Converts each `FunctionalGroup` into a deterministic 55-dimensional feature vector.
-Descriptors feed the Phase 4 rule-based predictor and (later) the Phase 7 MLP.
+Descriptors feed the Phase 5 rule-based predictor and, later, the optional Phase 7 MLP.
 
 ---
 
@@ -79,11 +79,9 @@ Constants: `ELECTRONEGATIVITY`, `EWG_GROUPS`, `LEAVING_GROUP_ATOMS`,
 
 ---
 
-## What Phase 4 Should Implement Next
+## Freeze Status
 
-`mendel/predictor.py` — rule-based role assignment using descriptor vectors:
+Descriptor building is part of the Phase 0-6 pre-training freeze. The next use of these
+features is Phase 7 MLP role predictor training, which is paused/future.
 
-- Input: `list[GroupDescriptor]` for all groups in a reaction.
-- Output: `list[RoleAssignment]` with one of `{reactive_nucleophile, reactive_electrophile, reactive_radical, leaving_group, spectator}`.
-- Strategy: threshold rules on mechanistic scores + context flags, then conflict resolution.
-- Target: ≥ 60 % role accuracy on the five benchmark reactions in `BENCHMARK.md` before introducing the MLP.
+Do not run `scripts/train_mlp.py` or `tests/test_mlp.py` as part of Phase 0-6 validation.
