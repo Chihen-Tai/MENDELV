@@ -15,6 +15,24 @@ dependencies = [
 ml = [
     "torch>=2.0",
 ]
+mlip = [
+    "ase",
+    "mace-torch",
+]
+ani2x = [
+    "torch>=2.0",
+    "torchani>=2.2",
+    "ase",
+]
+mlip-all = [
+    "ase",
+    "mace-torch",
+    "torch>=2.0",
+    "torchani>=2.2",
+]
+plot = [
+    "matplotlib",
+]
 dev = [
     "pytest>=8.0",
     "ruff>=0.4",
@@ -31,6 +49,9 @@ addopts = "-v"
 markers = [
     "phase7: tests for Phase 7 MLP role predictor training and inference",
     "ml: tests that require optional ML dependencies such as torch",
+    "mlip: tests that require optional MLIP dependencies such as ASE or MACE",
+    "optional: tests for optional dependency integrations",
+    "slow: tests that may run longer than the default unit suite",
 ]
 
 [tool.ruff]

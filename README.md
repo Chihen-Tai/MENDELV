@@ -4,12 +4,13 @@
 
 Each functional group in a molecule is treated as an **agent** that observes its local chemical environment, predicts its own reaction role, then negotiates with neighbouring groups to produce a coherent, conflict-free assignment.
 
+The same functional-group-as-agent lens applies to MLIP evaluation: MENDEL decomposes MLIP force errors by functional group type, revealing that reactive sites (e.g. the alcohol C–O bond in ethanol) carry ~2× the global RMSE — a fact that a single global number hides entirely.
+
 ---
 
 ## Quick Demo
 
 ```python
-import mendel
 from mendel.negotiator import run_full_rule_pipeline
 
 result = run_full_rule_pipeline(
@@ -17,11 +18,12 @@ result = run_full_rule_pipeline(
     context="ionic",
 )
 
-print(mendel.__version__)       # 0.1.0
 print(result.mechanism_hint)    # sn2_or_e2_like
+for ra in result.role_assignments:
+    print(ra.group_id, ra.final_role)
 ```
 
-`import mendel` does not import PyTorch. Phase 7 MLP APIs must be imported directly from `mendel.mlp`.
+`import mendel` does not import PyTorch, torchani, ASE, or MACE. All optional Phase 7–10 APIs must be imported directly from their submodule (`mendel.mlp`, `mendel.mlip`).
 
 ---
 
@@ -46,7 +48,10 @@ reaction SMILES + context
   [optional] MLP role predictor    (mlp.py — learned, Phase 7)
          │
          ▼
-  [future] MLIP energy / forces    (Phase 8 — MACE/Transition1x)
+  [optional] MLIP energy / forces  (mlip.py — MACE-OFF / ANI-2x, Phase 9)
+         │
+         ▼
+  [optional] MENDEL force decomposition  (local_force_analysis.py — per-group RMSE, Phase 10)
 ```
 
 ### Roles
@@ -70,11 +75,14 @@ git clone <repo-url>
 cd mendel
 conda create -n mendel python=3.12
 conda activate mendel
-pip install -e ".[dev]"          # Phases 0–6 + tests
-pip install -e ".[ml]"           # Phase 7 only — installs torch
+pip install -e ".[dev]"          # Phases 0–6 + tests (rdkit only)
+pip install -e ".[ml]"           # Phase 7 — installs torch
+pip install -e ".[mlip]"         # Phase 9 — MACE-OFF (ASE + mace-torch)
+pip install -e ".[ani2x]"        # Phase 9 — ANI-2x (torchani ≥ 2.2 + ASE)
+pip install -e ".[mlip-all]"     # Phase 9 — MACE-OFF + ANI-2x together
 ```
 
-Requires Python ≥ 3.10 and RDKit.
+> MACE on Apple Silicon requires `--device cpu` (MPS does not support float64).
 
 ---
 
@@ -91,8 +99,69 @@ Requires Python ≥ 3.10 and RDKit.
 | 6 | Negotiation layer | ✓ |
 | 6.5 | Dataset curation / draft label generation | ✓ |
 | 7 | MLP role predictor training | ✓ (needs more curated data) |
-| 8 | Benchmark evaluator | ✓ |
-| 8.5 | Dataset normalization + MLP readiness diagnostics | ✓ |
+| 8 | Benchmark evaluator + diagnostics | ✓ |
+| 9 | Optional MLIP backend (MACE-OFF, ANI-2x) | ✓ |
+| 10 | rMD17/QO2Mol benchmark + MENDEL force decomposition | ✓ |
+
+---
+
+## MLIP Comparison: Pure MLIP vs MENDEL + MLIP
+
+Phase 10 runs MACE-OFF-small and ANI-2x against rMD17 ethanol (100 conformers, revPBE-D3 DFT) and decomposes force errors using MENDEL's functional-group agents.
+
+### Global results (pure MLIP)
+
+| Metric | MACE-OFF-small | ANI-2x |
+|--------|---------------|--------|
+| Force MAE (eV/Å) | 0.374 | 0.258 |
+| Force RMSE (eV/Å) | 0.443 | 0.305 |
+| Energy MAE (eV) | 11.35 | 7.23 |
+| Per-element RMSE: C | 0.479 | 0.341 |
+| Per-element RMSE: H | 0.418 | 0.293 |
+| Per-element RMSE: O | 0.513 | 0.308 |
+
+ANI-2x outperforms MACE-OFF-small by ~31–36% on all metrics. It was trained on CCSD(T)/CBS organic-molecule data, which is closer to rMD17's revPBE-D3 organic conformer distribution.
+
+### MENDEL force decomposition
+
+| Functional group | MACE RMSE (eV/Å) | ANI-2x RMSE (eV/Å) |
+|-----------------|-----------------|------------------|
+| alcohol C–O (reactive, MENDEL-identified) | **0.954** | **0.601** |
+| hydroxyl H (O–H) | 0.771 | 0.482 |
+| alpha C–H (reactive side) | 0.758 | 0.550 |
+| methyl C–H (spectator) | 0.683 | 0.486 |
+| methyl C (spectator) | 0.587 | 0.512 |
+
+**Key finding**: both models concentrate their force error on the MENDEL-identified reactive functional group. The reactive-site RMSE is ~2× the global figure. A single global number hides this entirely.
+
+MENDEL currently acts as a **diagnostic tool** — it reveals where each MLIP struggles chemically. The MLIP force values themselves are unchanged; MENDEL provides the chemical lens to interpret them.
+
+### Reproduce
+
+```bash
+# install MACE + ANI-2x
+pip install -e ".[mlip-all]"
+
+# run MACE-OFF benchmark (--device cpu required on Apple Silicon)
+python scripts/run_mlip_reference_benchmark.py \
+  --reference data/reference/rmd17_ethanol_sample_converted.reference.json \
+  --backend mace --model-name mace-off-small --device cpu
+
+# run ANI-2x benchmark
+python scripts/run_mlip_reference_benchmark.py \
+  --reference data/reference/rmd17_ethanol_sample_converted.reference.json \
+  --backend ani2x --device cpu
+
+# generate MACE vs ANI-2x comparison figure
+python scripts/compare_mace_ani2x.py
+# → reports/figures/mace_vs_ani2x_ethanol.png
+
+# generate pure-MLIP vs MENDEL decomposition figure
+python scripts/compare_pure_vs_mendel_mlip.py
+# → reports/figures/pure_vs_mendel_mlip.png
+```
+
+See [docs/mlip_comparison.md](docs/mlip_comparison.md) for the full analysis and next steps toward making functional-group agents actually improve prediction accuracy (reactive-site weighted fine-tuning).
 
 ---
 
@@ -107,162 +176,53 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-### Phase 6.5 — curation
-
-```bash
-pytest tests/test_curation.py -q
-```
-
 ### Phase 7 — MLP (requires `pip install -e ".[ml]"`)
 
 ```bash
 pytest tests/test_mlp.py -q
 ```
 
----
-
-## Dataset Curation (Phase 6.5)
-
-Before Phase 7 training can produce meaningful results, a curated labeled dataset must be built. Phase 6.5 generates draft labels from the rule-based pipeline for manual review.
+### Phase 9 — MLIP backend (no live MACE/torchani required for unit tests)
 
 ```bash
-# Generate draft labels from 5 core benchmark reactions
-python scripts/draft_labels.py \
-  --core \
-  --output data/reactions.draft.core.json \
-  --report reports/draft_core_report.json
-
-# Generate draft labels from all 15 extended reactions
-python scripts/draft_labels.py \
-  --core --extended \
-  --output data/reactions.draft.json \
-  --report reports/draft_report.json
+pytest tests/test_mlip.py -q
 ```
 
-Draft records carry `confidence="draft"` and `needs_manual_review=true`. A chemist must inspect and correct roles, change the split to `train`/`val`/`test`, and set `needs_manual_review=false` before adding records to `data/reactions.json`.
-
-See [docs/curation.md](docs/curation.md) for the full curation workflow.
-
 ---
 
-## MLP Training (Phase 7)
-
-Trains a small PyTorch MLP (55 → hidden → 5) on descriptor vectors. Does **not** require MACE, MLIP, or any energy model.
-
-**Smoke test** (minimal dataset, no curated labels needed):
+## Key Commands
 
 ```bash
+# run all tests
+pytest
+
+# lint / format / type check
+ruff check mendel/ tests/
+ruff format mendel/ tests/
+mypy mendel/
+
+# generate draft labels from rule-based pipeline
+python scripts/draft_labels.py --core --output data/reactions.draft.core.json
+
+# train MLP (smoke test, no curated data needed)
 python scripts/train_mlp.py \
   --data data/reactions.minimal.json \
   --output models/role_mlp_minimal.pt \
-  --report reports/mlp_minimal_report.json \
-  --epochs 3 --hidden-dim 16 --batch-size 4 \
-  --allow-draft-labels
-```
+  --epochs 3 --hidden-dim 16 --allow-draft-labels
 
-**Full training** (requires curated `data/reactions.json`):
-
-```bash
-python scripts/train_mlp.py \
-  --data data/reactions.json \
-  --output models/role_mlp.pt \
-  --report reports/mlp_training_report.json \
-  --epochs 100
-```
-
-See [docs/mlp.md](docs/mlp.md) for the full API reference.
-
-## Benchmarking
-
-Compare the rule-based local predictor against the negotiated rule-based pipeline:
-
-```bash
+# benchmark rule-based + negotiated pipeline
 python scripts/benchmark.py --data data/reactions.json --rule-based --negotiated
-```
 
-Optionally evaluate an existing MLP checkpoint:
+# MLIP single-point (Phase 9)
+python scripts/mlip_singlepoint.py \
+  --smiles "CC(=O)C" --backend mace --model-name mace-off-small --device cpu \
+  --output reports/mlip_acetone.json
 
-```bash
-python scripts/benchmark.py --data data/reactions.json --mlp-checkpoint models/role_mlp.pt --device cpu
-```
-
-The MLP checkpoint command evaluates both `mlp_local` and `mlp_negotiated`.
-These commands evaluate existing predictors only. They do not train the MLP and do not
-use MLIP, MACE, Transition1x, energies, forces, transition states, or barriers.
-
-See [docs/benchmark.md](docs/benchmark.md) for the Phase 8 metric definitions and
-limitations.
-
-Current benchmark status:
-
-- `rule_based_negotiated` is the best-performing current pipeline.
-- The MLP is implemented and checkpoint-evaluable, but underperforms because the
-  dataset is still small.
-- Do not use the MLP as the default predictor until benchmark results improve.
-
-Normalize and inspect the labeled dataset:
-
-```bash
-python scripts/normalize_dataset.py \
-  --input data/reactions.json \
-  --output data/reactions.normalized.json \
-  --report reports/dataset_quality_report.json
-```
-
-See [docs/dataset_quality.md](docs/dataset_quality.md) for Phase 8.5 guidance.
-
----
-
-## Repository Structure
-
-```
-mendel/
-├── mendel/
-│   ├── __init__.py         ← public entry point (no PyTorch)
-│   ├── types.py            ← core enums and dataclasses
-│   ├── constants.py        ← derived constant sets
-│   ├── parser.py           ← reaction SMILES parser
-│   ├── identifier.py       ← functional group identifier
-│   ├── descriptor.py       ← 55-dim descriptor builder
-│   ├── labels.py           ← labeled data schema
-│   ├── predictor.py        ← rule-based role predictor
-│   ├── negotiator.py       ← negotiation layer
-│   ├── curation.py         ← draft label generation (Phase 6.5)
-│   ├── mlp.py              ← MLP role predictor (Phase 7)
-│   ├── benchmark.py        ← benchmark evaluator (Phase 8)
-│   └── dataset_quality.py  ← normalization and diagnostics (Phase 8.5)
-├── scripts/
-│   ├── draft_labels.py     ← CLI: generate draft labels
-│   ├── train_mlp.py        ← CLI: train MLP
-│   ├── benchmark.py        ← CLI: evaluate predictors
-│   └── normalize_dataset.py ← CLI: normalize/check labels
-├── data/
-│   ├── reactions.json               ← curated labeled reactions
-│   ├── reactions.minimal.json       ← 2-reaction subset for fast tests
-│   ├── reactions.example.json       ← schema reference
-│   └── draft_inputs.example.json   ← draft input format reference
-├── tests/
-│   ├── test_phase0_scaffold.py
-│   ├── test_parser.py
-│   ├── test_identifier.py
-│   ├── test_descriptor.py
-│   ├── test_labels.py
-│   ├── test_predictor.py
-│   ├── test_negotiator.py
-│   ├── test_curation.py
-│   └── test_mlp.py
-├── docs/
-│   ├── index.md
-│   ├── descriptor.md
-│   ├── labels.md
-│   ├── predictor.md
-│   ├── negotiator.md
-│   ├── curation.md
-│   └── mlp.md
-├── groups/                 ← per-group SMARTS specifications
-├── DESIGN.md               ← full architecture spec
-├── BENCHMARK.md            ← benchmark reactions
-└── TEMPLATE.md             ← template for adding a new functional group
+# MENDEL-guided MLIP (uses negotiated reaction center for force summary)
+python scripts/mlip_singlepoint.py \
+  --reaction-smiles "CBr.[OH-]>>CO.[Br-]" --context ionic \
+  --reaction-center-from-mendelv --device cpu \
+  --output reports/mlip_sn2.json
 ```
 
 ---
@@ -273,3 +233,4 @@ mendel/
 - **Interpretable** — every prediction is chemically explainable
 - **Modular** — each phase is independently testable and swappable
 - **Fully local** — no API calls, no external services
+- **Honest diagnostics** — MENDEL shows where models struggle; it does not silently paper over errors
