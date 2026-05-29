@@ -52,19 +52,27 @@ def main() -> None:
     parser.add_argument("--lr", type=float, default=5e-5)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--mlp-checkpoint", type=Path, default=None,
+                        help="MENDEL MLP checkpoint for role-based reactive detection.")
     args = parser.parse_args()
 
     pkl_path = ROOT / args.pkl if not Path(args.pkl).is_absolute() else Path(args.pkl)
     out_path = ROOT / args.output
     report_path = ROOT / args.report
+    mlp_ckpt = (ROOT / args.mlp_checkpoint
+                if args.mlp_checkpoint and not args.mlp_checkpoint.is_absolute()
+                else args.mlp_checkpoint)
 
+    detection = "MLP-guided" if mlp_ckpt else "heteroatom-proximity"
     label = "MENDEL-weighted" if args.reactive_weight > 1.0 else "uniform control"
-    print(f"reactive_weight = {args.reactive_weight}  ({label})\n")
+    print(f"reactive_weight = {args.reactive_weight}  ({label})")
+    print(f"reactive detection = {detection}\n")
 
     print("Loading training records...")
     train = load_qo2mol_pkl_records(
         pkl_path, max_records=args.n_train,
         reactive_weight=args.reactive_weight, seed=args.train_seed,
+        mlp_checkpoint=mlp_ckpt,
     )
     n_reactive = sum(1 for r in train for w in r.atom_weights if w > 1.0)
     n_total_atoms = sum(len(r.symbols) for r in train)
@@ -75,6 +83,7 @@ def main() -> None:
     test = load_qo2mol_pkl_records(
         pkl_path, max_records=args.n_test,
         reactive_weight=args.reactive_weight, seed=args.test_seed,
+        mlp_checkpoint=mlp_ckpt,
     )
     print(f"  {len(test)} conformers\n")
 

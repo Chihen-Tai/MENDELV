@@ -1,0 +1,178 @@
+{
+  "config": {
+    "lr": 5e-05,
+    "epochs": 30,
+    "force_weight": 1.0,
+    "energy_weight": 0.01,
+    "reactive_loss_weight": 1.0,
+    "batch_size": 8,
+    "device": "cpu"
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.23009660447898664,
+      "val_force_rmse": 0.43983777272854
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.09101079026923369,
+      "val_force_rmse": 0.4083465328806275
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.05886145803685251,
+      "val_force_rmse": 0.39488397379533835
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.04323150952787776,
+      "val_force_rmse": 0.39101336289962507
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.03461194580028716,
+      "val_force_rmse": 0.3890463823007471
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.028667125703864975,
+      "val_force_rmse": 0.39073848483273477
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.024511041854949372,
+      "val_force_rmse": 0.3886887488691658
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.021378482128248402,
+      "val_force_rmse": 0.3877175756219094
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.01930290519406921,
+      "val_force_rmse": 0.3897400206826229
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.017817715329951363,
+      "val_force_rmse": 0.3888635062280493
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.016612862972052472,
+      "val_force_rmse": 0.38794960986358074
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.015457305383231295,
+      "val_force_rmse": 0.3876382976198432
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.014360827173253423,
+      "val_force_rmse": 0.3861826063595996
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.013506671903949035,
+      "val_force_rmse": 0.3875360569096908
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.012557190475299171,
+      "val_force_rmse": 0.38535532678337636
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.011735405503331046,
+      "val_force_rmse": 0.385960014797818
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.011331144842858376,
+      "val_force_rmse": 0.3900204699881504
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.010927587367692277,
+      "val_force_rmse": 0.38870383707401607
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.009784041646573888,
+      "val_force_rmse": 0.38579126383699935
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.009507025763588516,
+      "val_force_rmse": 0.3814926631546289
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.009306122757200348,
+      "val_force_rmse": 0.38341430978052476
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.00943242624941233,
+      "val_force_rmse": 0.38256779416185654
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.009285133907963572,
+      "val_force_rmse": 0.38531252085457224
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.009061684770705668,
+      "val_force_rmse": 0.3829219466900368
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.009375229661696051,
+      "val_force_rmse": 0.38505261912990496
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.008844579275893537,
+      "val_force_rmse": 0.384197370176206
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.0090194855951459,
+      "val_force_rmse": 0.3818418901552853
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.008781025382248979,
+      "val_force_rmse": 0.38166494463733264
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.008555499751022771,
+      "val_force_rmse": 0.37879464200639257
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.0076719856404356265,
+      "val_force_rmse": 0.3798895007651014
+    }
+  ],
+  "final_train_loss": 0.0076719856404356265,
+  "final_val_force_rmse": 0.3798895007651014,
+  "reactive_indices_sample": [
+    0,
+    1
+  ],
+  "metadata": {},
+  "held_out_force_rmse": 0.3798895007651014,
+  "n_train": 300,
+  "n_test": 100,
+  "reactive_weight": 1.0,
+  "experiment_type": "uniform control",
+  "dataset": "QO2Mol OOD",
+  "train_seed": 42,
+  "test_seed": 99
+}

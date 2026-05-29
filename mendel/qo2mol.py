@@ -62,6 +62,54 @@ def qo2mol_metadata() -> dict[str, object]:
     }
 
 
+_BOND_TYPE_MAP: dict[str, object] = {}
+
+
+def _rdkit_bond_map() -> dict[str, object]:
+    if not _BOND_TYPE_MAP:
+        from rdkit.Chem import BondType  # type: ignore
+        _BOND_TYPE_MAP.update({
+            "1": BondType.SINGLE, "2": BondType.DOUBLE,
+            "3": BondType.TRIPLE, "ar": BondType.AROMATIC, "1.5": BondType.AROMATIC,
+        })
+    return _BOND_TYPE_MAP
+
+
+def qo2mol_record_to_rdkit_mol(record: dict[str, Any]) -> "Any | None":
+    """Build RDKit RWMol from QO2Mol pkl record. Returns None on sanitization failure."""
+    try:
+        from rdkit import Chem  # type: ignore
+        from rdkit.Chem import RWMol, Atom  # type: ignore
+    except ImportError:
+        raise ImportError("rdkit required")
+    bond_map = _rdkit_bond_map()
+    mol = RWMol()
+    for z, fc in zip(record["elements"], record["formal_charge"]):
+        atom = Atom(int(z))
+        atom.SetFormalCharge(int(fc))
+        mol.AddAtom(atom)
+    seen: set[tuple[int, int]] = set()
+    for (i, j), bt in zip(record["edge_list"], record["edge_attr"]):
+        if i < j and (i, j) not in seen:
+            seen.add((i, j))
+            mol.AddBond(i, j, bond_map.get(str(bt), bond_map["1"]))
+    try:
+        Chem.SanitizeMol(mol)
+        return mol
+    except Exception:
+        return None
+
+
+def qo2mol_record_to_smiles(record: dict[str, Any]) -> str | None:
+    """Return canonical SMILES for a QO2Mol pkl record, or None on failure."""
+    try:
+        from rdkit import Chem  # type: ignore
+    except ImportError:
+        return None
+    mol = qo2mol_record_to_rdkit_mol(record)
+    return Chem.MolToSmiles(mol) if mol is not None else None
+
+
 def inspect_qo2mol_path(path: str | Path) -> dict[str, object]:
     target = Path(path)
     suffix = target.suffix.lower()

@@ -396,17 +396,70 @@ def reactive_atom_indices_by_heteroatom(
 _ANI2X_SUPPORTED = frozenset({1, 6, 7, 8, 9, 16, 17})  # H C N O F S Cl
 
 
+def reactive_atom_indices_via_mendel_mlp(
+    item: dict,
+    mlp_checkpoint: "Path",
+    confidence_threshold: float = 0.60,
+) -> "list[int] | None":
+    """Use MENDEL MLP role predictor to identify reactive atoms.
+
+    Returns original-order atom indices for groups predicted as
+    nucleophile/electrophile/leaving_group with confidence >= threshold.
+    Returns None on any failure so caller can fall back to heuristic.
+    """
+    try:
+        from rdkit import Chem  # type: ignore
+        from rdkit.Chem import RWMol  # type: ignore
+        from mendel.qo2mol import qo2mol_record_to_rdkit_mol
+        from mendel.parser import parse_reaction_smiles
+        from mendel.identifier import identify_functional_groups
+        from mendel.mlp import MLPRolePredictor
+        from mendel.types import ReactionContext, Role
+
+        mol = qo2mol_record_to_rdkit_mol(item)
+        if mol is None:
+            return None
+
+        # Tag atoms with original index as atom-map number to survive SMILES canonicalization
+        rw = RWMol(mol)
+        for atom in rw.GetAtoms():
+            atom.SetAtomMapNum(atom.GetIdx() + 1)
+        smiles = Chem.MolToSmiles(rw)
+
+        parsed = parse_reaction_smiles(f"{smiles}>>{smiles}", context=ReactionContext.ionic)
+        groups = identify_functional_groups(parsed)
+        if not groups:
+            return None
+
+        mlp = MLPRolePredictor.load(mlp_checkpoint, device="cpu")
+        preds = mlp.predict_from_reaction(parsed, groups)
+
+        reactive_roles = {Role.reactive_nucleophile, Role.reactive_electrophile, Role.leaving_group}
+        reactive_orig: set[int] = set()
+        for pred in preds:
+            if pred.predicted_role in reactive_roles and pred.confidence >= confidence_threshold:
+                grp = next((g for g in groups if g.group_id == pred.group_id), None)
+                if grp:
+                    for ref in grp.atom_refs:
+                        if ref.atom_map_num:
+                            reactive_orig.add(ref.atom_map_num - 1)
+        return sorted(reactive_orig) if reactive_orig else None
+    except Exception:
+        return None
+
+
 def load_qo2mol_pkl_records(
     path: "Path",
     max_records: int = 300,
     reactive_weight: float = 3.0,
     seed: int = 42,
+    mlp_checkpoint: "Path | None" = None,
 ) -> "list[ConformerRecord]":
     """Load QO2Mol pkl into ConformerRecord list.
 
-    Filters molecules with unsupported ANI-2x elements (P, Br, I).
-    Energies/forces are already in eV / eV·Å⁻¹ — no conversion needed.
-    Reactive detection uses heteroatom-proximity heuristic per molecule.
+    Filters for ANI-2x-supported elements. No unit conversion (already eV).
+    If mlp_checkpoint is given, uses MENDEL MLP for reactive detection;
+    otherwise falls back to heteroatom-proximity heuristic.
     """
     import pickle
 
@@ -418,8 +471,10 @@ def load_qo2mol_pkl_records(
         item for item in all_data
         if all(int(z) in _ANI2X_SUPPORTED for z in item["elements"])
     ]
-
     sample = rng.sample(compatible, min(max_records, len(compatible)))
+
+    use_mlp = mlp_checkpoint is not None
+    mlp_used = mlp_fallback = 0
 
     records: list[ConformerRecord] = []
     for i, item in enumerate(sample):
@@ -427,7 +482,17 @@ def load_qo2mol_pkl_records(
         symbols = [_ATOMIC_SYMBOL[z] for z in atomic_numbers]
         positions = [tuple(float(v) for v in row) for row in item["coordinates"]]
         forces = [[float(v) for v in row] for row in item["forces"]]
-        reactive = reactive_atom_indices_by_heteroatom(atomic_numbers, positions)
+
+        if use_mlp:
+            reactive = reactive_atom_indices_via_mendel_mlp(item, mlp_checkpoint)
+            if reactive is not None:
+                mlp_used += 1
+            else:
+                reactive = reactive_atom_indices_by_heteroatom(atomic_numbers, positions)
+                mlp_fallback += 1
+        else:
+            reactive = reactive_atom_indices_by_heteroatom(atomic_numbers, positions)
+
         weights = build_atom_weights(len(symbols), reactive, reactive_weight=reactive_weight)
         records.append(ConformerRecord(
             structure_id=str(item.get("confid", f"qo2mol_{i}")),
@@ -437,6 +502,12 @@ def load_qo2mol_pkl_records(
             forces=forces,
             atom_weights=weights,
         ))
+
+    if use_mlp:
+        n_reactive = sum(1 for r in records for w in r.atom_weights if w > 1.0)
+        n_atoms = sum(len(r.symbols) for r in records)
+        print(f"  MLP detection: {mlp_used}/{len(records)} ok, {mlp_fallback} fallback")
+        print(f"  reactive atom-slots: {n_reactive}/{n_atoms} ({100*n_reactive/max(1,n_atoms):.1f}%)")
     return records
 
 
