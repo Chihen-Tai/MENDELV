@@ -6836,6 +6836,694 @@
         "reviewed_by": "MENDELV Phase 8.13 conservative center expansion",
         "center_policy": "Control/no-reaction center policy: all groups spectator; center=[]."
       }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_1",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        1
+      ],
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: center_expansion_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        1
+      ],
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_aldol_acetaldehyde_self",
+      "reaction_smiles": "CC=O.CC=O>>CC(O)CC=O",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        0
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_aldol_acetone_self",
+      "reaction_smiles": "CC(=O)C.CC(=O)C>>CC(=O)CC(O)(C)C",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_1",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3,
+        0
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_aldol_propanal_self",
+      "reaction_smiles": "CCC=O.CCC=O>>CCC(O)C(C)C=O",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        1
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_cross_aldol_acetaldehyde_benzaldehyde",
+      "reaction_smiles": "CC=O.O=Cc1ccccc1>>CC(O)Cc1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol1_aromatic_0",
+          "molecule_index": 1,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        0
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Cross-aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_cross_aldol_acetone_benzaldehyde",
+      "reaction_smiles": "CC(=O)C.O=Cc1ccccc1>>CC(=O)CC(O)c1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        },
+        {
+          "group_id": "mol1_aromatic_0",
+          "molecule_index": 1,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3,
+        0
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Cross-aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
+    },
+    {
+      "reaction_id": "auto_cross_aldol_propanal_benzaldehyde",
+      "reaction_smiles": "CCC=O.O=Cc1ccccc1>>CCC(O)Cc1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        },
+        {
+          "group_id": "mol1_aromatic_0",
+          "molecule_index": 1,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "draft",
+          "notes": "draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        1
+      ],
+      "metadata": {
+        "source": "MENDELV template starter set",
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Cross-aldol donor/acceptor labels must be manually reviewed.",
+        "exclude_from_ground_truth_until_review": true,
+        "product_simplified": true,
+        "promoted_by": "manual_review_phase6_5"
+      }
     }
   ]
 }

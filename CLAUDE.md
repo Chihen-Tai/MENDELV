@@ -81,7 +81,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | 7 — MLP role predictor training | **Complete** — `models/role_mlp.pt`, 93.6% val acc | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | Implemented | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
-| 10 — Reference energy/force data (MD17, QO2Mol) | Partial | stdlib only (no MLIP) |
+| 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
 
 ### Implemented modules
 
