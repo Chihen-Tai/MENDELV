@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-**Phase 7 is complete.** Checkpoint lives at `models/role_mlp.pt` (93.6% val accuracy on `reactions.center_balanced.cleaned.json`). `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
+**Phase 7 checkpoint updated (Phase 6.5 expansion).** `models/role_mlp.pt` — **94.92% val accuracy**, 140 reactions / 299 examples on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
 
 **Do not run `tests/test_mlip.py`, `tests/test_mlip_env_scripts.py`, `tests/test_mlip_geometry_sanity.py`, or `tests/test_mlip_reference_benchmark.py` without Phase 9 deps installed.**
 
@@ -77,8 +77,8 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | Phase | Status | Dependencies |
 |-------|--------|--------------|
 | 0–6 | Implemented | `rdkit`, stdlib only |
-| 6.5 — Dataset curation / label drafting | In progress | `rdkit`, stdlib only |
-| 7 — MLP role predictor training | **Complete** — `models/role_mlp.pt`, 93.6% val acc | `torch>=2.0` |
+| 6.5 — Dataset curation / label drafting | **Complete** — 140 reactions, 299 examples; 8 aldol + 7 D-A added; descriptor limit confirmed: 55-dim per-group features cannot distinguish donor vs acceptor carbonyl without inter-molecular context | `rdkit`, stdlib only |
+| 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, **94.92% val acc** (↑ from 93.6% after Phase 6.5 D-A expansion) | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | Implemented | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
@@ -143,6 +143,12 @@ Key types: `TrainingExample` (group_id, features, role), `TrainingConfig` (hidde
 Checkpoint format (`.pt`): `{state_dict, input_dim, hidden_dim, output_dim, dropout, feature_names, model_version}` — safe for `weights_only=True` load.
 
 **Scope boundary**: Phase 7 trains role classification only. Does NOT train MLIP, MACE, or any energy/force model.
+
+**Known descriptor limitations (found Phase 6.5):**
+- `leaving_group` and `radical` generalize well to unseen substrates.
+- `carbonyl` electrophile/spectator distinction fails outside training mechanism families — the 55-dim per-group descriptor has no inter-molecular context, so the model cannot distinguish donor vs acceptor carbonyl in aldol-type reactions.
+- `alkene` nucleophile/electrophile confusion persists in D-A variants (~11% error rate); EWG proximity is not captured.
+- Default behavior under uncertainty: predicts `spectator`. To improve OOD generalization, reaction-level features (e.g., "complementary group present in other molecule") or a GNN encoder are needed.
 
 ### Negotiator — `mendel/negotiator.py`
 
