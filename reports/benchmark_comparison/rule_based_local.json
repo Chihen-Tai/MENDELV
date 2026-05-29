@@ -1,23 +1,23 @@
 {
   "predictor_name": "rule_based_local",
-  "n_reactions": 154,
-  "n_group_labels": 347,
-  "overall_role_accuracy": 0.622478386167147,
+  "n_reactions": 160,
+  "n_group_labels": 370,
+  "overall_role_accuracy": 0.6,
   "role_accuracy_by_role": {
     "leaving_group": 1.0,
-    "reactive_electrophile": 0.5428571428571428,
+    "reactive_electrophile": 0.5,
     "reactive_nucleophile": 1.0,
     "reactive_radical": 1.0,
-    "spectator": 0.3310810810810811
+    "spectator": 0.3081761006289308
   },
   "role_accuracy_by_group_type": {
     "alcohol": 1.0,
-    "alkene": 0.6,
-    "alpha_carbon": 0.34523809523809523,
+    "alkene": 0.5581395348837209,
+    "alpha_carbon": 0.3888888888888889,
     "amine": 1.0,
     "aromatic": 1.0,
     "benzylic_site": 1.0,
-    "carbonyl": 0.7307692307692307,
+    "carbonyl": 0.6440677966101694,
     "ester": 0.0,
     "halide": 1.0,
     "nitrile": 0.45,
@@ -34,21 +34,21 @@
     "e2": 1.0,
     "ester_control": 0.05555555555555555,
     "hetero_diels_alder": 0.3333333333333333,
-    "michael_addition": 0.24,
+    "michael_addition": 0.25,
     "nitrile_control": 0.5555555555555556,
     "nitroalkane_deprotonation": 1.0,
     "reductive_amination": 0.7272727272727273,
     "sn2": 1.0
   },
   "split_accuracy": {
-    "draft": 0.375,
+    "draft": 0.3380281690140845,
     "test": 0.7222222222222222,
     "train": 0.6530612244897959,
     "val": 0.6944444444444444
   },
   "confusion_matrix": {
     "reactive_nucleophile": {
-      "reactive_nucleophile": 79,
+      "reactive_nucleophile": 85,
       "reactive_electrophile": 0,
       "reactive_radical": 0,
       "leaving_group": 0,
@@ -59,7 +59,7 @@
       "reactive_electrophile": 38,
       "reactive_radical": 0,
       "leaving_group": 0,
-      "spectator": 6
+      "spectator": 12
     },
     "reactive_radical": {
       "reactive_nucleophile": 0,
@@ -77,7 +77,7 @@
     },
     "spectator": {
       "reactive_nucleophile": 55,
-      "reactive_electrophile": 44,
+      "reactive_electrophile": 55,
       "reactive_radical": 0,
       "leaving_group": 0,
       "spectator": 49
@@ -5638,6 +5638,374 @@
         "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
         "detected_group_type": "alkene"
       }
+    },
+    {
+      "reaction_id": "michael_malononitrile_mvk",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_mvk",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_mvk",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_acrylonitrile",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_acrylonitrile",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "group_id": "mol0_carbonyl_1",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "michael_nitromethane_acrylate",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_nitromethane_acrylate",
+      "group_id": "mol1_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.65,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.65 >= threshold 0.55",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "michael_nitromethane_acrylate",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.65,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.65 >= threshold 0.55",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "group_id": "mol0_ester_1",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.65,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.65 >= threshold 0.55",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.65,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.65 >= threshold 0.55",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.55,
+      "predictor_name": "rule_based_local",
+      "correct": true,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "electrophilicity_score=0.70 >= threshold 0.55",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5,
+      "predictor_name": "rule_based_local",
+      "correct": false,
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "metadata": {
+        "reason": "no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.08, rad=0.35)",
+        "detected_group_type": "alkene"
+      }
     }
   ],
   "reaction_records": [
@@ -8653,6 +9021,126 @@
       "warnings": [],
       "metadata": {
         "n_detected_groups": 6,
+        "true_reaction_center_atoms": "6,8,5,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_mvk",
+      "reaction_smiles": "N#CCC#N.C=CC(C)=O>>CC(=O)CCC(C#N)C#N",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.3333333333333333,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 6,
+        "true_reaction_center_atoms": "2,1,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_acrylonitrile",
+      "reaction_smiles": "N#CCC#N.C=CC#N>>N#CC(CCC#N)C#N",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.5,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 5,
+        "true_reaction_center_atoms": "2,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "reaction_smiles": "CC(=O)CC(=O)C.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)C",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 5,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.2,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 8,
+        "true_reaction_center_atoms": "1,2,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_nitromethane_acrylate",
+      "reaction_smiles": "[O-][N+](=O)C.C=CC(=O)OCC>>CCOC(=O)CCC[N+](=O)[O-]",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.3333333333333333,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "0,1,2,3,4,5",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "reaction_smiles": "COC(=O)CC(=O)OC.C=CC(C)=O>>CC(=O)CCC(C(=O)OC)C(=O)OC",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 5,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.2,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 6,
+        "true_reaction_center_atoms": "4,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "reaction_smiles": "CC(=O)CC(=O)OCC.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)OCC",
+      "split": "draft",
+      "mechanism_type": "michael_addition",
+      "predictor_name": "rule_based_local",
+      "n_labeled_groups": 5,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.2,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 7,
         "true_reaction_center_atoms": "6,8,5,3",
         "predicted_reaction_center_atoms": ""
       }

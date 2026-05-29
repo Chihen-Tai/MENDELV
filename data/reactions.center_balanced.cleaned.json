@@ -8835,6 +8835,424 @@
         "warning_count": 1,
         "mechanism": "michael_addition"
       }
+    },
+    {
+      "reaction_id": "michael_malononitrile_mvk",
+      "reaction_smiles": "N#CCC#N.C=CC(C)=O>>CC(=O)CCC(C#N)C#N",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        1,
+        4
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "michael_addition"
+      }
+    },
+    {
+      "reaction_id": "michael_malononitrile_acrylonitrile",
+      "reaction_smiles": "N#CCC#N.C=CC#N>>N#CC(CCC#N)C#N",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        1
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "michael_addition"
+      }
+    },
+    {
+      "reaction_id": "michael_acetylacetone_mvk",
+      "reaction_smiles": "CC(=O)CC(=O)C.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)C",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_carbonyl_1",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            4,
+            6
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        0
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "michael_addition"
+      }
+    },
+    {
+      "reaction_id": "michael_nitromethane_acrylate",
+      "reaction_smiles": "[O-][N+](=O)C.C=CC(=O)OCC>>CCOC(=O)CCC[N+](=O)[O-]",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_ester_0",
+          "molecule_index": 1,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "ionic_addition_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "michael_addition"
+      }
+    },
+    {
+      "reaction_id": "michael_dimethylmalonate_mvk",
+      "reaction_smiles": "COC(=O)CC(=O)OC.C=CC(C)=O>>CC(=O)CCC(C(=O)OC)C(=O)OC",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            3,
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_ester_1",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            4,
+            2
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        4,
+        2
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "michael_addition"
+      }
+    },
+    {
+      "reaction_id": "michael_ethyl_acetoacetate_mvk",
+      "reaction_smiles": "CC(=O)CC(=O)OCC.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)OCC",
+      "context": "ionic",
+      "mechanism_type": "michael_addition",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            3,
+            4,
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            6,
+            8
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            5,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Michael acceptor alkene (beta-carbon of conjugated system)"
+        }
+      ],
+      "reaction_center_atoms": [
+        6,
+        8,
+        5,
+        3
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "michael_addition"
+      }
     }
   ]
 }

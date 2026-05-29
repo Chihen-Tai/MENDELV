@@ -39,6 +39,38 @@ CORRECTIONS: dict[str, dict[str, Role]] = {
         "mol0_carbonyl_0":     Role.spectator,
         "mol0_alpha_carbon_1": Role.spectator,
     },
+    "michael_malononitrile_mvk": {
+        "mol0_nitrile_0":      Role.spectator,
+        "mol0_nitrile_1":      Role.spectator,
+        "mol1_carbonyl_0":     Role.spectator,
+    },
+    "michael_malononitrile_acrylonitrile": {
+        "mol0_nitrile_0":      Role.spectator,
+        "mol0_nitrile_1":      Role.spectator,
+        "mol1_nitrile_0":      Role.spectator,
+    },
+    "michael_acetylacetone_mvk": {
+        "mol0_carbonyl_0":     Role.spectator,
+        "mol0_carbonyl_1":     Role.spectator,
+        "mol0_alpha_carbon_1": Role.spectator,
+        "mol0_alpha_carbon_2": Role.spectator,
+        "mol1_carbonyl_0":     Role.spectator,
+    },
+    "michael_nitromethane_acrylate": {
+        "mol0_nitro_0":        Role.spectator,
+        "mol1_ester_0":        Role.spectator,
+    },
+    "michael_dimethylmalonate_mvk": {
+        "mol0_ester_0":        Role.spectator,
+        "mol0_ester_1":        Role.spectator,
+        "mol1_carbonyl_0":     Role.spectator,
+    },
+    "michael_ethyl_acetoacetate_mvk": {
+        "mol0_ester_0":        Role.spectator,
+        "mol0_carbonyl_0":     Role.spectator,
+        "mol0_alpha_carbon_1": Role.spectator,
+        "mol1_carbonyl_0":     Role.spectator,
+    },
 }
 
 INPUTS = [
@@ -75,6 +107,42 @@ INPUTS = [
     DraftReactionInput(
         reaction_id="michael_ethyl_acetoacetate_acrylonitrile",
         reaction_smiles="CC(=O)CC(=O)OCC.C=CC#N>>CC(=O)C(CCC#N)C(=O)OCC",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_malononitrile_mvk",
+        reaction_smiles="N#CCC#N.C=CC(C)=O>>CC(=O)CCC(C#N)C#N",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_malononitrile_acrylonitrile",
+        reaction_smiles="N#CCC#N.C=CC#N>>N#CC(CCC#N)C#N",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_acetylacetone_mvk",
+        reaction_smiles="CC(=O)CC(=O)C.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)C",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_nitromethane_acrylate",
+        reaction_smiles="[O-][N+](=O)C.C=CC(=O)OCC>>CCOC(=O)CCC[N+](=O)[O-]",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_dimethylmalonate_mvk",
+        reaction_smiles="COC(=O)CC(=O)OC.C=CC(C)=O>>CC(=O)CCC(C(=O)OC)C(=O)OC",
+        context=ReactionContext.ionic,
+        mechanism_type="michael_addition",
+    ),
+    DraftReactionInput(
+        reaction_id="michael_ethyl_acetoacetate_mvk",
+        reaction_smiles="CC(=O)CC(=O)OCC.C=CC(C)=O>>CC(=O)C(CCC(C)=O)C(=O)OCC",
         context=ReactionContext.ionic,
         mechanism_type="michael_addition",
     ),

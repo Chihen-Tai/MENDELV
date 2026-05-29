@@ -264,9 +264,17 @@ class RuleBasedNegotiator:
                 p.predicted_role == Role.reactive_electrophile for p in predictions
             )
 
-            # Aldol checked before SN2 — carbonyl+alpha_carbon signature is specific
+            # Aldol checked before SN2 — carbonyl+alpha_carbon signature is specific.
+            # Exception: if an alkene is also predicted reactive_electrophile (Michael
+            # acceptor), fall through to ionic_addition_like instead.
             if has_carbonyl and has_alpha:
-                return "aldol_like"
+                alkene_gids = {g.group_id for g in groups if g.group_type == FunctionalGroupType.alkene}
+                has_alkene_elec = any(
+                    p.predicted_role == Role.reactive_electrophile and p.group_id in alkene_gids
+                    for p in predictions
+                )
+                if not has_alkene_elec:
+                    return "aldol_like"
 
             if has_halide or has_leaving_pred:
                 return "sn2_or_e2_like"
@@ -1073,6 +1081,41 @@ class RuleBasedNegotiator:
         """Ionic addition-like: mark top nucleophile and electrophile as reaction center."""
         nuc_preds = [p for p in predictions if p.predicted_role == Role.reactive_nucleophile]
         elec_preds = [p for p in predictions if p.predicted_role == Role.reactive_electrophile]
+
+        # Michael acceptor disambiguation: when a molecule has both an alkene and a
+        # carbonyl predicted as reactive_electrophile, the alkene is the 1,4-addition
+        # site and the carbonyl is a spectator activating group.
+        group_type_by_id = {g.group_id: g.group_type for g in groups}
+        mol_idx_by_id: dict[str, int] = {}
+        for g in groups:
+            if g.atom_refs:
+                mol_idx_by_id[g.group_id] = g.atom_refs[0].molecule_index
+
+        elec_by_mol: dict[int, list[RolePrediction]] = {}
+        for p in elec_preds:
+            mol_idx = mol_idx_by_id.get(p.group_id)
+            if mol_idx is not None:
+                elec_by_mol.setdefault(mol_idx, []).append(p)
+
+        demoted: set[str] = set()
+        for mol_elec in elec_by_mol.values():
+            types = {p.group_id: group_type_by_id.get(p.group_id) for p in mol_elec}
+            has_alkene = any(t == FunctionalGroupType.alkene for t in types.values())
+            has_carbonyl = any(
+                t in (FunctionalGroupType.carbonyl, FunctionalGroupType.ester)
+                for t in types.values()
+            )
+            if has_alkene and has_carbonyl:
+                for p in mol_elec:
+                    if types.get(p.group_id) in (
+                        FunctionalGroupType.carbonyl,
+                        FunctionalGroupType.ester,
+                    ):
+                        if p.group_id in assign_by_id:
+                            assign_by_id[p.group_id].final_role = Role.spectator
+                            assign_by_id[p.group_id].subrole = "michael_acceptor_activating_group"
+                            demoted.add(p.group_id)
+        elec_preds = [p for p in elec_preds if p.group_id not in demoted]
 
         if nuc_preds:
             top = max(nuc_preds, key=lambda p: p.confidence)
