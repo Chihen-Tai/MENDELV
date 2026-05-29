@@ -79,6 +79,61 @@ _CONTEXTUAL_ORDER: list[FunctionalGroupType] = [
 
 _COMPILED: dict[FunctionalGroupType, rdchem.Mol] = {}
 
+# Water is not caught by [CX4][OX2H] (requires carbon). Detect it separately
+# and represent as alcohol — semantically approximate but gives the partner
+# context features a non-zero nucleophilicity signal for hydrolysis reactions.
+_WATER_SMARTS: str = "[OH2]"
+_WATER_QUERY: rdchem.Mol | None = None
+
+
+def _get_water_query() -> rdchem.Mol:
+    global _WATER_QUERY
+    if _WATER_QUERY is None:
+        _WATER_QUERY = Chem.MolFromSmarts(_WATER_SMARTS)
+    return _WATER_QUERY
+
+
+def _detect_water_groups(
+    mol: rdchem.Mol,
+    molecule_index: int,
+    seen_anchors: set[tuple[FunctionalGroupType, int]],
+    counter: dict[FunctionalGroupType, int],
+    molecule_role: str | None,
+) -> list[FunctionalGroup]:
+    groups: list[FunctionalGroup] = []
+    for match in mol.GetSubstructMatches(_get_water_query()):
+        anchor = match[0]
+        key = (FunctionalGroupType.alcohol, anchor)
+        if key in seen_anchors:
+            continue
+        seen_anchors.add(key)
+        count = counter.get(FunctionalGroupType.alcohol, 0)
+        counter[FunctionalGroupType.alcohol] = count + 1
+        meta: dict = {
+            "source": "water_detection",
+            "anchor_atom_index": anchor,
+            "atom_indices": list(match),
+            "priority": _GROUP_PRIORITY[FunctionalGroupType.alcohol],
+        }
+        if molecule_role is not None:
+            meta["molecule_role"] = molecule_role
+        groups.append(
+            FunctionalGroup(
+                group_id=f"mol{molecule_index}_{FunctionalGroupType.alcohol.value}_{count}",
+                group_type=FunctionalGroupType.alcohol,
+                atom_refs=[
+                    AtomRef(
+                        molecule_index=molecule_index,
+                        atom_index=anchor,
+                        atom_map_num=mol.GetAtomWithIdx(anchor).GetAtomMapNum() or None,
+                    )
+                ],
+                smarts=_WATER_SMARTS,
+                metadata=meta,
+            )
+        )
+    return groups
+
 
 def _get_query(group_type: FunctionalGroupType) -> rdchem.Mol:
     if group_type not in _COMPILED:
@@ -223,6 +278,7 @@ def identify_functional_groups_in_mol(
             mol, molecule_index, _PRIMARY_ORDER, seen_anchors, counter, "smarts", _molecule_role
         )
     )
+    groups.extend(_detect_water_groups(mol, molecule_index, seen_anchors, counter, _molecule_role))
     if include_contextual:
         groups.extend(
             _match_smarts_groups(

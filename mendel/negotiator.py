@@ -271,6 +271,18 @@ class RuleBasedNegotiator:
             if has_halide or has_leaving_pred:
                 return "sn2_or_e2_like"
 
+            # Hydrolysis: acyl group (ester/amide/carboxylic_acid) + nucleophilic
+            # solvent partner (alcohol/water).  Checked before ionic_addition so the
+            # weaker "nuc+elec present" signal doesn't swallow it.
+            has_acyl = (
+                _has_group_type(groups, FunctionalGroupType.ester)
+                or _has_group_type(groups, FunctionalGroupType.amide)
+                or _has_group_type(groups, FunctionalGroupType.carboxylic_acid)
+            )
+            has_alcohol = _has_group_type(groups, FunctionalGroupType.alcohol)
+            if has_acyl and has_alcohol:
+                return "ester_hydrolysis_like"
+
             if has_nuc and has_elec:
                 return "ionic_addition_like"
 
@@ -355,6 +367,8 @@ class RuleBasedNegotiator:
             self._negotiate_diels_alder(groups, predictions, assign_by_id, warnings)
         elif mechanism_hint == "radical_bromination_like":
             self._negotiate_radical(groups, predictions, assign_by_id, warnings)
+        elif mechanism_hint == "ester_hydrolysis_like":
+            self._negotiate_ester_hydrolysis(groups, predictions, assign_by_id, warnings)
         elif mechanism_hint == "ionic_addition_like":
             self._negotiate_ionic_addition(groups, predictions, assign_by_id, warnings)
         else:
@@ -505,6 +519,10 @@ class RuleBasedNegotiator:
         if mechanism == "nitroalkane_deprotonation":
             self._mlp_aware_nitroalkane(groups, assign_by_id)
             return "ionic_addition_like"
+        if mechanism in {"ester_hydrolysis", "amide_hydrolysis", "ester_hydrolysis_like"} \
+                or fallback_hint == "ester_hydrolysis_like":
+            self._negotiate_ester_hydrolysis(groups, predictions, assign_by_id, warnings)
+            return "ester_hydrolysis_like"
 
         for assignment in assign_by_id.values():
             if self._confident_reactive(assignment):
@@ -967,6 +985,83 @@ class RuleBasedNegotiator:
             "info",
             {"mechanism": "radical_bromination_like", "v0.1_limitation": True},
         ))
+
+    def _negotiate_ester_hydrolysis(
+        self,
+        groups: list[FunctionalGroup],
+        predictions: list[RolePrediction],
+        assign_by_id: dict[str, NegotiatedRoleAssignment],
+        warnings: list[NegotiationWarning],
+    ) -> None:
+        """Hydrolysis-like: force acyl group → electrophile, alcohol/water → nucleophile."""
+        _ACYL_TYPES = {
+            FunctionalGroupType.ester,
+            FunctionalGroupType.amide,
+            FunctionalGroupType.carboxylic_acid,
+        }
+        group_by_id = _group_by_id(groups)
+
+        # Pick acyl electrophile — prefer ester, then amide, then carboxylic_acid
+        acyl_pred: RolePrediction | None = None
+        for gt in (FunctionalGroupType.ester, FunctionalGroupType.amide,
+                   FunctionalGroupType.carboxylic_acid):
+            candidates = [p for p in predictions if p.group_type == gt]
+            if candidates:
+                acyl_pred = max(candidates, key=lambda p: p.confidence)
+                break
+
+        # Pick nucleophile — alcohol/water in a partner reactant molecule preferred
+        nuc_candidates = [
+            p for p in predictions if p.group_type == FunctionalGroupType.alcohol
+        ]
+        # Prefer the one on a different molecule than the acyl group
+        if acyl_pred and nuc_candidates:
+            acyl_group = group_by_id.get(acyl_pred.group_id)
+            if acyl_group and acyl_group.atom_refs:
+                acyl_mol = acyl_group.atom_refs[0].molecule_index
+                cross_mol = [
+                    p for p in nuc_candidates
+                    if (g := group_by_id.get(p.group_id)) and g.atom_refs
+                    and g.atom_refs[0].molecule_index != acyl_mol
+                ]
+                if cross_mol:
+                    nuc_candidates = cross_mol
+        nuc_pred = max(nuc_candidates, key=lambda p: p.confidence) if nuc_candidates else None
+
+        if acyl_pred and acyl_pred.group_id in assign_by_id:
+            a = assign_by_id[acyl_pred.group_id]
+            a.final_role = Role.reactive_electrophile
+            a.final_confidence = acyl_pred.confidence
+            a.is_reaction_center = True
+            a.subrole = "hydrolysis_acyl_electrophile"
+            a.reason = (
+                f"forced to reactive_electrophile by ester_hydrolysis rule "
+                f"(acyl group + nucleophilic partner detected); {a.reason}"
+            )
+        else:
+            warnings.append(_warn(
+                "hydrolysis_missing_acyl",
+                "No ester/amide/carboxylic_acid group found for hydrolysis.",
+                "warning",
+                {"mechanism": "ester_hydrolysis_like"},
+            ))
+
+        if nuc_pred and nuc_pred.group_id in assign_by_id:
+            a = assign_by_id[nuc_pred.group_id]
+            a.final_role = Role.reactive_nucleophile
+            a.final_confidence = nuc_pred.confidence
+            a.is_reaction_center = True
+            a.subrole = "hydrolysis_nucleophile"
+            a.reason = (
+                f"forced to reactive_nucleophile by ester_hydrolysis rule; {a.reason}"
+            )
+        else:
+            warnings.append(_warn(
+                "hydrolysis_missing_nucleophile",
+                "No alcohol/water nucleophile found for hydrolysis.",
+                "warning",
+                {"mechanism": "ester_hydrolysis_like"},
+            ))
 
     def _negotiate_ionic_addition(
         self,
