@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-**Phase 7 checkpoint updated (Phase 6.6 descriptor upgrade).** `models/role_mlp.pt` — **94.92% val accuracy**, 65-dim input, 140 reactions / 299 examples on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
+**Phase 7 checkpoint updated (OOD expansion).** `models/role_mlp.pt` — **95.31% val accuracy**, 65-dim input, hidden_dim=64, 148 reactions on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
 
 **Do not run `tests/test_mlip.py`, `tests/test_mlip_env_scripts.py`, `tests/test_mlip_geometry_sanity.py`, or `tests/test_mlip_reference_benchmark.py` without Phase 9 deps installed.**
 
@@ -79,7 +79,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | 0–6 | Implemented | `rdkit`, stdlib only |
 | 6.5 — Dataset curation / label drafting | **Complete** — 140 reactions, 299 examples; 8 aldol + 7 D-A added; descriptor limit confirmed | `rdkit`, stdlib only |
 | 6.6 — Descriptor upgrade (inter-molecular context) | **Complete** — schema `phase6_6_v1`, 55→65 dim; Category F adds `partner_*`, `rel_*`, `n_reactant_mols`, `same_mol_has_alpha_carbon` | `rdkit`, stdlib only |
-| 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, 65-dim, **94.92% val acc** | `torch>=2.0` |
+| 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, 65-dim, hidden_dim=64, **95.31% val acc**, 148 reactions | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | Implemented | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
@@ -142,7 +142,7 @@ Key constants: `ROLE_TO_INDEX` (Role→int, fixed order), `INDEX_TO_ROLE` (rever
 
 Architecture: `Linear(65, hidden_dim) → ReLU → Dropout → Linear(hidden_dim, 5)` returning raw logits. Softmax applied only at inference time. Loss is `CrossEntropyLoss` on raw logits — never apply softmax before the loss.
 
-Key types: `TrainingExample` (group_id, features, role), `TrainingConfig` (hidden_dim=32, epochs=100, lr=1e-3, seed=42, early_stopping_patience=15), `TrainingHistory`, `MLPRolePrediction` (predicted_role, confidence, probabilities).
+Key types: `TrainingExample` (group_id, features, role), `TrainingConfig` (hidden_dim=64, epochs=150, lr=1e-3, seed=42, early_stopping_patience=15), `TrainingHistory`, `MLPRolePrediction` (predicted_role, confidence, probabilities).
 
 Checkpoint format (`.pt`): `{state_dict, input_dim, hidden_dim, output_dim, dropout, feature_names, model_version}` — safe for `weights_only=True` load.
 

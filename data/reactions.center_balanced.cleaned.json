@@ -7940,6 +7940,452 @@
         "warning_count": 1,
         "promoted_by": "manual_review_phase6_5"
       }
+    },
+    {
+      "reaction_id": "reductive_amination_butanal_propylamine",
+      "reaction_smiles": "O=CCCC.NCCC>>C(NCCC)CCC",
+      "context": "ionic",
+      "mechanism_type": "reductive_amination",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            3,
+            4
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_amine_0",
+          "molecule_index": 1,
+          "group_type": "amine",
+          "atom_indices": [
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        3,
+        4,
+        2
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "reductive_amination"
+      }
+    },
+    {
+      "reaction_id": "reductive_amination_benzaldehyde_ethylamine",
+      "reaction_smiles": "O=Cc1ccccc1.NCC>>C(NCC)c1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "reductive_amination",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_amine_0",
+          "molecule_index": 1,
+          "group_type": "amine",
+          "atom_indices": [
+            2
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        0,
+        2
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "ionic_addition_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "reductive_amination"
+      }
+    },
+    {
+      "reaction_id": "reductive_amination_acetone_propylamine",
+      "reaction_smiles": "CC(=O)C.NCCC>>CC(NCCC)C",
+      "context": "ionic",
+      "mechanism_type": "reductive_amination",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_amine_0",
+          "molecule_index": 1,
+          "group_type": "amine",
+          "atom_indices": [
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3,
+        0
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "reductive_amination"
+      }
+    },
+    {
+      "reaction_id": "reductive_amination_cyclohexanone_methylamine",
+      "reaction_smiles": "O=C1CCCCC1.NC>>C1(NC)CCCCC1",
+      "context": "ionic",
+      "mechanism_type": "reductive_amination",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_amine_0",
+          "molecule_index": 1,
+          "group_type": "amine",
+          "atom_indices": [
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        0,
+        2
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "mechanism": "reductive_amination"
+      }
+    },
+    {
+      "reaction_id": "hetero_da_vinylether_acrolein",
+      "reaction_smiles": "C=CO.C=CC=O>>C1CC=COC1",
+      "context": "pericyclic",
+      "mechanism_type": "hetero_diels_alder",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "hetero_diels_alder"
+      }
+    },
+    {
+      "reaction_id": "hetero_da_ethylvinylether_acrolein",
+      "reaction_smiles": "CCOC=C.C=CC=O>>C1(CC)OCC=C1",
+      "context": "pericyclic",
+      "mechanism_type": "hetero_diels_alder",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "hetero_diels_alder"
+      }
+    },
+    {
+      "reaction_id": "hetero_da_vinylether_ethylacrylate",
+      "reaction_smiles": "C=CO.C=CC(=O)OCC>>C1CC=COC1",
+      "context": "pericyclic",
+      "mechanism_type": "hetero_diels_alder",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_ester_0",
+          "molecule_index": 1,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "hetero_diels_alder"
+      }
+    },
+    {
+      "reaction_id": "hetero_da_vinylether_acrylonitrile",
+      "reaction_smiles": "C=CO.C=CC#N>>C1CC=COC1",
+      "context": "pericyclic",
+      "mechanism_type": "hetero_diels_alder",
+      "split": "draft",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_nitrile_0",
+          "molecule_index": 1,
+          "group_type": "nitrile",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "manually labeled"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "phase6_5_draft",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "mechanism": "hetero_diels_alder"
+      }
     }
   ]
 }
