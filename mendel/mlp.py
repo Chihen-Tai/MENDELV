@@ -464,56 +464,62 @@ def stratified_train_val_split(
     validation_split: float,
     seed: int,
 ) -> tuple[list[int], list[int]]:
-    """Return deterministic train/val indices with role-aware validation picks.
+    """Return deterministic train/val indices stratified by mechanism type.
 
-    If a role has at least two examples and the validation budget allows it,
-    one example from that role is placed in validation. Remaining validation
-    slots are filled from the shuffled remainder. If the dataset is too small,
-    this falls back to a deterministic shuffled split.
+    Splits at the reaction level (all examples for a reaction stay together),
+    guaranteeing at least one reaction per mechanism type appears in val when
+    the mechanism has ≥2 reactions.  Remaining val slots are filled from the
+    shuffled reaction remainder to reach the target validation_split fraction.
     """
     n = len(examples)
     if n == 0:
         return [], []
-    n_val = max(int(n * validation_split), 1 if n >= 2 else 0)
-    if n_val == 0:
-        return list(range(n)), []
-    n_val = min(n_val, n - 1) if n > 1 else 0
-    if n_val == 0:
-        return [0], []
+
+    rxn_to_indices: dict[str, list[int]] = {}
+    for idx, ex in enumerate(examples):
+        rxn_to_indices.setdefault(ex.reaction_id, []).append(idx)
+
+    rxn_to_mech: dict[str, str] = {}
+    for idx, ex in enumerate(examples):
+        if ex.reaction_id not in rxn_to_mech:
+            rxn_to_mech[ex.reaction_id] = str(ex.metadata.get("mechanism_type", "unknown"))
+
+    mech_to_rxns: dict[str, list[str]] = {}
+    for rxn_id, mech in rxn_to_mech.items():
+        mech_to_rxns.setdefault(mech, []).append(rxn_id)
 
     rng = random.Random(seed)
-    by_role: dict[Role, list[int]] = {role: [] for role in Role}
-    for idx, ex in enumerate(examples):
-        by_role[ex.role].append(idx)
-    for indices in by_role.values():
-        rng.shuffle(indices)
+    for rxn_list in mech_to_rxns.values():
+        rng.shuffle(rxn_list)
 
-    eligible_roles = [role for role in Role if len(by_role[role]) >= 2]
-    if len(eligible_roles) > n_val:
-        all_indices = list(range(n))
-        rng.shuffle(all_indices)
-        val = sorted(all_indices[:n_val])
-        train = sorted(all_indices[n_val:])
-        return train, val
+    n_val_target = max(int(n * validation_split), 1 if n >= 2 else 0)
+    n_val_target = min(n_val_target, n - 1)
 
-    val_set: set[int] = set()
-    for role in eligible_roles:
-        val_set.add(by_role[role][0])
+    val_rxns: set[str] = set()
+    for rxn_list in mech_to_rxns.values():
+        if len(rxn_list) >= 2:
+            val_rxns.add(rxn_list[0])
 
-    remaining = [idx for idx in range(n) if idx not in val_set]
-    rng.shuffle(remaining)
-    for idx in remaining:
-        if len(val_set) >= n_val:
+    remaining_rxns = [r for r in rxn_to_indices if r not in val_rxns]
+    rng.shuffle(remaining_rxns)
+    for rxn_id in remaining_rxns:
+        if sum(len(rxn_to_indices[r]) for r in val_rxns) >= n_val_target:
             break
-        val_set.add(idx)
+        val_rxns.add(rxn_id)
 
-    train = sorted(idx for idx in range(n) if idx not in val_set)
-    val = sorted(val_set)
+    val = sorted(idx for rxn_id in val_rxns for idx in rxn_to_indices[rxn_id])
+    train = sorted(
+        idx
+        for rxn_id in rxn_to_indices
+        if rxn_id not in val_rxns
+        for idx in rxn_to_indices[rxn_id]
+    )
+
     if not train or not val:
         all_indices = list(range(n))
         rng.shuffle(all_indices)
-        val = sorted(all_indices[:n_val])
-        train = sorted(all_indices[n_val:])
+        val = sorted(all_indices[:n_val_target])
+        train = sorted(all_indices[n_val_target:])
     return train, val
 
 
