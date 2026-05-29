@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-**Phase 7 checkpoint updated (Phase 6.5 expansion).** `models/role_mlp.pt` — **94.92% val accuracy**, 140 reactions / 299 examples on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
+**Phase 7 checkpoint updated (Phase 6.6 descriptor upgrade).** `models/role_mlp.pt` — **94.92% val accuracy**, 65-dim input, 140 reactions / 299 examples on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
 
 **Do not run `tests/test_mlip.py`, `tests/test_mlip_env_scripts.py`, `tests/test_mlip_geometry_sanity.py`, or `tests/test_mlip_reference_benchmark.py` without Phase 9 deps installed.**
 
@@ -45,7 +45,7 @@ MENDEL treats each functional group in a molecule as an independent agent that p
 reaction SMILES + context
     → parser.py          ParsedReaction  (reactant/product molecules, charge, atom-maps)
     → identifier.py      list[FunctionalGroup]  (RDKit SMARTS, 3-pass detection)
-    → descriptor.py      list[GroupDescriptor]  (55-dim feature vector per group)
+    → descriptor.py      list[GroupDescriptor]  (65-dim feature vector per group, schema phase6_6_v1)
     → predictor.py       PredictionReport  (rule-based role assignment)        ← Phase 5
     → negotiator.py      NegotiationResult  (global consistency, mechanism hint) ← Phase 6
     → [mlp.py]           MLPRolePrediction  (learned role predictor)            ← Phase 7
@@ -77,8 +77,9 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | Phase | Status | Dependencies |
 |-------|--------|--------------|
 | 0–6 | Implemented | `rdkit`, stdlib only |
-| 6.5 — Dataset curation / label drafting | **Complete** — 140 reactions, 299 examples; 8 aldol + 7 D-A added; descriptor limit confirmed: 55-dim per-group features cannot distinguish donor vs acceptor carbonyl without inter-molecular context | `rdkit`, stdlib only |
-| 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, **94.92% val acc** (↑ from 93.6% after Phase 6.5 D-A expansion) | `torch>=2.0` |
+| 6.5 — Dataset curation / label drafting | **Complete** — 140 reactions, 299 examples; 8 aldol + 7 D-A added; descriptor limit confirmed | `rdkit`, stdlib only |
+| 6.6 — Descriptor upgrade (inter-molecular context) | **Complete** — schema `phase6_6_v1`, 55→65 dim; Category F adds `partner_*`, `rel_*`, `n_reactant_mols`, `same_mol_has_alpha_carbon` | `rdkit`, stdlib only |
+| 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, 65-dim, **94.92% val acc** | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | Implemented | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
@@ -91,7 +92,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | Constants | `mendel/constants.py` | — | `SUPPORTED_ROLES`, `SUPPORTED_CONTEXTS`, `SUPPORTED_FUNCTIONAL_GROUPS` as `frozenset`s |
 | Parser | `mendel/parser.py` | 1 | Splits `reactants>>products` SMILES into `ParsedReaction`; no SMARTS here |
 | Identifier | `mendel/identifier.py` | 2 | 3-pass SMARTS detection → `list[FunctionalGroup]` |
-| Descriptor | `mendel/descriptor.py` | 3 | 55-dim `GroupDescriptor` per group; schema version `phase3_v1` |
+| Descriptor | `mendel/descriptor.py` | 3/6.6 | 65-dim `GroupDescriptor` per group; schema version `phase6_6_v1` |
 | Labels | `mendel/labels.py` | 4 | `LabeledReaction` / `LabeledGroupRole`; load/save/validate labeled JSON datasets |
 | Predictor | `mendel/predictor.py` | 5 | `RuleBasedRolePredictor` — threshold rules on descriptor scores |
 | Negotiator | `mendel/negotiator.py` | 6 | `RuleBasedNegotiator` — global consistency, mechanism hints, reaction center inference |
@@ -120,7 +121,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 
 ### Descriptor schema — `mendel/descriptor.py`
 
-55 features in fixed order (schema version `phase3_v1`):
+65 features in fixed order (schema version `phase6_6_v1`):
 
 | Category | Count | Key features |
 |----------|-------|--------------|
@@ -129,6 +130,9 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | C. Local environment | 9 | Neighbor heteroatom count, distances, `env_alpha_carbon`, `in_reactant` |
 | D. Mechanistic heuristic scores | 5 | `nucleophilicity_score`, `electrophilicity_score`, `leaving_group_score`, `acidity_score`, `radical_stability_score` |
 | E. Reaction context | 10 | `context_ionic/radical/pericyclic/unknown`, condition flags |
+| F. Partner context (Phase 6.6) | 10 | `partner_has_carbonyl/alpha_carbon/alkene/halide`, `partner_max_nuc/elec_score`, `rel_nuc/elec_score`, `n_reactant_mols`, `same_mol_has_alpha_carbon` |
+
+`build_group_descriptor(parsed_reaction, group, all_groups=None)` — pass `all_groups` for Category F; defaults to group-only (zeros for partner features) when omitted. `build_descriptors` always passes the full group list.
 
 The mechanistic scores are chemistry priors, not role predictions — the predictor reads them as inputs.
 
@@ -136,19 +140,13 @@ The mechanistic scores are chemistry priors, not role predictions — the predic
 
 Key constants: `ROLE_TO_INDEX` (Role→int, fixed order), `INDEX_TO_ROLE` (reverse), `DEFAULT_MODEL_VERSION = "phase7_mlp_v1"`.
 
-Architecture: `Linear(55, hidden_dim) → ReLU → Dropout → Linear(hidden_dim, 5)` returning raw logits. Softmax applied only at inference time. Loss is `CrossEntropyLoss` on raw logits — never apply softmax before the loss.
+Architecture: `Linear(65, hidden_dim) → ReLU → Dropout → Linear(hidden_dim, 5)` returning raw logits. Softmax applied only at inference time. Loss is `CrossEntropyLoss` on raw logits — never apply softmax before the loss.
 
 Key types: `TrainingExample` (group_id, features, role), `TrainingConfig` (hidden_dim=32, epochs=100, lr=1e-3, seed=42, early_stopping_patience=15), `TrainingHistory`, `MLPRolePrediction` (predicted_role, confidence, probabilities).
 
 Checkpoint format (`.pt`): `{state_dict, input_dim, hidden_dim, output_dim, dropout, feature_names, model_version}` — safe for `weights_only=True` load.
 
 **Scope boundary**: Phase 7 trains role classification only. Does NOT train MLIP, MACE, or any energy/force model.
-
-**Known descriptor limitations (found Phase 6.5):**
-- `leaving_group` and `radical` generalize well to unseen substrates.
-- `carbonyl` electrophile/spectator distinction fails outside training mechanism families — the 55-dim per-group descriptor has no inter-molecular context, so the model cannot distinguish donor vs acceptor carbonyl in aldol-type reactions.
-- `alkene` nucleophile/electrophile confusion persists in D-A variants (~11% error rate); EWG proximity is not captured.
-- Default behavior under uncertainty: predicts `spectator`. To improve OOD generalization, reaction-level features (e.g., "complementary group present in other molecule") or a GNN encoder are needed.
 
 ### Negotiator — `mendel/negotiator.py`
 

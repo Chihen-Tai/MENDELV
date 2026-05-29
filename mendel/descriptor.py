@@ -44,7 +44,7 @@ EWG_GROUPS: frozenset[FunctionalGroupType] = frozenset({
 
 LEAVING_GROUP_ATOMS: frozenset[str] = frozenset({"F", "Cl", "Br", "I"})
 
-FEATURE_SCHEMA_VERSION: str = "phase3_v1"
+FEATURE_SCHEMA_VERSION: str = "phase6_6_v1"
 
 # ---------------------------------------------------------------------------
 # Feature schema — order fixed at module load time
@@ -105,12 +105,26 @@ _CONTEXT_NAMES: list[str] = [
     "solvent_polarity_score",
 ]
 
+_PARTNER_NAMES: list[str] = [
+    "partner_has_carbonyl",
+    "partner_has_alpha_carbon",
+    "partner_has_alkene",
+    "partner_has_halide",
+    "partner_max_nuc_score",
+    "partner_max_elec_score",
+    "rel_nuc_score",
+    "rel_elec_score",
+    "n_reactant_mols",
+    "same_mol_has_alpha_carbon",
+]
+
 _FEATURE_NAMES: list[str] = (
     _IDENTITY_NAMES
     + _ELECTRONIC_NAMES
     + _LOCAL_ENV_NAMES
     + _MECHANISTIC_NAMES
     + _CONTEXT_NAMES
+    + _PARTNER_NAMES
 )
 
 # ---------------------------------------------------------------------------
@@ -431,6 +445,66 @@ def _build_context(parsed_reaction: ParsedReaction) -> list[float]:
     ]
 
 
+def _build_partner_context(
+    parsed_reaction: ParsedReaction,
+    group: FunctionalGroup,
+    all_groups: list[FunctionalGroup],
+) -> list[float]:
+    this_mol_idx = group.atom_refs[0].molecule_index if group.atom_refs else -1
+
+    def _mol_idx(g: FunctionalGroup) -> int:
+        return g.atom_refs[0].molecule_index if g.atom_refs else -1
+
+    reactant_mol_indices = {pm.molecule_index for pm in parsed_reaction.reactants}
+    n_reactant_molecules = len(reactant_mol_indices)
+
+    partner_groups = [
+        g for g in all_groups
+        if _mol_idx(g) != this_mol_idx and _mol_idx(g) in reactant_mol_indices
+    ]
+    same_mol_groups = [
+        g for g in all_groups
+        if _mol_idx(g) == this_mol_idx and g.group_id != group.group_id
+    ]
+
+    carbonyl_types = {FunctionalGroupType.carbonyl, FunctionalGroupType.carboxylic_acid,
+                      FunctionalGroupType.ester, FunctionalGroupType.amide}
+
+    partner_has_carbonyl = float(any(g.group_type in carbonyl_types for g in partner_groups))
+    partner_has_alpha_carbon = float(any(g.group_type == FunctionalGroupType.alpha_carbon for g in partner_groups))
+    partner_has_alkene = float(any(g.group_type == FunctionalGroupType.alkene for g in partner_groups))
+    partner_has_halide = float(any(g.group_type == FunctionalGroupType.halide for g in partner_groups))
+
+    partner_nuc_scores = [_NUCLEOPHILICITY_BASE.get(g.group_type, 0.20) for g in partner_groups]
+    partner_elec_scores = [_ELECTROPHILICITY_BASE.get(g.group_type, 0.20) for g in partner_groups]
+    partner_max_nuc = max(partner_nuc_scores) if partner_nuc_scores else 0.0
+    partner_max_elec = max(partner_elec_scores) if partner_elec_scores else 0.0
+
+    this_nuc = _NUCLEOPHILICITY_BASE.get(group.group_type, 0.20)
+    this_elec = _ELECTROPHILICITY_BASE.get(group.group_type, 0.20)
+    rel_nuc = _safe(this_nuc - partner_max_elec)
+    rel_elec = _safe(this_elec - partner_max_nuc)
+
+    n_reactant_mols = n_reactant_molecules / 4.0
+
+    same_mol_has_alpha = float(
+        any(g.group_type == FunctionalGroupType.alpha_carbon for g in same_mol_groups)
+    )
+
+    return [
+        partner_has_carbonyl,
+        partner_has_alpha_carbon,
+        partner_has_alkene,
+        partner_has_halide,
+        _safe(partner_max_nuc),
+        _safe(partner_max_elec),
+        rel_nuc,
+        rel_elec,
+        _safe(n_reactant_mols),
+        same_mol_has_alpha,
+    ]
+
+
 # ---------------------------------------------------------------------------
 # Public functions
 # ---------------------------------------------------------------------------
@@ -444,6 +518,7 @@ def get_feature_names() -> list[str]:
 def build_group_descriptor(
     parsed_reaction: ParsedReaction,
     group: FunctionalGroup,
+    all_groups: list[FunctionalGroup] | None = None,
 ) -> GroupDescriptor:
     """Build one descriptor vector for one functional-group agent.
 
@@ -461,12 +536,14 @@ def build_group_descriptor(
             metadata={"error": "molecule_not_found", "schema_version": FEATURE_SCHEMA_VERSION},
         )
 
+    _all_groups = all_groups if all_groups is not None else [group]
     raw = (
         _build_identity(group, mol)
         + _build_electronic(group, mol)
         + _build_local_env(group, mol, molecule_role)
         + _build_mechanistic(group, mol)
         + _build_context(parsed_reaction)
+        + _build_partner_context(parsed_reaction, group, _all_groups)
     )
     return GroupDescriptor(
         group_id=group.group_id,
@@ -486,7 +563,7 @@ def build_descriptors(
     groups: list[FunctionalGroup],
 ) -> list[GroupDescriptor]:
     """Build descriptors for all groups, preserving input order."""
-    return [build_group_descriptor(parsed_reaction, g) for g in groups]
+    return [build_group_descriptor(parsed_reaction, g, all_groups=groups) for g in groups]
 
 
 def descriptor_matrix(
