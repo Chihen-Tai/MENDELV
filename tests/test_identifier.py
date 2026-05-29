@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
 from rdkit import Chem
 
 from mendel.identifier import (
@@ -15,7 +14,6 @@ from mendel.identifier import (
 )
 from mendel.parser import parse_reaction_smiles
 from mendel.types import FunctionalGroupType, ReactionContext
-
 
 # ---------------------------------------------------------------------------
 # 16. validate_smarts_patterns — all compile

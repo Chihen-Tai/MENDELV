@@ -19,7 +19,6 @@ from mendel.identifier import get_group_summary, identify_functional_groups
 from mendel.parser import parse_reaction_smiles
 from mendel.types import FunctionalGroupType, ReactionContext
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------

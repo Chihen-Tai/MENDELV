@@ -16,7 +16,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-
 # ---------------------------------------------------------------------------
 # Reactive-atom detection (mirrors compare_pure_vs_mendel_mlip.py)
 # ---------------------------------------------------------------------------
@@ -398,9 +397,9 @@ _ANI2X_SUPPORTED = frozenset({1, 6, 7, 8, 9, 16, 17})  # H C N O F S Cl
 
 def reactive_atom_indices_via_mendel_mlp(
     item: dict,
-    mlp_checkpoint: "Path",
+    mlp_checkpoint: Path,
     confidence_threshold: float = 0.60,
-) -> "list[int] | None":
+) -> list[int] | None:
     """Use MENDEL MLP role predictor to identify reactive atoms.
 
     Returns original-order atom indices for groups predicted as
@@ -410,10 +409,11 @@ def reactive_atom_indices_via_mendel_mlp(
     try:
         from rdkit import Chem  # type: ignore
         from rdkit.Chem import RWMol  # type: ignore
-        from mendel.qo2mol import qo2mol_record_to_rdkit_mol
-        from mendel.parser import parse_reaction_smiles
+
         from mendel.identifier import identify_functional_groups
         from mendel.mlp import MLPRolePredictor
+        from mendel.parser import parse_reaction_smiles
+        from mendel.qo2mol import qo2mol_record_to_rdkit_mol
         from mendel.types import ReactionContext, Role
 
         mol = qo2mol_record_to_rdkit_mol(item)
@@ -449,12 +449,12 @@ def reactive_atom_indices_via_mendel_mlp(
 
 
 def load_qo2mol_pkl_records(
-    path: "Path",
+    path: Path,
     max_records: int = 300,
     reactive_weight: float = 3.0,
     seed: int = 42,
-    mlp_checkpoint: "Path | None" = None,
-) -> "list[ConformerRecord]":
+    mlp_checkpoint: Path | None = None,
+) -> list[ConformerRecord]:
     """Load QO2Mol pkl into ConformerRecord list.
 
     Filters for ANI-2x-supported elements. No unit conversion (already eV).

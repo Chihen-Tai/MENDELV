@@ -8,9 +8,9 @@ from pathlib import Path
 import pytest
 
 from mendel.labels import (
-    LabelValidationError,
     LabeledGroupRole,
     LabeledReaction,
+    LabelValidationError,
     labels_to_training_rows,
     load_labeled_reactions,
     save_labeled_reactions,

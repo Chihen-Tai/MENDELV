@@ -75,21 +75,21 @@ def _rdkit_bond_map() -> dict[str, object]:
     return _BOND_TYPE_MAP
 
 
-def qo2mol_record_to_rdkit_mol(record: dict[str, Any]) -> "Any | None":
+def qo2mol_record_to_rdkit_mol(record: dict[str, Any]) -> Any | None:
     """Build RDKit RWMol from QO2Mol pkl record. Returns None on sanitization failure."""
     try:
         from rdkit import Chem  # type: ignore
-        from rdkit.Chem import RWMol, Atom  # type: ignore
-    except ImportError:
-        raise ImportError("rdkit required")
+        from rdkit.Chem import Atom, RWMol  # type: ignore
+    except ImportError as err:
+        raise ImportError("rdkit required") from err
     bond_map = _rdkit_bond_map()
     mol = RWMol()
-    for z, fc in zip(record["elements"], record["formal_charge"]):
+    for z, fc in zip(record["elements"], record["formal_charge"], strict=True):
         atom = Atom(int(z))
         atom.SetFormalCharge(int(fc))
         mol.AddAtom(atom)
     seen: set[tuple[int, int]] = set()
-    for (i, j), bt in zip(record["edge_list"], record["edge_attr"]):
+    for (i, j), bt in zip(record["edge_list"], record["edge_attr"], strict=True):
         if i < j and (i, j) not in seen:
             seen.add((i, j))
             mol.AddBond(i, j, bond_map.get(str(bt), bond_map["1"]))

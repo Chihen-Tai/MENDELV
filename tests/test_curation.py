@@ -199,7 +199,7 @@ def test_save_load_draft_inputs_roundtrip(tmp_path: Path) -> None:
     save_draft_inputs(inputs, path)
     loaded = load_draft_inputs(path)
     assert len(loaded) == len(inputs)
-    for orig, reloaded in zip(inputs, loaded):
+    for orig, reloaded in zip(inputs, loaded, strict=True):
         assert orig.reaction_id == reloaded.reaction_id
         assert orig.reaction_smiles == reloaded.reaction_smiles
         assert orig.context == reloaded.context

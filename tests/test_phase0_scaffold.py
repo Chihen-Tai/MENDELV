@@ -135,6 +135,6 @@ def test_constants_derived_from_enums() -> None:
     from mendel.constants import SUPPORTED_CONTEXTS, SUPPORTED_FUNCTIONAL_GROUPS, SUPPORTED_ROLES
     from mendel.types import FunctionalGroupType, ReactionContext, Role
 
-    assert SUPPORTED_ROLES == frozenset(Role)
-    assert SUPPORTED_CONTEXTS == frozenset(ReactionContext)
-    assert SUPPORTED_FUNCTIONAL_GROUPS == frozenset(FunctionalGroupType)
+    assert frozenset(Role) == SUPPORTED_ROLES
+    assert frozenset(ReactionContext) == SUPPORTED_CONTEXTS
+    assert frozenset(FunctionalGroupType) == SUPPORTED_FUNCTIONAL_GROUPS

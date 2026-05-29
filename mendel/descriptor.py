@@ -244,7 +244,7 @@ class GroupDescriptor:
         return {
             "group_id": self.group_id,
             "group_type": self.group_type.value,
-            "features": dict(zip(self.feature_names, self.values)),
+            "features": dict(zip(self.feature_names, self.values, strict=True)),
             "metadata": self.metadata,
         }
 

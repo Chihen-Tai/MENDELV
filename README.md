@@ -11,16 +11,22 @@ The same functional-group-as-agent lens applies to MLIP evaluation: MENDEL decom
 ## Quick Demo
 
 ```python
+# Rule-based pipeline (no PyTorch required)
 from mendel.negotiator import run_full_rule_pipeline
 
-result = run_full_rule_pipeline(
-    "CBr.[OH-]>>CO.[Br-]",
-    context="ionic",
-)
-
+result = run_full_rule_pipeline("CBr.[OH-]>>CO.[Br-]", context="ionic")
 print(result.mechanism_hint)    # sn2_or_e2_like
 for ra in result.role_assignments:
     print(ra.group_id, ra.final_role)
+
+# MLP pipeline (requires pip install -e ".[ml]")
+from mendel.negotiator import run_pipeline_with_mlp
+
+result = run_pipeline_with_mlp(
+    "CBr.[OH-]>>CO.[Br-]",
+    "models/role_mlp.pt",
+    context="ionic",
+)
 ```
 
 `import mendel` does not import PyTorch, torchani, ASE, or MACE. All optional Phase 7–10 APIs must be imported directly from their submodule (`mendel.mlp`, `mendel.mlip`).
@@ -36,7 +42,7 @@ reaction SMILES + context
   functional group detection       (identifier.py — RDKit SMARTS, 3-pass)
          │
          ▼
-  per-group descriptor building    (descriptor.py — 55-dim feature vector)
+  per-group descriptor building    (descriptor.py — 65-dim, schema phase6_6_v1)
          │
          ▼
   per-group role prediction        (predictor.py — rule-based baseline)
@@ -68,6 +74,115 @@ Five mutually exclusive roles per functional group per reaction step:
 
 ---
 
+## Benchmark Results
+
+> **A compact empirical report.** *Question:* does the functional-group-as-agent
+> decomposition, combined with a negotiation layer, predict reaction roles better
+> than either component alone?
+
+### Setup
+
+- **Dataset.** 166 labeled reactions spanning 14 mechanism classes.
+- **Split.** Mechanism-stratified, reaction-level train/val split — no group from a
+  validation reaction is seen during training.
+- **Task.** Assign each functional group one of five mutually exclusive roles
+  (`reactive_nucleophile`, `reactive_electrophile`, `reactive_radical`,
+  `leaving_group`, `spectator`); a group is additionally flagged if it sits on the
+  reaction center.
+- **Models compared.**
+  1. **Rule + Negotiator** — hand-written threshold rules + global consistency layer.
+  2. **MLP only** — per-group 65-dim descriptor → learned role classifier, *no* negotiation.
+  3. **MLP + Negotiator** — per-group MLP predictions reconciled by the negotiation layer.
+- **Metric.** Role accuracy over labeled groups; reaction-center precision / recall / F1.
+
+![Role-prediction performance overview](reports/figures/role_performance_overview.png)
+
+### Results
+
+**Overall.** The agent + negotiation stack reaches **96.1%** role accuracy, ahead of
+the learned predictor alone (90.7%) and the rule baseline (70.4%).
+
+| Model | Overall | SN2/E2 | Aldol | Cross-aldol | Diels-Alder | Michael |
+|-------|---------|--------|-------|-------------|-------------|---------|
+| Rule + Negotiator | 70.4% | 100% | 83.0% | 95.2% | 81.9% | 25.0% |
+| MLP only | 90.7% | 100% | 63.8% | 81.0% | 90.4% | 85.4% |
+| **MLP + Negotiator** | **96.1%** | 100% | **78.7%** | 85.7% | 97.6% | **100%** |
+
+**Per-role.** Negotiation lifts the hardest roles — `spectator` (43.0% → 93.9%) and
+`reactive_electrophile` (80.5% → 100%) — without disturbing the roles that are already
+saturated (`radical`, `leaving_group` at 100%).
+
+| Role | Rule + Negotiator | MLP only | MLP + Negotiator |
+|------|-------------------|----------|------------------|
+| reactive_nucleophile | 94.5% | 98.9% | 94.5% |
+| reactive_electrophile | 80.5% | 92.7% | 100% |
+| reactive_radical | 100% | 100% | 100% |
+| leaving_group | 100% | 100% | 100% |
+| spectator | 43.0% | 82.4% | 93.9% |
+
+**Reaction center.** The MLP alone produces *no* center predictions (F1 = 0) — reaction
+center is an emergent property of negotiation between agents, not of independent
+per-group classification. Adding the negotiation layer recovers it at F1 = 87.8%.
+
+| Model | Precision | Recall | F1 |
+|-------|-----------|--------|-----|
+| Rule + Negotiator | 82.5% | 90.4% | 91.6% |
+| MLP only | 0.0% | 0.0% | 0.0% |
+| **MLP + Negotiator** | **93.6%** | **84.5%** | **87.8%** |
+
+### Discussion
+
+1. **Negotiation supplies what independent agents cannot see.** Each functional group
+   predicts its own role from its local descriptor, but reaction center, mechanism
+   consistency, and the donor/acceptor distinction are *relational* facts. The MLP's
+   0% center F1 makes this concrete: structure emerges only once agents are reconciled
+   globally. 12 of 14 mechanisms reach 100% under MLP + Negotiator.
+
+2. **Aldol is descriptor-limited, not data-limited.** Aldol (78.7%) and cross-aldol
+   (85.7%) are the only classes below ceiling, and aldol is the *only* mechanism where
+   the MLP (63.8%) underperforms the rule baseline (83.0%) — the learner cannot find a
+   clean signal. The 65-dim descriptor cannot separate a donor carbonyl (→ spectator,
+   it only activates the α-carbon) from an acceptor carbonyl (→ electrophile). An
+   experiment trail adding aldol training examples confirms this: every data-side
+   "fix" regressed *both* aldol and the cross-aldol it shares the ambiguity with.
+
+   ![Aldol diagnosis: data-side fixes regress both classes](reports/aldol_diagnosis.png)
+
+   The path past this ceiling is descriptor enrichment (e.g. an α-H acidity / partner
+   electrophilicity contrast between the two carbonyls), not more aldol examples.
+
+### Extrapolation (leave-one-mechanism-out)
+
+How well does the learned predictor generalize to a mechanism it has *never seen*?
+We retrain the MLP 14 times, each time holding out one entire mechanism class, and
+measure role accuracy on the held-out reactions.
+
+![Leave-one-mechanism-out extrapolation](reports/figures/lomo_extrapolation.png)
+
+Mean held-out accuracy is **74.2%**, versus **94.3%** in-distribution — a ~20-point
+extrapolation gap that is strongly mechanism-dependent:
+
+- **Transfers well (≥ 90%):** `carbonyl_addition`, `e2`, `ester_control`,
+  `nitrile_control`, `sn2`, `control`. These reuse role cues (a leaving group, a lone
+  carbonyl electrophile) that recur across the training mechanisms.
+- **Collapses (≤ 50%):** `diels_alder` (37%), `benzylic_radical_bromination` (43%),
+  `nitroalkane_deprotonation` (47%), `hetero_diels_alder` (50%). These hinge on a cue
+  unique to the held-out class and absent from training — e.g. with every Diels-Alder
+  reaction removed, the model never learns the diene/dienophile π-role and defaults to
+  spectator.
+
+**Takeaway.** MENDEL interpolates strongly within its 14 known mechanisms but does not
+yet extrapolate to genuinely novel ones; the negotiation layer degrades here too,
+since it dispatches on a mechanism hint an unseen reaction will not match. Closing the
+gap needs broader mechanism coverage and/or mechanism-agnostic role features, not just
+more reactions per known class.
+
+### Trained checkpoint
+
+`models/role_mlp.pt` — architecture: `Linear(65, 64) → ReLU → Dropout → Linear(64, 5)`, trained on 166 reactions with mechanism-stratified reaction-level val split, class-weighted cross-entropy loss, early stopping on val loss.
+
+---
+
 ## Install
 
 ```bash
@@ -93,15 +208,98 @@ pip install -e ".[mlip-all]"     # Phase 9 — MACE-OFF + ANI-2x together
 | 0 | Project scaffold and data contracts | ✓ |
 | 1 | Reaction SMILES parser | ✓ |
 | 2 | Functional group identifier (RDKit + SMARTS) | ✓ |
-| 3 | Group descriptor builder (55-dim) | ✓ |
+| 3 | Group descriptor builder (55-dim → 65-dim in 6.6) | ✓ |
 | 4 | Labeled data schema | ✓ |
 | 5 | Rule-based role predictor | ✓ |
 | 6 | Negotiation layer | ✓ |
 | 6.5 | Dataset curation / draft label generation | ✓ |
-| 7 | MLP role predictor training | ✓ (needs more curated data) |
-| 8 | Benchmark evaluator + diagnostics | ✓ |
-| 9 | Optional MLIP backend (MACE-OFF, ANI-2x) | ✓ |
+| 6.6 | Descriptor upgrade — inter-molecular partner context (55→65 dim) | ✓ |
+| 7 | MLP role predictor — 166 reactions, mechanism-stratified training | ✓ |
+| 8 | Benchmark evaluator, center head, dataset ops | ✓ |
+| 9 | Optional MLIP backend (MACE-OFF, ANI-2x) — design boundary confirmed | ✓ |
 | 10 | rMD17/QO2Mol benchmark + MENDEL force decomposition | ✓ |
+
+---
+
+## Training
+
+```bash
+# Add Michael addition examples (12 reactions)
+conda run -n mendel python scripts/add_michael_examples.py
+
+# Add aldol examples (6 reactions with corrected label convention)
+conda run -n mendel python scripts/add_aldol_examples.py
+
+# Train MLP
+conda run -n mendel python scripts/train_mlp.py \
+  --data data/reactions.center_balanced.cleaned.json \
+  --output models/role_mlp.pt \
+  --epochs 150 --hidden-dim 64 --use-class-weights
+
+# Run benchmark
+conda run -n mendel python scripts/benchmark.py \
+  --data data/reactions.center_balanced.cleaned.json \
+  --mlp models/role_mlp.pt
+```
+
+---
+
+## Validation
+
+### Phase 0–6 (no PyTorch required)
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
+  tests/test_phase0_scaffold.py tests/test_parser.py \
+  tests/test_identifier.py tests/test_descriptor.py \
+  tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
+```
+
+### Phase 7 — MLP (requires `pip install -e ".[ml]"`)
+
+```bash
+pytest tests/test_mlp.py tests/test_mlp_aware_negotiation.py -q
+```
+
+### Phase 9 — MLIP backend (no live MACE/torchani required for unit tests)
+
+```bash
+pytest tests/test_mlip.py -q
+```
+
+---
+
+## Key Commands
+
+```bash
+# run all tests
+pytest
+
+# lint / format / type check
+ruff check mendel/ tests/
+ruff format mendel/ tests/
+mypy mendel/
+
+# generate draft labels from rule-based pipeline
+python scripts/draft_labels.py --core --output data/reactions.draft.core.json
+
+# train MLP (smoke test, no curated data needed)
+python scripts/train_mlp.py \
+  --data data/reactions.minimal.json \
+  --output models/role_mlp_minimal.pt \
+  --epochs 3 --hidden-dim 16 --allow-draft-labels
+
+# MLIP single-point (Phase 9)
+python scripts/mlip_singlepoint.py \
+  --smiles "CC(=O)C" --backend mace --model-name mace-off-small --device cpu \
+  --output reports/mlip_acetone.json
+
+# MENDEL-guided MLIP (uses negotiated reaction center for force summary)
+python scripts/mlip_singlepoint.py \
+  --reaction-smiles "CBr.[OH-]>>CO.[Br-]" --context ionic \
+  --reaction-center-from-mendel --device cpu \
+  --output reports/mlip_sn2.json
+```
 
 ---
 
@@ -152,78 +350,15 @@ python scripts/run_mlip_reference_benchmark.py \
   --reference data/reference/rmd17_ethanol_sample_converted.reference.json \
   --backend ani2x --device cpu
 
-# generate MACE vs ANI-2x comparison figure
+# generate comparison figures
 python scripts/compare_mace_ani2x.py
 # → reports/figures/mace_vs_ani2x_ethanol.png
 
-# generate pure-MLIP vs MENDEL decomposition figure
 python scripts/compare_pure_vs_mendel_mlip.py
 # → reports/figures/pure_vs_mendel_mlip.png
 ```
 
-See [docs/mlip_comparison.md](docs/mlip_comparison.md) for the full analysis and next steps toward making functional-group agents actually improve prediction accuracy (reactive-site weighted fine-tuning).
-
----
-
-## Validation
-
-### Phase 0–6 (no PyTorch required)
-
-```bash
-PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
-  tests/test_phase0_scaffold.py tests/test_parser.py \
-  tests/test_identifier.py tests/test_descriptor.py \
-  tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
-```
-
-### Phase 7 — MLP (requires `pip install -e ".[ml]"`)
-
-```bash
-pytest tests/test_mlp.py -q
-```
-
-### Phase 9 — MLIP backend (no live MACE/torchani required for unit tests)
-
-```bash
-pytest tests/test_mlip.py -q
-```
-
----
-
-## Key Commands
-
-```bash
-# run all tests
-pytest
-
-# lint / format / type check
-ruff check mendel/ tests/
-ruff format mendel/ tests/
-mypy mendel/
-
-# generate draft labels from rule-based pipeline
-python scripts/draft_labels.py --core --output data/reactions.draft.core.json
-
-# train MLP (smoke test, no curated data needed)
-python scripts/train_mlp.py \
-  --data data/reactions.minimal.json \
-  --output models/role_mlp_minimal.pt \
-  --epochs 3 --hidden-dim 16 --allow-draft-labels
-
-# benchmark rule-based + negotiated pipeline
-python scripts/benchmark.py --data data/reactions.json --rule-based --negotiated
-
-# MLIP single-point (Phase 9)
-python scripts/mlip_singlepoint.py \
-  --smiles "CC(=O)C" --backend mace --model-name mace-off-small --device cpu \
-  --output reports/mlip_acetone.json
-
-# MENDEL-guided MLIP (uses negotiated reaction center for force summary)
-python scripts/mlip_singlepoint.py \
-  --reaction-smiles "CBr.[OH-]>>CO.[Br-]" --context ionic \
-  --reaction-center-from-mendelv --device cpu \
-  --output reports/mlip_sn2.json
-```
+See [docs/mlip_comparison.md](docs/mlip_comparison.md) for the full analysis.
 
 ---
 

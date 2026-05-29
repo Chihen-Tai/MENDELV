@@ -11,6 +11,7 @@ chemically plausible reaction-level assignment.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 from mendel.identifier import identify_functional_groups
@@ -497,32 +498,48 @@ class RuleBasedNegotiator:
         fallback_hint: str,
     ) -> str:
         mechanism = self._mechanism_from_metadata(parsed_reaction, fallback_hint)
-        if mechanism in {"sn2", "e2", "sn2_or_e2_like"} or fallback_hint == "sn2_or_e2_like":
-            self._negotiate_sn2_e2(groups, predictions, assign_by_id, warnings)
-        elif mechanism in {"aldol", "cross_aldol", "aldol_like"}:
-            self._negotiate_aldol(groups, predictions, assign_by_id, warnings)
-        elif mechanism in {"diels_alder", "diels_alder_like"}:
-            self._negotiate_diels_alder(groups, predictions, assign_by_id, warnings)
-        elif mechanism in {"benzylic_radical_bromination", "radical_bromination_like"}:
-            self._negotiate_radical(groups, predictions, assign_by_id, warnings)
-        self._clear_centers(assign_by_id)
 
         if mechanism in {"control", "ester_control", "nitrile_control"}:
             return self._mlp_aware_control(mechanism, assign_by_id, warnings)
         if mechanism in {"sn2", "e2", "sn2_or_e2_like"}:
-            self._mlp_aware_sn2_e2(mechanism, groups, assign_by_id, warnings)
+            self._negotiate_sn2_e2(
+                groups,
+                predictions,
+                assign_by_id,
+                warnings,
+                confidence_aware=True,
+                mechanism=mechanism,
+            )
             return "sn2_or_e2_like"
         if mechanism == "carbonyl_addition":
             self._mlp_aware_carbonyl_addition(groups, assign_by_id)
             return "ionic_addition_like"
         if mechanism in {"aldol", "cross_aldol", "aldol_like"}:
-            self._mlp_aware_aldol(groups, assign_by_id, warnings)
+            self._negotiate_aldol(
+                groups,
+                predictions,
+                assign_by_id,
+                warnings,
+                confidence_aware=True,
+            )
             return "aldol_like"
         if mechanism in {"diels_alder", "diels_alder_like"}:
-            self._mlp_aware_diels_alder(groups, assign_by_id)
+            self._negotiate_diels_alder(
+                groups,
+                predictions,
+                assign_by_id,
+                warnings,
+                confidence_aware=True,
+            )
             return "diels_alder_like"
         if mechanism in {"benzylic_radical_bromination", "radical_bromination_like"}:
-            self._mlp_aware_radical(groups, assign_by_id)
+            self._negotiate_radical(
+                groups,
+                predictions,
+                assign_by_id,
+                warnings,
+                confidence_aware=True,
+            )
             return "radical_bromination_like"
         if mechanism == "nitroalkane_deprotonation":
             self._mlp_aware_nitroalkane(groups, assign_by_id)
@@ -562,31 +579,6 @@ class RuleBasedNegotiator:
                 self._mark_center(assign_by_id, assignment.group_id, "control_reactive_low_trust")
         return "control_like"
 
-    def _mlp_aware_sn2_e2(
-        self,
-        mechanism: str,
-        groups: list[FunctionalGroup],
-        assign_by_id: dict[str, NegotiatedRoleAssignment],
-        warnings: list[NegotiationWarning],
-    ) -> None:
-        for group in groups:
-            assignment = assign_by_id.get(group.group_id)
-            if assignment is None:
-                continue
-            if group.group_type == FunctionalGroupType.halide and (
-                assignment.final_role == Role.leaving_group
-                or self._confident_reactive(assignment)
-            ):
-                self._mark_center(assign_by_id, group.group_id, "mlp_aware_halide_center")
-                assignment.subrole = "leaving_group_site"
-        if mechanism == "e2":
-            warnings.append(_warn(
-                "beta_center_not_fully_represented",
-                "beta center not fully represented in v0.1 schema.",
-                "info",
-                {"mechanism": "e2"},
-            ))
-
     def _mlp_aware_carbonyl_addition(
         self,
         groups: list[FunctionalGroup],
@@ -602,79 +594,6 @@ class RuleBasedNegotiator:
                 and self._confident_reactive(assignment)
             ):
                 self._mark_center(assign_by_id, group.group_id, "mlp_aware_carbonyl_addition")
-
-    def _mlp_aware_aldol(
-        self,
-        groups: list[FunctionalGroup],
-        assign_by_id: dict[str, NegotiatedRoleAssignment],
-        warnings: list[NegotiationWarning],
-    ) -> None:
-        donors = [
-            a for a in assign_by_id.values()
-            if a.group_type == FunctionalGroupType.alpha_carbon
-            and a.final_role == Role.reactive_nucleophile
-            and self._confident_reactive(a)
-        ]
-        acceptors = [
-            a for a in assign_by_id.values()
-            if a.group_type == FunctionalGroupType.carbonyl
-            and a.final_role == Role.reactive_electrophile
-            and self._confident_reactive(a)
-        ]
-        if len(donors) != 1 or len(acceptors) != 1:
-            warnings.append(_warn(
-                "ambiguous_aldol_donor_acceptor_center",
-                "ambiguous aldol donor/acceptor center",
-                "warning",
-            ))
-            if donors:
-                donor = max(donors, key=lambda a: a.final_confidence)
-                self._mark_center(assign_by_id, donor.group_id, "mlp_aware_aldol_fallback_donor")
-            if acceptors:
-                acceptor = max(acceptors, key=lambda a: a.final_confidence)
-                self._mark_center(
-                    assign_by_id,
-                    acceptor.group_id,
-                    "mlp_aware_aldol_fallback_acceptor",
-                )
-            return
-        self._mark_center(assign_by_id, donors[0].group_id, "mlp_aware_aldol_donor")
-        self._mark_center(assign_by_id, acceptors[0].group_id, "mlp_aware_aldol_acceptor")
-
-    def _mlp_aware_diels_alder(
-        self,
-        groups: list[FunctionalGroup],
-        assign_by_id: dict[str, NegotiatedRoleAssignment],
-    ) -> None:
-        for group in groups:
-            assignment = assign_by_id.get(group.group_id)
-            if assignment is None:
-                continue
-            if (
-                group.group_type == FunctionalGroupType.alkene
-                and self._confident_reactive(assignment)
-            ):
-                self._mark_center(assign_by_id, group.group_id, "mlp_aware_diels_alder_pi_partner")
-                if assignment.final_role == Role.reactive_nucleophile:
-                    assignment.subrole = "diene_like"
-                elif assignment.final_role == Role.reactive_electrophile:
-                    assignment.subrole = "dienophile_like"
-
-    def _mlp_aware_radical(
-        self,
-        groups: list[FunctionalGroup],
-        assign_by_id: dict[str, NegotiatedRoleAssignment],
-    ) -> None:
-        for group in groups:
-            assignment = assign_by_id.get(group.group_id)
-            if assignment is None:
-                continue
-            if (
-                group.group_type == FunctionalGroupType.benzylic_site
-                and assignment.final_role == Role.reactive_radical
-                and self._confident_reactive(assignment)
-            ):
-                self._mark_center(assign_by_id, group.group_id, "mlp_aware_benzylic_radical")
 
     def _mlp_aware_nitroalkane(
         self,
@@ -697,8 +616,16 @@ class RuleBasedNegotiator:
         predictions: list[RolePrediction],
         assign_by_id: dict[str, NegotiatedRoleAssignment],
         warnings: list[NegotiationWarning],
+        *,
+        confidence_aware: bool = False,
+        mechanism: str | None = None,
     ) -> None:
-        """SN2/E2-like: mark halide as leaving group and reaction center."""
+        """SN2/E2-like: mark halide as leaving group and reaction center.
+
+        ``confidence_aware`` selects the center-selection policy: rule mode marks
+        every halide as a center; mlp-aware mode marks only halides that are
+        leaving groups or confidently reactive.
+        """
         halide_groups = _groups_of_type(groups, FunctionalGroupType.halide)
         pred_lookup = _pred_by_id(predictions)
 
@@ -722,12 +649,16 @@ class RuleBasedNegotiator:
                         f"(leaving_group_score={lg_score:.2f}); original: {a.reason}"
                     )
 
-            a.is_reaction_center = True
             a.subrole = "leaving_group_site"
             a.metadata["v0.1_note"] = (
                 "alkyl halide C–X represented as one group; "
                 "electrophilic carbon not separately modelled in v0.1"
             )
+            if confidence_aware:
+                if a.final_role == Role.leaving_group or self._confident_reactive(a):
+                    self._mark_center(assign_by_id, gid, "mlp_aware_halide_center")
+            else:
+                a.is_reaction_center = True
 
         has_nucleophile = any(
             a.final_role == Role.reactive_nucleophile for a in assign_by_id.values()
@@ -757,14 +688,29 @@ class RuleBasedNegotiator:
             {"v0.1_limitation": True},
         ))
 
+        if confidence_aware and mechanism == "e2":
+            warnings.append(_warn(
+                "beta_center_not_fully_represented",
+                "beta center not fully represented in v0.1 schema.",
+                "info",
+                {"mechanism": "e2"},
+            ))
+
     def _negotiate_aldol(
         self,
         groups: list[FunctionalGroup],
         predictions: list[RolePrediction],
         assign_by_id: dict[str, NegotiatedRoleAssignment],
         warnings: list[NegotiationWarning],
+        *,
+        confidence_aware: bool = False,
     ) -> None:
-        """Aldol-like: select primary donor alpha_carbon and acceptor carbonyl."""
+        """Aldol-like: select primary donor alpha_carbon and acceptor carbonyl.
+
+        ``confidence_aware`` selects the center-selection policy: rule mode marks
+        the heuristically-chosen primary donor/acceptor; mlp-aware mode re-selects
+        centers from confidently-reactive donors/acceptors.
+        """
         cfg = self.config
         alpha_preds = [
             p for p in predictions
@@ -819,7 +765,8 @@ class RuleBasedNegotiator:
         if primary_donor and primary_donor.group_id in assign_by_id:
             a = assign_by_id[primary_donor.group_id]
             a.subrole = "aldol_donor_alpha_carbon"
-            a.is_reaction_center = True
+            if not confidence_aware:
+                a.is_reaction_center = True
             a.reason = (
                 f"selected as primary aldol donor (alpha_carbon nucleophile, "
                 f"confidence={primary_donor.confidence:.2f}); {a.reason}"
@@ -828,7 +775,8 @@ class RuleBasedNegotiator:
         if primary_acceptor and primary_acceptor.group_id in assign_by_id:
             a = assign_by_id[primary_acceptor.group_id]
             a.subrole = "aldol_acceptor_carbonyl"
-            a.is_reaction_center = True
+            if not confidence_aware:
+                a.is_reaction_center = True
             a.reason = (
                 f"selected as primary aldol acceptor (carbonyl electrophile, "
                 f"confidence={primary_acceptor.confidence:.2f}); {a.reason}"
@@ -849,14 +797,56 @@ class RuleBasedNegotiator:
                         f"aldol disambiguation; primary donor is {primary_donor.group_id}"
                     )
 
+        if not confidence_aware:
+            return
+
+        donors = [
+            a for a in assign_by_id.values()
+            if a.group_type == FunctionalGroupType.alpha_carbon
+            and a.final_role == Role.reactive_nucleophile
+            and self._confident_reactive(a)
+        ]
+        acceptors = [
+            a for a in assign_by_id.values()
+            if a.group_type == FunctionalGroupType.carbonyl
+            and a.final_role == Role.reactive_electrophile
+            and self._confident_reactive(a)
+        ]
+        if len(donors) != 1 or len(acceptors) != 1:
+            warnings.append(_warn(
+                "ambiguous_aldol_donor_acceptor_center",
+                "ambiguous aldol donor/acceptor center",
+                "warning",
+            ))
+            if donors:
+                donor = max(donors, key=lambda a: a.final_confidence)
+                self._mark_center(assign_by_id, donor.group_id, "mlp_aware_aldol_fallback_donor")
+            if acceptors:
+                acceptor = max(acceptors, key=lambda a: a.final_confidence)
+                self._mark_center(
+                    assign_by_id,
+                    acceptor.group_id,
+                    "mlp_aware_aldol_fallback_acceptor",
+                )
+            return
+        self._mark_center(assign_by_id, donors[0].group_id, "mlp_aware_aldol_donor")
+        self._mark_center(assign_by_id, acceptors[0].group_id, "mlp_aware_aldol_acceptor")
+
     def _negotiate_diels_alder(
         self,
         groups: list[FunctionalGroup],
         predictions: list[RolePrediction],
         assign_by_id: dict[str, NegotiatedRoleAssignment],
         warnings: list[NegotiationWarning],
+        *,
+        confidence_aware: bool = False,
     ) -> None:
-        """Diels-Alder-like: assign diene_like and dienophile_like subroles."""
+        """Diels-Alder-like: assign diene_like and dienophile_like subroles.
+
+        ``confidence_aware`` selects the center-selection policy: rule mode marks
+        the negotiated diene/dienophile partners; mlp-aware mode marks confidently
+        reactive alkene pi-partners.
+        """
         cfg = self.config
         pi_preds = [p for p in predictions if p.group_type in _PI_GROUP_TYPES]
 
@@ -906,7 +896,8 @@ class RuleBasedNegotiator:
                 a.final_role = Role.reactive_electrophile
                 a.final_confidence = min(1.0, a.raw_confidence + 0.05)
                 a.subrole = "dienophile_like"
-                a.is_reaction_center = True
+                if not confidence_aware:
+                    a.is_reaction_center = True
                 a.reason = (
                     "reassigned reactive_nucleophile → reactive_electrophile as dienophile "
                     "by global Diels-Alder negotiation; "
@@ -917,7 +908,8 @@ class RuleBasedNegotiator:
                 if pred.group_id in assign_by_id:
                     a = assign_by_id[pred.group_id]
                     a.subrole = "diene_like"
-                    a.is_reaction_center = True
+                    if not confidence_aware:
+                        a.is_reaction_center = True
                     a.reason = (
                         f"confirmed as diene partner (reactive_nucleophile, "
                         f"confidence={pred.confidence:.2f}); {a.reason}"
@@ -938,10 +930,29 @@ class RuleBasedNegotiator:
                     continue
                 if a.final_role == Role.reactive_nucleophile:
                     a.subrole = "diene_like"
-                    a.is_reaction_center = True
+                    if not confidence_aware:
+                        a.is_reaction_center = True
                 elif a.final_role == Role.reactive_electrophile:
                     a.subrole = "dienophile_like"
-                    a.is_reaction_center = True
+                    if not confidence_aware:
+                        a.is_reaction_center = True
+
+        if confidence_aware:
+            for group in groups:
+                assignment = assign_by_id.get(group.group_id)
+                if assignment is None:
+                    continue
+                if (
+                    group.group_type == FunctionalGroupType.alkene
+                    and self._confident_reactive(assignment)
+                ):
+                    self._mark_center(
+                        assign_by_id, group.group_id, "mlp_aware_diels_alder_pi_partner"
+                    )
+                    if assignment.final_role == Role.reactive_nucleophile:
+                        assignment.subrole = "diene_like"
+                    elif assignment.final_role == Role.reactive_electrophile:
+                        assignment.subrole = "dienophile_like"
 
     def _negotiate_radical(
         self,
@@ -949,8 +960,15 @@ class RuleBasedNegotiator:
         predictions: list[RolePrediction],
         assign_by_id: dict[str, NegotiatedRoleAssignment],
         warnings: list[NegotiationWarning],
+        *,
+        confidence_aware: bool = False,
     ) -> None:
-        """Radical bromination-like: promote benzylic_site to reactive_radical."""
+        """Radical bromination-like: promote benzylic_site to reactive_radical.
+
+        ``confidence_aware`` selects the center-selection policy: rule mode marks
+        every benzylic (or a fallback radical) as a center; mlp-aware mode marks
+        only confidently-reactive benzylic radicals.
+        """
         cfg = self.config
         benzylic_groups = _groups_of_type(groups, FunctionalGroupType.benzylic_site)
         found_radical_center = False
@@ -968,13 +986,15 @@ class RuleBasedNegotiator:
                     "(benzylic_site provides resonance-stabilised radical); "
                     f"original: {a.reason}"
                 )
-            a.is_reaction_center = True
+            if not confidence_aware:
+                a.is_reaction_center = True
             found_radical_center = True
 
         if not found_radical_center:
             for a in assign_by_id.values():
                 if a.final_role == Role.reactive_radical:
-                    a.is_reaction_center = True
+                    if not confidence_aware:
+                        a.is_reaction_center = True
                     found_radical_center = True
                     break
 
@@ -993,6 +1013,20 @@ class RuleBasedNegotiator:
             "info",
             {"mechanism": "radical_bromination_like", "v0.1_limitation": True},
         ))
+
+        if confidence_aware:
+            for group in groups:
+                assignment = assign_by_id.get(group.group_id)
+                if assignment is None:
+                    continue
+                if (
+                    group.group_type == FunctionalGroupType.benzylic_site
+                    and assignment.final_role == Role.reactive_radical
+                    and self._confident_reactive(assignment)
+                ):
+                    self._mark_center(
+                        assign_by_id, group.group_id, "mlp_aware_benzylic_radical"
+                    )
 
     def _negotiate_ester_hydrolysis(
         self,
@@ -1234,8 +1268,6 @@ def run_pipeline_with_mlp(
     Returns:
         NegotiationResult identical in shape to run_full_rule_pipeline output.
     """
-    from pathlib import Path as _Path
-
     from mendel.mlp import MLPRolePredictor
 
     if isinstance(context, str):
@@ -1246,7 +1278,7 @@ def run_pipeline_with_mlp(
 
     parsed = parse_reaction_smiles(reaction_smiles, context=context)
     groups = identify_functional_groups(parsed)
-    mlp = MLPRolePredictor.load(_Path(mlp_checkpoint), device=device)
+    mlp = MLPRolePredictor.load(Path(mlp_checkpoint), device=device)
     mlp_preds = mlp.predict_from_reaction(parsed, groups)
 
     group_type_by_id = {g.group_id: g.group_type for g in groups}

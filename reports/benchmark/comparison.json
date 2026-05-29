@@ -1,85 +1,131 @@
 {
   "predictor_names": [
-    "rule_based_local",
-    "rule_based_negotiated"
+    "rule_based_negotiated",
+    "mlp_local",
+    "mlp_negotiated"
   ],
   "overall_role_accuracy": {
-    "rule_based_local": 0.6666666666666666,
-    "rule_based_negotiated": 0.7916666666666666
+    "rule_based_negotiated": 0.7036082474226805,
+    "mlp_local": 0.9072164948453608,
+    "mlp_negotiated": 0.961340206185567
   },
   "per_role_accuracy": {
     "reactive_nucleophile": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 0.9230769230769231
+      "rule_based_negotiated": 0.945054945054945,
+      "mlp_local": 0.989010989010989,
+      "mlp_negotiated": 0.945054945054945
     },
     "reactive_electrophile": {
-      "rule_based_local": 0.5555555555555556,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 0.8048780487804879,
+      "mlp_local": 0.926829268292683,
+      "mlp_negotiated": 1.0
     },
     "reactive_radical": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "leaving_group": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "spectator": {
-      "rule_based_local": 0.07692307692307693,
-      "rule_based_negotiated": 0.3076923076923077
+      "rule_based_negotiated": 0.4303030303030303,
+      "mlp_local": 0.8242424242424242,
+      "mlp_negotiated": 0.9393939393939394
     }
   },
   "per_mechanism_accuracy": {
     "aldol": {
-      "rule_based_local": 0.5555555555555556,
-      "rule_based_negotiated": 0.7777777777777778
+      "rule_based_negotiated": 0.8297872340425532,
+      "mlp_local": 0.6382978723404256,
+      "mlp_negotiated": 0.7872340425531915
     },
     "benzylic_radical_bromination": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "carbonyl_addition": {
-      "rule_based_local": 0.5,
-      "rule_based_negotiated": 0.5
+      "rule_based_negotiated": 0.6756756756756757,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "control": {
-      "rule_based_local": 0.0,
-      "rule_based_negotiated": 0.0
+      "rule_based_negotiated": 0.75,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "cross_aldol": {
-      "rule_based_local": 0.6666666666666666,
-      "rule_based_negotiated": 0.6666666666666666
+      "rule_based_negotiated": 0.9523809523809523,
+      "mlp_local": 0.8095238095238095,
+      "mlp_negotiated": 0.8571428571428571
     },
     "diels_alder": {
-      "rule_based_local": 0.5714285714285714,
-      "rule_based_negotiated": 0.8571428571428571
+      "rule_based_negotiated": 0.8192771084337349,
+      "mlp_local": 0.9036144578313253,
+      "mlp_negotiated": 0.9759036144578314
     },
     "e2": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "ester_control": {
+      "rule_based_negotiated": 0.05555555555555555,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "hetero_diels_alder": {
+      "rule_based_negotiated": 0.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "michael_addition": {
+      "rule_based_negotiated": 0.25,
+      "mlp_local": 0.8541666666666666,
+      "mlp_negotiated": 1.0
+    },
+    "nitrile_control": {
+      "rule_based_negotiated": 0.5555555555555556,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "nitroalkane_deprotonation": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "reductive_amination": {
+      "rule_based_negotiated": 0.7272727272727273,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     },
     "sn2": {
-      "rule_based_local": 1.0,
-      "rule_based_negotiated": 1.0
+      "rule_based_negotiated": 1.0,
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
     }
   },
   "reaction_center": {
-    "rule_based_local": {
+    "rule_based_negotiated": {
+      "precision": 0.8246187363834423,
+      "recall": 0.9042288557213931,
+      "f1": 0.9164179104477612
+    },
+    "mlp_local": {
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0
     },
-    "rule_based_negotiated": {
-      "precision": 0.6987179487179488,
-      "recall": 0.6811594202898551,
-      "f1": 0.7159420289855073
+    "mlp_negotiated": {
+      "precision": 0.9359452736318409,
+      "recall": 0.845273631840796,
+      "f1": 0.8781094527363185
     }
   },
-  "best_predictor_by_overall_accuracy": "rule_based_negotiated",
+  "best_predictor_by_overall_accuracy": "mlp_negotiated",
   "notes": [
     "Ground truth comes only from LabeledReaction.group_roles.",
     "Unlabeled detected groups are ignored for role accuracy.",

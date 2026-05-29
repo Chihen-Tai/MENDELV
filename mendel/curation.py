@@ -24,7 +24,6 @@ from mendel.parser import parse_reaction_smiles
 from mendel.predictor import predict_roles_for_reaction
 from mendel.types import FunctionalGroup, ReactionContext, Role
 
-
 # ---------------------------------------------------------------------------
 # Public dataclasses
 # ---------------------------------------------------------------------------
@@ -299,12 +298,12 @@ def load_draft_inputs(path: str | Path) -> list[DraftReactionInput]:
 
         try:
             context = ReactionContext(item["context"])
-        except ValueError:
+        except ValueError as err:
             raise ValueError(
                 f"Item {i} ({item.get('reaction_id', '?')}): "
                 f"unknown context '{item['context']}'. "
                 f"Expected one of: {[c.value for c in ReactionContext]}"
-            )
+            ) from err
 
         inputs.append(DraftReactionInput(
             reaction_id=item["reaction_id"],

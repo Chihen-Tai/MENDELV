@@ -13,11 +13,8 @@ from mendel.parser import parse_reaction_smiles
 from mendel.predictor import (
     PredictionReport,
     RolePrediction,
-    RuleBasedPredictorConfig,
-    RuleBasedRolePredictor,
     compare_predictions_to_labels,
     get_feature_value,
-    predict_roles,
     predict_roles_for_reaction,
     summarize_predictions,
 )

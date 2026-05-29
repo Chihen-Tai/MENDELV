@@ -26,8 +26,8 @@ from mendel.mlip import (
     optional_import_torchani,
     resolve_device,
     smiles_to_ase_atoms,
-    validate_ani2x_elements,
     summarize_reaction_center_forces,
+    validate_ani2x_elements,
 )
 
 _ROOT = Path(__file__).parent.parent
@@ -392,7 +392,7 @@ def test_create_mlip_calculator_dispatches_ani2x(monkeypatch: pytest.MonkeyPatch
     calls: dict[str, Any] = {}
 
     class FakeModel:
-        def to(self, device: str) -> "FakeModel":
+        def to(self, device: str) -> FakeModel:
             calls["device"] = device
             return self
 
@@ -403,7 +403,7 @@ def test_create_mlip_calculator_dispatches_ani2x(monkeypatch: pytest.MonkeyPatch
     class FakeTorchANI:
         class models:
             @staticmethod
-            def ANI2x(periodic_table_index: bool = False) -> "FakeModel":
+            def ANI2x(periodic_table_index: bool = False) -> FakeModel:
                 calls["periodic_table_index"] = periodic_table_index
                 return FakeModel()
 
