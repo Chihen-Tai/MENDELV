@@ -81,7 +81,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | 6.6 — Descriptor upgrade (inter-molecular context) | **Complete** — schema `phase6_6_v1`, 55→65 dim; Category F adds `partner_*`, `rel_*`, `n_reactant_mols`, `same_mol_has_alpha_carbon` | `rdkit`, stdlib only |
 | 7 — MLP role predictor training | **Updated** — `models/role_mlp.pt`, 65-dim, hidden_dim=64, **95.31% val acc**, 148 reactions | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | **Updated** — center_head retrained on 65-dim, atom F1=0.912, rxn-center F1=0.935 | `rdkit`, stdlib only |
-| 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
+| 9 — MLIP single-point backend | **Concluded** — MACE/ANI-2x backends working; Route B reactive-weighted fine-tuning investigated on rMD17 (works) and QO2Mol (ineffective — lacks per-group systematic error). Design boundary confirmed. | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
 
 ### Implemented modules
