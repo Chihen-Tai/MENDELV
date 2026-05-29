@@ -1,0 +1,19 @@
+{
+  "dataset_name": "MD17/rMD17",
+  "source_url": null,
+  "access_date": "2026-05-28T16:01:12.528422+00:00",
+  "output_dir": "data/external/md17",
+  "max_size_mb": 500.0,
+  "download_allowed": false,
+  "download_performed": false,
+  "downloaded_files": [],
+  "file_size_bytes": null,
+  "license_note": "verify source dataset license before redistribution",
+  "do_not_commit_raw_data": true,
+  "message": "No URL provided. Download an MD17/rMD17 NPZ manually, or rerun with --url and --allow-download after verifying source and license.",
+  "warnings": [
+    "Do not commit raw MD17/rMD17 data.",
+    "Use only official project URLs or a user-provided source.",
+    "This helper does not download anything unless --allow-download is provided."
+  ]
+}

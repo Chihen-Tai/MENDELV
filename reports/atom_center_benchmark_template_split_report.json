@@ -1,0 +1,124 @@
+{
+  "overall": {
+    "predictor_name": "atom_center_head_template_split",
+    "n_reactions": 71,
+    "n_atom_examples": 459,
+    "atom_accuracy": 0.8671023965141612,
+    "atom_precision": 0.8744186046511628,
+    "atom_recall": 0.8468468468468469,
+    "atom_f1": 0.8604118993135011,
+    "reaction_center_precision": 0.8480392156862745,
+    "reaction_center_recall": 0.9098360655737705,
+    "reaction_center_f1": 0.9117096018735363,
+    "per_mechanism_f1": {
+      "aldol": 0.7333333333333334,
+      "benzylic_radical_bromination": 0.8653061224489795,
+      "carbonyl_addition": 0.8,
+      "control": null,
+      "cross_aldol": 0.5,
+      "diels_alder": 0.9777777777777779,
+      "e2": 0.925925925925926,
+      "ester_control": 1.0,
+      "nitrile_control": 1.0,
+      "nitroalkane_deprotonation": 1.0,
+      "radical_bromination": 0.8,
+      "sn2": 0.9638095238095238
+    },
+    "threshold": 0.5,
+    "metadata": {
+      "scope_note": "Atom reaction-center classifier only; no MLIP.",
+      "exact_match": 39,
+      "empty_truth": 10,
+      "empty_prediction": 0,
+      "partial_overlap": 22,
+      "extra_atoms": 10,
+      "wrong_nonoverlap": 0
+    }
+  },
+  "train": {
+    "predictor_name": "atom_center_head_template_split_train",
+    "n_reactions": 49,
+    "n_atom_examples": 329,
+    "atom_accuracy": 0.9300911854103343,
+    "atom_precision": 0.9378531073446328,
+    "atom_recall": 0.9325842696629213,
+    "atom_f1": 0.9352112676056338,
+    "reaction_center_precision": 0.9305555555555555,
+    "reaction_center_recall": 0.9791666666666666,
+    "reaction_center_f1": 0.9475198412698412,
+    "per_mechanism_f1": {
+      "benzylic_radical_bromination": 0.8653061224489795,
+      "cross_aldol": 0.5,
+      "diels_alder": 0.9777777777777779,
+      "e2": 0.9583333333333334,
+      "ester_control": 1.0,
+      "nitrile_control": 1.0,
+      "nitroalkane_deprotonation": 1.0,
+      "sn2": 0.9638095238095238
+    },
+    "threshold": 0.5,
+    "metadata": {
+      "scope_note": "Atom reaction-center classifier only; no MLIP.",
+      "exact_match": 37,
+      "empty_truth": 1,
+      "empty_prediction": 0,
+      "partial_overlap": 11,
+      "extra_atoms": 10,
+      "wrong_nonoverlap": 0
+    }
+  },
+  "val": {
+    "predictor_name": "atom_center_head_template_split_val",
+    "n_reactions": 17,
+    "n_atom_examples": 104,
+    "atom_accuracy": 0.6634615384615384,
+    "atom_precision": 0.4482758620689655,
+    "atom_recall": 0.40625,
+    "atom_f1": 0.4262295081967213,
+    "reaction_center_precision": 0.5333333333333333,
+    "reaction_center_recall": 0.5833333333333333,
+    "reaction_center_f1": 0.7333333333333334,
+    "per_mechanism_f1": {
+      "carbonyl_addition": 0.7428571428571429,
+      "control": null,
+      "e2": 0.6666666666666666
+    },
+    "threshold": 0.5,
+    "metadata": {
+      "scope_note": "Atom reaction-center classifier only; no MLIP.",
+      "exact_match": 0,
+      "empty_truth": 9,
+      "empty_prediction": 0,
+      "partial_overlap": 8,
+      "extra_atoms": 0,
+      "wrong_nonoverlap": 0
+    }
+  },
+  "test": {
+    "predictor_name": "atom_center_head_template_split_test",
+    "n_reactions": 5,
+    "n_atom_examples": 26,
+    "atom_accuracy": 0.8846153846153846,
+    "atom_precision": 1.0,
+    "atom_recall": 0.75,
+    "atom_f1": 0.8571428571428571,
+    "reaction_center_precision": 1.0,
+    "reaction_center_recall": 0.7666666666666666,
+    "reaction_center_f1": 0.8533333333333333,
+    "per_mechanism_f1": {
+      "aldol": 0.7333333333333334,
+      "carbonyl_addition": 1.0,
+      "radical_bromination": 0.8
+    },
+    "threshold": 0.5,
+    "metadata": {
+      "scope_note": "Atom reaction-center classifier only; no MLIP.",
+      "exact_match": 2,
+      "empty_truth": 0,
+      "empty_prediction": 0,
+      "partial_overlap": 3,
+      "extra_atoms": 0,
+      "wrong_nonoverlap": 0
+    }
+  }
+}

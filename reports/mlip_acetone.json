@@ -1,0 +1,96 @@
+{
+  "energy": -5259.37939453125,
+  "energy_unit": "eV",
+  "forces": [
+    [
+      -0.5727172493934631,
+      0.05864344537258148,
+      0.9801135063171387
+    ],
+    [
+      0.2895646095275879,
+      -0.08181487023830414,
+      -1.7482699155807495
+    ],
+    [
+      -0.09671586006879807,
+      0.03573913872241974,
+      0.785952627658844
+    ],
+    [
+      0.7499114274978638,
+      -0.004880249500274658,
+      0.44372665882110596
+    ],
+    [
+      0.3091799020767212,
+      -0.6567946076393127,
+      0.1509958803653717
+    ],
+    [
+      -0.2078341841697693,
+      -0.021991165354847908,
+      -0.6836453080177307
+    ],
+    [
+      0.3497990369796753,
+      0.6465884447097778,
+      0.09671979397535324
+    ],
+    [
+      -0.008393250405788422,
+      0.6045169830322266,
+      -0.2395515888929367
+    ],
+    [
+      -0.766226053237915,
+      0.04063189774751663,
+      0.4024829864501953
+    ],
+    [
+      -0.04656849056482315,
+      -0.6206389665603638,
+      -0.18852460384368896
+    ]
+  ],
+  "force_unit": "eV/Angstrom",
+  "n_atoms": 10,
+  "backend_name": "mace",
+  "model_name": "mace-off-small",
+  "device": "cpu",
+  "success": true,
+  "warnings": [
+    "Phase 9 computes single-point energy/forces only.",
+    "MLIP result is not a DFT reference."
+  ],
+  "metadata": {
+    "optimize_geometry": false,
+    "geometry_sanity": {
+      "n_atoms": 10,
+      "min_interatomic_distance": 1.1100825536920047,
+      "min_distance_atom_pair": [
+        3,
+        7
+      ],
+      "max_interatomic_distance": 4.165349223990528,
+      "n_fragments": null,
+      "total_formal_charge": null,
+      "has_disconnected_fragments": false,
+      "has_charged_fragments": false,
+      "has_disconnected_charged_fragments": false,
+      "mean_force_norm": 0.8939614845747315,
+      "max_force_norm": 1.7739754885025034,
+      "mean_force_threshold": 100.0,
+      "max_force_threshold": 1000.0,
+      "min_distance_threshold": 0.6,
+      "status": "pass",
+      "warnings": [],
+      "metadata": {
+        "reaction_smiles_checked": false,
+        "rdkit_fragment_check_available": false
+      }
+    },
+    "geometry_sanity_status": "pass",
+    "geometry_sanity_failed": false
+  }
+}

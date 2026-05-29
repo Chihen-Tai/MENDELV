@@ -1,0 +1,28 @@
+{
+  "baseline_global_force_rmse": 0.516699695941419,
+  "finetuned_global_force_rmse": 0.053354993443728384,
+  "per_group": {
+    "alcohol_CO_reactive": {
+      "baseline": 0.574802605291102,
+      "finetuned": 0.0652517349364638
+    },
+    "hydroxyl_H": {
+      "baseline": 0.46920643756958186,
+      "finetuned": 0.03348171945371421
+    },
+    "alpha_CH": {
+      "baseline": 0.5484552484477037,
+      "finetuned": 0.039802006299744924
+    },
+    "methyl_CH": {
+      "baseline": 0.48725681464755327,
+      "finetuned": 0.04564679675086852
+    },
+    "methyl_C": {
+      "baseline": 0.4560619069820661,
+      "finetuned": 0.08102410164702677
+    }
+  },
+  "checkpoint": "/Applications/codes/mendel/models/ani2x_reactive_finetuned.pt",
+  "n_test": 20
+}

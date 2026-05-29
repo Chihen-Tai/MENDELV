@@ -47,6 +47,45 @@ python scripts/benchmark.py --data data/reactions.json --mlp-checkpoint models/r
 
 The MLP command only evaluates an existing checkpoint. It does not train.
 
+## Promoted Dataset Benchmark
+
+Phase 8.7 retrains the experimental MLP role predictor on promoted curated
+labels, then benchmarks the new checkpoint against rule-based baselines and the
+old MLP checkpoint:
+
+```bash
+python scripts/train_promoted_mlp.py
+python scripts/benchmark_promoted_mlp.py
+```
+
+The promoted benchmark writes separate reports for:
+
+- `rule_based_local`
+- `rule_based_negotiated`
+- `new_mlp_local`
+- `new_mlp_negotiated`
+- `old_mlp_local` and `old_mlp_negotiated`, when the old checkpoint exists
+
+Improvement over the old checkpoint is useful evidence that promoted labels
+helped. It is not enough by itself to replace `rule_based_negotiated`; the MLP
+must clearly beat the negotiated rule-based pipeline before becoming the
+default.
+
+Phase 8.9 adds an experimental MLP-aware negotiation benchmark:
+
+```bash
+python scripts/benchmark_promoted_mlp.py \
+  --data data/reactions.proposed_with_auto_promoted.normalized.json \
+  --new-mlp-checkpoint models/role_mlp_promoted.pt \
+  --old-mlp-checkpoint models/role_mlp.pt \
+  --device cpu \
+  --output-dir reports/benchmark_mlp_aware_full \
+  --include-mlp-aware-negotiation
+```
+
+This writes `new_mlp_aware_negotiated.json` and includes
+`new_mlp_aware_negotiated` in `comparison.json`.
+
 ## Python API
 
 ```python

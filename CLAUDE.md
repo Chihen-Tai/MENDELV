@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-**Do not run `tests/test_mlp.py` or `scripts/train_mlp.py` unless intentionally starting Phase 7 work.**
+**Phase 7 is complete.** Checkpoint lives at `models/role_mlp.pt` (93.6% val accuracy on `reactions.center_balanced.cleaned.json`). `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
 
 **Do not run `tests/test_mlip.py`, `tests/test_mlip_env_scripts.py`, `tests/test_mlip_geometry_sanity.py`, or `tests/test_mlip_reference_benchmark.py` without Phase 9 deps installed.**
 
@@ -48,7 +48,7 @@ reaction SMILES + context
     → descriptor.py      list[GroupDescriptor]  (55-dim feature vector per group)
     → predictor.py       PredictionReport  (rule-based role assignment)        ← Phase 5
     → negotiator.py      NegotiationResult  (global consistency, mechanism hint) ← Phase 6
-    → [mlp.py]           MLPRolePrediction  (learned role predictor)            ← Phase 7, paused
+    → [mlp.py]           MLPRolePrediction  (learned role predictor)            ← Phase 7
     → [center_head.py]   atom-level center predictions                         ← Phase 8.10
     → [mlip.py]          MACE energy/forces                                     ← Phase 9
     → [reference_data.py / md17.py / qo2mol.py]  reference conformer data      ← Phase 10
@@ -60,12 +60,12 @@ reaction SMILES + context
 from mendel import run_full_rule_pipeline
 result = run_full_rule_pipeline("CCBr.[OH-]>>CCO.[Br-]", context="ionic")
 
-# MLP training (Phase 7) — requires pip install -e ".[ml]"
-from mendel.mlp import train_from_labeled_json, TrainingConfig   # NOT from mendel
-predictor, history, report = train_from_labeled_json("data/reactions.json")
+# MLP pipeline (Phase 7) — requires pip install -e ".[ml]"
+from mendel.negotiator import run_pipeline_with_mlp
+result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", context="ionic")
 
-# CLI training (Phase 7 only)
-# python scripts/train_mlp.py --data data/reactions.json --epochs 100
+# Retrain MLP (Phase 7)
+# python scripts/train_mlp.py --data data/reactions.center_balanced.cleaned.json --epochs 100 --use-class-weights
 ```
 
 `import mendel` does **not** import PyTorch, matplotlib, ASE, or MACE. All optional deps are loaded lazily inside the modules that need them.
@@ -78,7 +78,7 @@ predictor, history, report = train_from_labeled_json("data/reactions.json")
 |-------|--------|--------------|
 | 0–6 | Implemented | `rdkit`, stdlib only |
 | 6.5 — Dataset curation / label drafting | In progress | `rdkit`, stdlib only |
-| 7 — MLP role predictor training | Paused (needs curated data) | `torch>=2.0` |
+| 7 — MLP role predictor training | **Complete** — `models/role_mlp.pt`, 93.6% val acc | `torch>=2.0` |
 | 8 — Benchmark, center head, dataset ops | Implemented | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | Partial | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | Partial | stdlib only (no MLIP) |
@@ -96,7 +96,7 @@ predictor, history, report = train_from_labeled_json("data/reactions.json")
 | Predictor | `mendel/predictor.py` | 5 | `RuleBasedRolePredictor` — threshold rules on descriptor scores |
 | Negotiator | `mendel/negotiator.py` | 6 | `RuleBasedNegotiator` — global consistency, mechanism hints, reaction center inference |
 | Curation | `mendel/curation.py` | 6.5 | Draft `LabeledReaction` records from rule pipeline for manual review |
-| MLP predictor | `mendel/mlp.py` | 7 | `RoleMLP` + `MLPRolePredictor` — learned descriptor→role classifier; paused |
+| MLP predictor | `mendel/mlp.py` | 7 | `RoleMLP` + `MLPRolePredictor` — learned descriptor→role classifier; checkpoint at `models/role_mlp.pt` |
 | Benchmark | `mendel/benchmark.py` | 8 | Label-conditioned role and reaction-center accuracy evaluators |
 | Dataset quality | `mendel/dataset_quality.py` | 8.5 | Dataset normalization and diagnostics before training |
 | Promotion | `mendel/promotion.py` | 8.6 | Conservative promotion of human-reviewed auto-candidate labels |

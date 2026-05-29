@@ -357,3 +357,92 @@ def load_finetuned_model(path: Path, device: str = "cpu") -> Any:
     model = torchani.models.ANI2x(periodic_table_index=True).to(device)
     model.load_state_dict(checkpoint["state_dict"])
     return model
+
+
+# ---------------------------------------------------------------------------
+# Multi-molecule loading (direct NPZ → ConformerRecord, no JSON intermediary)
+# ---------------------------------------------------------------------------
+
+_KCAL_TO_EV = 0.0433641153087705
+
+_ATOMIC_SYMBOL: dict[int, str] = {v: k for k, v in _ATOMIC_NUMBER.items()}
+
+_HETEROATOMS = frozenset({7, 8, 9, 16, 17})  # N, O, F, S, Cl
+
+
+def reactive_atom_indices_by_heteroatom(
+    atomic_numbers: list[int],
+    positions: list[tuple[float, float, float]],
+    cutoff: float = 1.65,
+) -> list[int]:
+    """Generic reactive-site detection: heteroatoms + directly bonded heavy atoms.
+
+    Works for any organic molecule whose heteroatoms define the reactive site.
+    """
+    reactive: set[int] = set()
+    for i, z in enumerate(atomic_numbers):
+        if z in _HETEROATOMS:
+            reactive.add(i)
+    for i, zi in enumerate(atomic_numbers):
+        if zi == 1:
+            continue
+        for j in list(reactive):
+            if i != j and _dist(positions[i], positions[j]) <= cutoff:
+                reactive.add(i)
+                break
+    return sorted(reactive)
+
+
+def load_md17_npz_records(
+    path: Path,
+    molecule_name: str,
+    max_records: int = 500,
+    reactive_weight: float = 3.0,
+    seed: int = 42,
+) -> list[ConformerRecord]:
+    """Load rMD17 NPZ directly into ConformerRecord list (no JSON step).
+
+    Energies/forces converted from kcal/mol to eV / eV·Å⁻¹.
+    Reactive weights assigned via heteroatom-proximity heuristic.
+    """
+    try:
+        import numpy as np
+    except ImportError as exc:
+        raise ImportError("numpy required: pip install numpy") from exc
+
+    rng = random.Random(seed)
+    with np.load(path, allow_pickle=False) as data:
+        z_arr = data["nuclear_charges"]  # (n_atoms,)
+        coords_arr = data["coords"]      # (n_conf, n_atoms, 3)
+        e_arr = data["energies"]         # (n_conf,)
+        f_arr = data["forces"]           # (n_conf, n_atoms, 3)
+
+    n_total = int(coords_arr.shape[0])
+    indices = list(range(n_total))
+    rng.shuffle(indices)
+    indices = indices[:max_records]
+
+    atomic_numbers = [int(z) for z in z_arr.tolist()]
+    unsupported = {z for z in atomic_numbers if z not in _ATOMIC_SYMBOL}
+    if unsupported:
+        raise ValueError(f"Molecule {molecule_name!r} has atomic numbers not supported by ANI-2x: {unsupported}")
+
+    symbols = [_ATOMIC_SYMBOL[z] for z in atomic_numbers]
+    first_pos = [(float(row[0]), float(row[1]), float(row[2])) for row in coords_arr[0].tolist()]
+    reactive = reactive_atom_indices_by_heteroatom(atomic_numbers, first_pos)
+    weights = build_atom_weights(len(symbols), reactive, reactive_weight=reactive_weight)
+
+    records: list[ConformerRecord] = []
+    for i, idx in enumerate(indices):
+        positions = [[float(v) for v in row] for row in coords_arr[idx].tolist()]
+        energy_ev = float(e_arr[idx]) * _KCAL_TO_EV
+        forces_ev = [[float(v) * _KCAL_TO_EV for v in row] for row in f_arr[idx].tolist()]
+        records.append(ConformerRecord(
+            structure_id=f"{molecule_name}_{i}",
+            symbols=symbols,
+            positions=positions,
+            energy=energy_ev,
+            forces=forces_ev,
+            atom_weights=weights,
+        ))
+    return records

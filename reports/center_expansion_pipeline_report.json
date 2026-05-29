@@ -1,0 +1,28 @@
+{
+  "n_candidates": 72,
+  "mechanism_distribution": {
+    "aldol": 6,
+    "benzylic_radical_bromination": 6,
+    "carbonyl_addition": 6,
+    "control": 6,
+    "cross_aldol": 6,
+    "diels_alder": 6,
+    "e2": 6,
+    "ester_control": 6,
+    "nitrile_control": 6,
+    "nitroalkane_deprotonation": 6,
+    "radical_bromination": 6,
+    "sn2": 6
+  },
+  "center_label_focus": true,
+  "outputs": {
+    "draft_inputs": "data/draft_inputs.center_expansion.json",
+    "draft_labels": "data/reactions.draft.center_expansion.json",
+    "review_queue": "data/reactions.center_expansion.review_queue.json",
+    "promoted": "data/reactions.center_expansion.promoted.json",
+    "proposed": "data/reactions.proposed_with_center_expansion.json",
+    "cleaned": "data/reactions.proposed_with_center_expansion.cleaned.json"
+  },
+  "promotion_run": false,
+  "note": "Scaffold generated local template candidates only; no external data and no training."
+}

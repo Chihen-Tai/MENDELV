@@ -1,0 +1,27 @@
+{
+  "dataset_name": "QO2Mol",
+  "source_url": "https://github.com/saiscn/QO2Mol/",
+  "repo_url": "https://github.com/saiscn/QO2Mol/",
+  "access_date": "2026-05-28T14:17:02.746205+00:00",
+  "output_dir": "data/external/qo2mol_sample",
+  "max_size_mb": 200.0,
+  "download_allowed": false,
+  "download_performed": false,
+  "downloaded_files": [],
+  "candidates": [],
+  "candidate_urls": [],
+  "file_size_bytes": null,
+  "license_note": "verify from QO2Mol source repository before redistribution",
+  "do_not_commit_raw_data": true,
+  "message": "No official small sample found in repository metadata.",
+  "warnings": [
+    "Do not commit raw QO2Mol data.",
+    "Verify dataset license before redistribution.",
+    "This fetcher does not download the full QO2Mol dataset by default."
+  ],
+  "metadata": {
+    "phase": "10.2a",
+    "data_type": "molecular conformer energy/force",
+    "no_training": true
+  }
+}

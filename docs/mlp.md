@@ -173,3 +173,33 @@ Phase 8 benchmarks rule-based, negotiated, and optional MLP checkpoint predictor
 Phase 8.5 normalizes dataset labels and reports training-readiness diagnostics.
 Neither phase adds MLIP, MACE, Transition1x, energy, force, transition-state, or
 barrier prediction.
+
+---
+
+## Phase 8.7: Promoted-Data Retraining
+
+Phase 8.7 retrains the same small MLP role classifier on the promoted curated
+dataset from Phase 8.6:
+
+```bash
+python scripts/train_promoted_mlp.py
+python scripts/benchmark_promoted_mlp.py
+```
+
+The pre-promotion baseline on `data/reactions.normalized.json` was:
+
+| Predictor | Overall role accuracy |
+|-----------|----------------------:|
+| `mlp_local` | 0.4167 |
+| `mlp_negotiated` | 0.4167 |
+
+Success criteria:
+
+- Minimum: the new promoted-data MLP beats the old MLP checkpoint.
+- Better: the new MLP beats `rule_based_local`.
+- Strongest: the new MLP beats `rule_based_negotiated`.
+
+`rule_based_negotiated` remains the default unless the benchmark clearly
+supports replacing it. This remains role-predictor training only:
+functional-group descriptor to role label. It is not MLIP training and does not
+use MACE, Transition1x, energy, force, transition-state, or barrier data.

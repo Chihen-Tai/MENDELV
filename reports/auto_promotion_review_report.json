@@ -1,0 +1,80 @@
+{
+  "n_input_reactions": 51,
+  "n_promoted_reactions": 45,
+  "n_skipped_reactions": 6,
+  "n_promoted_group_labels": 85,
+  "n_corrected_labels": 0,
+  "promoted_mechanism_distribution": {
+    "benzylic_radical_bromination": 3,
+    "carbonyl_addition": 7,
+    "control": 6,
+    "diels_alder": 5,
+    "e2": 7,
+    "ester_control": 3,
+    "nitrile_control": 3,
+    "nitroalkane_deprotonation": 2,
+    "sn2": 9
+  },
+  "promoted_role_distribution": {
+    "leaving_group": 16,
+    "reactive_electrophile": 12,
+    "reactive_nucleophile": 12,
+    "reactive_radical": 3,
+    "spectator": 42
+  },
+  "promoted_group_type_distribution": {
+    "alcohol": 1,
+    "alkene": 15,
+    "alpha_carbon": 13,
+    "aromatic": 14,
+    "benzylic_site": 6,
+    "carbonyl": 8,
+    "ester": 4,
+    "halide": 16,
+    "nitrile": 4,
+    "nitro": 3,
+    "phenol": 1
+  },
+  "skipped_reactions": [
+    {
+      "reaction_id": "auto_aldol_acetaldehyde_self",
+      "mechanism_type": "aldol",
+      "reason": "aldol_skipped_by_default"
+    },
+    {
+      "reaction_id": "auto_aldol_acetone_self",
+      "mechanism_type": "aldol",
+      "reason": "aldol_skipped_by_default"
+    },
+    {
+      "reaction_id": "auto_aldol_propanal_self",
+      "mechanism_type": "aldol",
+      "reason": "aldol_skipped_by_default"
+    },
+    {
+      "reaction_id": "auto_cross_aldol_acetaldehyde_benzaldehyde",
+      "mechanism_type": "cross_aldol",
+      "reason": "aldol_skipped_by_default"
+    },
+    {
+      "reaction_id": "auto_cross_aldol_acetone_benzaldehyde",
+      "mechanism_type": "cross_aldol",
+      "reason": "aldol_skipped_by_default"
+    },
+    {
+      "reaction_id": "auto_cross_aldol_propanal_benzaldehyde",
+      "mechanism_type": "cross_aldol",
+      "reason": "aldol_skipped_by_default"
+    }
+  ],
+  "corrected_labels": [],
+  "warnings": [],
+  "output_paths": {
+    "input": "data/reactions.auto_review_queue.json",
+    "base": "data/reactions.normalized.json",
+    "output": "data/reactions.auto_curated_promoted.json",
+    "merged_output": "data/reactions.proposed_with_auto_promoted.json",
+    "report": "reports/auto_promotion_review_report.json"
+  },
+  "note": "Promoted labels are conservative manually reviewed-style labels, but should still be spot-checked before final publication."
+}

@@ -1,0 +1,4011 @@
+{
+  "reactions": [
+    {
+      "reaction_id": "sn2_methyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][Br:2].[OH-:3]>>[CH3:1][OH:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; Br- is the leaving group"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "benchmark",
+        "nucleophile_note": "[OH-] (reactant 1) is the nucleophile but is not detected as a functional group \u2014 no C-O bond in free hydroxide",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::sn2_methyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "e2_ethyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][CH2:2][Br:3].[OH-:4]>>[CH2:1]=[CH2:2].[Br-:3].[OH2:4]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; Br- leaves as base removes beta proton"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "metadata": {
+        "source": "benchmark",
+        "base_note": "[OH-] (reactant 1) acts as base but is not detected as a functional group \u2014 no C-O bond in free hydroxide",
+        "original_mechanism_type": "E2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "e2::e2_ethyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH2:6]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene C1=C2 bond; acts as HOMO donor in [4+2] cycloaddition"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene C3=C4 bond; part of the conjugated diene HOMO"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Dienophile alkene; acts as LUMO acceptor in [4+2] cycloaddition"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "metadata": {
+        "source": "benchmark",
+        "stereochemistry_note": "Suprafacial on both components; product is cyclohexene",
+        "original_mechanism_type": "Diels-Alder",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "diels_alder::diels_alder",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([OH])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Carbonyl of nucleophile acetone; alpha deprotonation occurs here but the C=O itself is spectator"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon (C1) deprotonated to form enolate; attacks the electrophilic carbonyl"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon (C4) adjacent to carbonyl; symmetric enolisation site"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Carbonyl of acceptor acetone; C=O carbon attacked by enolate nucleophile"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon of acceptor acetone; not involved in the bond-forming step"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_1",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon of acceptor acetone; not involved in the bond-forming step"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        4,
+        6
+      ],
+      "metadata": {
+        "source": "benchmark",
+        "base_note": "Base-catalysed aldol; base not included as it is catalytic",
+        "original_mechanism_type": "Aldol",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "aldol::aldol_acetone",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "radical_bromination_methane",
+      "reaction_smiles": "[CH4:1].[Br:2][Br:3]>>[CH3:1][Br:2].[Br:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "val",
+      "group_roles": [],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "benchmark",
+        "detection_note": "Neither CH4 nor Br2 is detected as a functional group by identifier.py. CH4 has no heteroatom; Br2 has no C-Br bond. Reaction centre encoded via atom-map numbers only.",
+        "limitation": "Radical chain carriers are not representable in the current group schema",
+        "original_mechanism_type": "Radical bromination",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "radical_bromination::radical_bromination",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "reaction_smiles": "[CH3:1][c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:8][Br:9]>>[CH2:1]([Br:8])[c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:9]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Phenyl ring stabilises the benzylic radical via resonance but does not itself react"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "Benzylic CH3; H-abstraction by Br\u2022 forms a resonance-stabilised benzylic radical"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        8,
+        9
+      ],
+      "metadata": {
+        "source": "extended",
+        "reagent_note": "Br2 (reactant 1) is not detected as a functional group \u2014 no C-Br bond present",
+        "original_mechanism_type": "Benzylic radical bromination",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "benzylic_radical_bromination::benzylic_radical",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "sn2_methyl_iodide_cyanide",
+      "reaction_smiles": "[CH3:1][I:2].[C-:3]#[N:4]>>[CH3:1][C:3]#[N:4].[I-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-I bond breaks; I- is the leaving group"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "extended",
+        "nucleophile_note": "[C-]#N cyanide anion is the nucleophile; not detected as a functional group because the nitrile SMARTS requires a C-C bond, not a C- anion",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::sn2_methyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[OH-:5]>>[CH3:1][C:2](=[O:3])[CH2:4][C:2]([OH])[CH3:1]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Carbonyl carbon is attacked by the enolate nucleophile"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Alpha carbon deprotonated by OH- to form enolate"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Symmetric alpha carbon; not the enolisation site in this labelling"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        4
+      ],
+      "metadata": {
+        "source": "extended",
+        "base_note": "[OH-] (reactant 1) deprotonates the alpha carbon but is not detected as a functional group",
+        "original_mechanism_type": "Aldol",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "aldol::aldol_acetone",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_chloride_iodide",
+      "reaction_smiles": "[CH3:1][Cl:2].[I-:3]>>[CH3:1][I:3].[Cl-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Cl bond breaks; chloride is the leaving group. Iodide nucleophile is not represented as a detected functional group."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "SN2",
+        "labeling_note": "Label detected alkyl halide/halide group as leaving_group. Iodide nucleophile may not be detected as a functional group.",
+        "assistant_reviewed": true,
+        "curation_note": "C-Cl bond breaks; chloride is the leaving group. Iodide nucleophile is not represented as a detected functional group.",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::supp_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_bromide_azide",
+      "reaction_smiles": "[CH3:1][Br:2].[N-:3]=[N+:4]=[N-:5]>>[CH3:1][N:3]=[N+:4]=[N-:5].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; bromide is the leaving group. Azide nucleophile is not represented as a detected functional group."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "SN2",
+        "labeling_note": "Label detected halide group as leaving_group. Azide nucleophile is likely unsupported by current group schema.",
+        "assistant_reviewed": true,
+        "curation_note": "C-Br bond breaks; bromide is the leaving group. Azide nucleophile is not represented as a detected functional group.",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::supp_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_benzyl_chloride_methoxide",
+      "reaction_smiles": "[CH2:1]([Cl:2])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1.[O-:9][CH3:10]>>[CH2:1]([O:9][CH3:10])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1.[Cl-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "Benzylic C-Cl bond breaks in SN2; chloride is the leaving group. Methoxide nucleophile and benzyl electrophilic carbon are not separately labeled in v0.1."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        9
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "SN2",
+        "labeling_note": "Halide should be leaving_group. Aromatic usually spectator. Benzylic_site may represent electrophilic site but should be reviewed.",
+        "assistant_reviewed": true,
+        "curation_note": "Benzylic C-Cl bond breaks in SN2; chloride is the leaving group. Methoxide nucleophile and benzyl electrophilic carbon are not separately labeled in v0.1.",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::supp_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_ethyl_bromide_thiolate",
+      "reaction_smiles": "[CH3:1][CH2:2][Br:3].[S-:4][CH3:5]>>[CH3:1][CH2:2][S:4][CH3:5].[Br-:3]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks; bromide is the leaving group. Thiolate nucleophile is not represented as a supported group in v0.1."
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        4
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "SN2",
+        "labeling_note": "Label halide as leaving_group. Thiolate nucleophile may be unsupported by current functional group list.",
+        "assistant_reviewed": true,
+        "curation_note": "C-Br bond breaks; bromide is the leaving group. Thiolate nucleophile is not represented as a supported group in v0.1.",
+        "original_mechanism_type": "SN2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "sn2::supp_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_e2_2_bromobutane_hydroxide",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH2:4][CH3:5].[OH-:6]>>[CH3:1][CH:2]=[CH:4][CH3:5].[Br-:3].[OH2:6]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "C-Br bond breaks during E2; bromide is the leaving group. Beta C-H/base are not represented as functional groups."
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "E2",
+        "labeling_note": "Label halide as leaving_group. Beta C-H/base are not represented as current functional groups.",
+        "assistant_reviewed": true,
+        "curation_note": "C-Br bond breaks during E2; bromide is the leaving group. Beta C-H/base are not represented as functional groups.",
+        "original_mechanism_type": "E2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "e2::supp_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_e2_cyclohexyl_bromide_hydroxide",
+      "reaction_smiles": "C1CCC(Br)CC1.[OH-]>>C1=CCCCC1.[Br-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "Cyclohexyl bromide undergoes E2; C-Br site is represented as halide leaving group. Conformational anti-periplanar requirement is out of scope."
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "class": "E2",
+        "labeling_note": "Label halide as leaving_group. Ring conformation and anti-periplanar geometry are out of scope.",
+        "assistant_reviewed": true,
+        "curation_note": "Cyclohexyl bromide undergoes E2; C-Br site is represented as halide leaving group. Conformational anti-periplanar requirement is out of scope.",
+        "original_mechanism_type": "E2",
+        "normalized_by": "MENDELV Phase 8.5",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "",
+        "center_cleanup_reason": "SN2/E2 center should include detected halide and attached carbon when represented",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "e2::supp_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "reaction_smiles": "[CH3:1][CH:2]=[O:3].[O:4]=[CH:5][c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1>>[CH3:1][CH:2]([OH:4])[CH:5]([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Acetaldehyde carbonyl belongs to donor/enolate component; C=O is not the electrophilic acceptor in the intended crossed aldol bond-forming step."
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Acetaldehyde alpha carbon is deprotonated to the enolate and attacks benzaldehyde carbonyl."
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Benzaldehyde carbonyl is the electrophilic acceptor; aromatic ring is not separately labeled here by draft output."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        5
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "aldol",
+        "labeling_note": "Acetaldehyde alpha_carbon donor; benzaldehyde carbonyl acceptor; aromatic spectator.",
+        "assistant_reviewed": true,
+        "curation_note": "Cross aldol curated conservatively: acetaldehyde alpha carbon donor, benzaldehyde carbonyl acceptor. Product mapping is simplified; use as role-label example.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "cross_aldol::supp_aldol",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetone_cyanide",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Acetone carbonyl is electrophile in cyanide addition."
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon is not the reacting nucleophile in this carbonyl-addition step; external nucleophile is unsupported by current group schema."
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        5
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "carbonyl_addition",
+        "labeling_note": "Reactant carbonyl should be reactive_electrophile. Cyanide nucleophile may not be detected.",
+        "assistant_reviewed": true,
+        "curation_note": "Acetone carbonyl is electrophile in cyanide addition; cyanide nucleophile is not detected. Alpha carbon is spectator for this carbonyl-addition step.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "carbonyl_addition::supp_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetaldehyde_hydride",
+      "reaction_smiles": "[CH3:1][CH:2]=[O:3].[H-:4]>>[CH3:1][CH:2]([O-:3])[H:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Acetaldehyde carbonyl is electrophile in hydride addition."
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Alpha carbon is not the reacting nucleophile in this carbonyl-addition step; external nucleophile is unsupported by current group schema."
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        4
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "carbonyl_addition",
+        "labeling_note": "Carbonyl should be reactive_electrophile. Hydride is not a supported functional group.",
+        "assistant_reviewed": true,
+        "curation_note": "Acetaldehyde carbonyl is electrophile in hydride addition; hydride is not detected. Alpha carbon is spectator for this carbonyl-addition step.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "carbonyl_addition::supp_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH:6]1[C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol1_nitrile_0",
+          "molecule_index": 1,
+          "group_type": "nitrile",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Nitrile substituent is an electron-withdrawing group; it modulates dienophile electrophilicity but is not the bond-forming pi partner."
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Dienophile alkene pi bond; acts as LUMO acceptor in the Diels-Alder cycloaddition."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "class": "Diels-Alder",
+        "labeling_note": "Butadiene alkenes are diene-like; acrylonitrile alkene is dienophile-like; nitrile likely spectator/EWG for role label.",
+        "assistant_reviewed": true,
+        "curation_note": "Butadiene alkenes are diene-like; acrylonitrile alkene is dienophile-like; nitrile acts as electron-withdrawing substituent but is not a bond-forming pi partner.",
+        "original_mechanism_type": "Diels-Alder",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "diels_alder::supp_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "reaction_smiles": "C=C(C)C=C.C=C>>CC1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Dienophile alkene pi bond; acts as LUMO acceptor in the Diels-Alder cycloaddition."
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "class": "Diels-Alder",
+        "labeling_note": "Check actual alkene group IDs. Diene-like alkenes reactive_nucleophile; ethylene alkene reactive_electrophile.",
+        "assistant_reviewed": true,
+        "curation_note": "Isoprene diene alkenes are diene-like; ethylene alkene is dienophile-like. Product SMILES is simplified, so center atoms are left as draft-derived/empty if unmapped.",
+        "original_mechanism_type": "Diels-Alder",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "diels_alder::supp_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "reaction_smiles": "C1C=CC=C1.C=CC#N>>N#CC1CC2CC1C2",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            3,
+            4
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Diene-like alkene pi bond; acts as HOMO donor in the Diels-Alder cycloaddition."
+        },
+        {
+          "group_id": "mol1_nitrile_0",
+          "molecule_index": 1,
+          "group_type": "nitrile",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Nitrile substituent is an electron-withdrawing group; it modulates dienophile electrophilicity but is not the bond-forming pi partner."
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "Dienophile alkene pi bond; acts as LUMO acceptor in the Diels-Alder cycloaddition."
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "class": "Diels-Alder",
+        "labeling_note": "Cyclopentadiene pi bonds diene-like; acrylonitrile alkene dienophile-like; product may be simplified.",
+        "assistant_reviewed": true,
+        "curation_note": "Cyclopentadiene alkenes are diene-like; acrylonitrile alkene is dienophile-like; nitrile is spectator/EWG. Product SMILES is simplified.",
+        "original_mechanism_type": "Diels-Alder",
+        "normalized_by": "MENDELV Phase 8.5",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "diels_alder::supp_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_ethylbenzene",
+      "reaction_smiles": "CCc1ccccc1.BrBr>>CC(Br)c1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "Benzylic C-H site forms resonance-stabilized radical; Br2 radical source is unsupported."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "radical_bromination",
+        "labeling_note": "Benzylic_site should be reactive_radical if detected; aromatic spectator; Br2 unsupported.",
+        "assistant_reviewed": true,
+        "curation_note": "Benzylic C-H site forms resonance-stabilized radical; Br2 radical source is unsupported.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "benzylic_radical_bromination::supp_radical",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_cumene",
+      "reaction_smiles": "CC(C)c1ccccc1.BrBr>>CC(Br)(C)c1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "Tertiary benzylic C-H site forms resonance-stabilized radical; Br2 radical source is unsupported."
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "radical_bromination",
+        "labeling_note": "Tertiary benzylic_site should be reactive_radical if detected; aromatic spectator; Br2 unsupported.",
+        "assistant_reviewed": true,
+        "curation_note": "Tertiary benzylic C-H site forms resonance-stabilized radical; Br2 radical source is unsupported.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "benzylic_radical_bromination::supp_radical",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_toluene",
+      "reaction_smiles": "Cc1ccccc1.BrBr>>BrCc1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "Benzylic methyl site forms resonance-stabilized radical; Br2 radical source is unsupported."
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "radical_bromination",
+        "labeling_note": "Benzylic_site reactive_radical; aromatic spectator; Br2 unsupported.",
+        "assistant_reviewed": true,
+        "curation_note": "Benzylic methyl site forms resonance-stabilized radical; Br2 radical source is unsupported.",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "benzylic_radical_bromination::supp_radical",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "reaction_smiles": "CC(=O)OC>>CC(=O)OC",
+      "context": "ionic",
+      "mechanism_type": "control",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            4,
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Control example: methyl acetate is not undergoing acyl substitution in this reaction record; ester is spectator."
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Control example: alpha carbon is not deprotonated or reacting in this reaction record."
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "ionic_addition_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "class": "control",
+        "labeling_note": "If control, ester spectator; if acyl substitution context, ester may be reactive_electrophile. Manual decision needed.",
+        "assistant_reviewed": true,
+        "curation_note": "Neutral control; use as negative/spectator example, not as acyl substitution.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "control::supp_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "reaction_smiles": "CC#N>>CC#N",
+      "context": "ionic",
+      "mechanism_type": "control",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "Control example: acetonitrile is not undergoing deprotonation or nucleophilic addition in this reaction record."
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "control",
+        "labeling_note": "If control, nitrile spectator; if addition context, nitrile electrophile. Manual decision needed.",
+        "assistant_reviewed": true,
+        "curation_note": "Neutral/control nitrile example; draft did not emit nitrile group, only alpha carbon.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "control::supp_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "supp_nitromethane_base",
+      "reaction_smiles": "C[N+](=O)[O-].[OH-]>>[CH2-][N+](=O)[O-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "Nitromethane alpha carbon is deprotonated to a nitronate; represented as reactive_nucleophile after deprotonation in v0.1 role taxonomy."
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "assistant_curated_supplemental",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "class": "nitroalkane_acidity",
+        "labeling_note": "Nitro group may be spectator/EWG; alpha carbon if detected can be reactive_nucleophile after deprotonation. Manual review required.",
+        "assistant_reviewed": true,
+        "curation_note": "Nitroalkane acidity example; nitro group itself was not emitted in draft group_roles.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "nitroalkane_deprotonation::supp_nitromethane",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_iodide",
+      "reaction_smiles": "CBr.[I-]>>CI.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Detected alkyl halide should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_chloride_iodide",
+      "reaction_smiles": "CCl.[I-]>>CI.[Cl-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=leaving_group_site; reason: leaving_group_score=0.75 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Detected alkyl halide should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_bromide_methoxide",
+      "reaction_smiles": "CCBr.[O-]C>>CCOC.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide is expected leaving_group; methoxide may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_chloride_thiolate",
+      "reaction_smiles": "CCCl.[S-]C>>CCSC.[Cl-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=leaving_group_site; reason: leaving_group_score=0.75 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide is expected leaving_group; thiolate may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_cyanide",
+      "reaction_smiles": "CBr.[C-]#N>>CC#N.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide is expected leaving_group; cyanide may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "reaction_smiles": "ClCc1ccccc1.[O-]C>>COCc1ccccc1.[Cl-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=SN2 context: aromatic/benzylic-site labels are spectators in v0.1.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=leaving_group_site; reason: leaving_group_score=0.75 >= threshold 0.5"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=SN2 context: aromatic/benzylic-site labels are spectators in v0.1.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.45, rad=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Benzyl halide should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,0",
+        "center_cleanup_reason": "SN2/E2 center should include detected halide and attached carbon when represented",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "reaction_smiles": "BrCc1ccccc1.[I-]>>ICc1ccccc1.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=SN2 context: aromatic/benzylic-site labels are spectators in v0.1.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=SN2 context: aromatic/benzylic-site labels are spectators in v0.1.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.45, rad=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Benzyl halide should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,0",
+        "center_cleanup_reason": "SN2/E2 center should include detected halide and attached carbon when represented",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_iodide_azide",
+      "reaction_smiles": "CCI.[N-]=[N+]=[N-]>>CCN=[N+]=[N-].[I-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.950; subrole=leaving_group_site; reason: leaving_group_score=0.95 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide is expected leaving_group; azide may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_isopropyl_bromide_iodide",
+      "reaction_smiles": "CC(C)Br.[I-]>>CC(C)I.[Br-]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=SN2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Secondary alkyl halide substitution candidate; review for competing E2.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "external nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::sn2::auto_sn2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_bromide_hydroxide",
+      "reaction_smiles": "CC(Br)C.[OH-]>>C=CC.[Br-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide leaving_group is expected; beta C-H/base are not explicit agents.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_chloride_hydroxide",
+      "reaction_smiles": "CC(Cl)C.[OH-]>>C=CC.[Cl-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=leaving_group_site; reason: leaving_group_score=0.75 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide leaving_group is expected; beta C-H/base are not explicit agents.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_bromide_hydroxide",
+      "reaction_smiles": "CC(C)(C)Br.[OH-]>>CC(=C)C.[Br-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            4
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        4
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Tertiary halide should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_hydroxide",
+      "reaction_smiles": "CCC(Br)C.[OH-]>>CC=CC.[Br-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        4
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide leaving_group expected; alkene regiochemistry simplified.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_cyclohexyl_bromide_hydroxide",
+      "reaction_smiles": "C1CCC(Br)CC1.[OH-]>>C1=CCCCC1.[Br-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Cyclic alkyl bromide leaving_group; base not represented.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,0",
+        "center_cleanup_reason": "SN2/E2 center should include detected halide and attached carbon when represented",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_methoxide",
+      "reaction_smiles": "CCC(Br)C.[O-]C>>CC=CC.[Br-].CO",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.850; subrole=leaving_group_site; reason: leaving_group_score=0.85 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        2,
+        4
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Halide leaving_group expected; methoxide base may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_chloride_hydroxide",
+      "reaction_smiles": "CC(C)(C)Cl.[OH-]>>CC(=C)C.[Cl-].[OH2]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_halide_0",
+          "molecule_index": 0,
+          "group_type": "halide",
+          "atom_indices": [
+            1,
+            4
+          ],
+          "role": "leaving_group",
+          "confidence": "manual",
+          "notes": "original_draft_role=leaving_group; promotion_reason=E2 substrate halide promoted as leaving_group.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=leaving_group_site; reason: leaving_group_score=0.75 >= threshold 0.5"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        4
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "sn2_or_e2_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 2,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Tertiary chloride should be reviewed as leaving_group.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "base and beta C-H abstraction are not represented as functional-group agents in v0.1.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::e2::auto_e2",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_hydride",
+      "reaction_smiles": "CC=O.[BH4-]>>CC[O-]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: hydride/cyanide carbonyl addition; alpha_carbon downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl should be reviewed as reactive_electrophile; hydride-like reagent unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,2,0",
+        "center_cleanup_reason": "carbonyl addition center should not include spectator alpha carbon",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "reaction_smiles": "CC(=O)C.[BH4-]>>CC(C)[O-]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: hydride/cyanide carbonyl addition; alpha_carbon downgraded to spectator pending manual review"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl should be reviewed as reactive_electrophile; hydride-like reagent unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,3,0",
+        "center_cleanup_reason": "carbonyl addition center should not include spectator alpha carbon",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_cyanide",
+      "reaction_smiles": "CC=O.[C-]#N>>CC(O)C#N",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: hydride/cyanide carbonyl addition; alpha_carbon downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl electrophile expected; cyanide reagent may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,2,0",
+        "center_cleanup_reason": "carbonyl addition center should not include spectator alpha carbon",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "reaction_smiles": "CC(=O)C.[C-]#N>>CC(O)(C)C#N",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=aldol_acceptor_carbonyl; reason: selected as primary aldol acceptor (carbonyl electrophile, confidence=0.70); electrophilicity_score=0.70 >= threshold 0.55"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=aldol_donor_alpha_carbon; reason: selected as primary aldol donor (alpha_carbon nucleophile, confidence=0.55); alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: hydride/cyanide carbonyl addition; alpha_carbon downgraded to spectator pending manual review"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_1",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: alpha_carbon is spectator when external hydride/cyanide reacts.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=secondary_alpha_candidate; reason: downgraded reactive_nucleophile \u2192 spectator by global aldol disambiguation; primary donor is mol0_alpha_carbon_0"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "aldol_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl electrophile expected; cyanide reagent may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,3,0",
+        "center_cleanup_reason": "carbonyl addition center should not include spectator alpha carbon",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_cyanide",
+      "reaction_smiles": "O=Cc1ccccc1.[C-]#N>>OC(C#N)c1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: non-carbonyl substrate groups are treated as spectators conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        0
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl electrophile expected; cyanide reagent may be unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_formaldehyde_hydride",
+      "reaction_smiles": "C=O.[BH4-]>>C[O-]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl should be reviewed as reactive_electrophile; hydride-like reagent unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_hydride",
+      "reaction_smiles": "O=Cc1ccccc1.[BH4-]>>[O-]Cc1ccccc1",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Carbonyl addition: non-carbonyl substrate groups are treated as spectators conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_carbonyl_0",
+          "molecule_index": 0,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Carbonyl addition: carbonyl is the substrate electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.700; subrole=none; reason: electrophilicity_score=0.70 >= threshold 0.55"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        0
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Carbonyl should be reviewed as reactive_electrophile; hydride-like reagent unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "External hydride/cyanide nucleophile is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::carbonyl_addition::auto_carbonyl",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "reaction_smiles": "C=CC=C.C=C>>C1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Diels-Alder: dienophile alkene promoted to reactive_electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=dienophile_like; reason: reassigned reactive_nucleophile \u2192 reactive_electrophile as dienophile by global Diels-Alder negotiation; avoids all-nucleophile assignment from Phase 5 flat taxonomy"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Diene/dienophile alkene roles must be reviewed by group_id.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Reacting pi partners are the alkene groups; EWG substituents are spectators in flat v0.1 roles.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::diels_alder::auto_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "reaction_smiles": "C=CC=C.C=CC#N>>N#CC1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol1_nitrile_0",
+          "molecule_index": 1,
+          "group_type": "nitrile",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Diels-Alder: substituent groups modulate reactivity but are spectators in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.600; subrole=none; reason: pericyclic context: pi-system assigned reactive_electrophile (electrophilicity_score=0.50 > nucleophilicity_score=0.10); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile; auto_review_rule: Diels-Alder electrophilic substituent/EWG; true dienophile partner should be the alkene"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Diels-Alder: dienophile alkene promoted to reactive_electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=dienophile_like; reason: reassigned reactive_nucleophile \u2192 reactive_electrophile as dienophile by global Diels-Alder negotiation; avoids all-nucleophile assignment from Phase 5 flat taxonomy"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Dienophile alkene expected reactive; nitrile usually spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Reacting pi partners are the alkene groups; EWG substituents are spectators in flat v0.1 roles.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::diels_alder::auto_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "reaction_smiles": "C=CC=C.C=CC(=O)OC>>COC(=O)C1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol1_ester_0",
+          "molecule_index": 1,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Diels-Alder: substituent groups modulate reactivity but are spectators in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.750; subrole=none; reason: pericyclic context: pi-system assigned reactive_electrophile (electrophilicity_score=0.65 > nucleophilicity_score=0.20); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile; auto_review_rule: Diels-Alder electrophilic substituent/EWG; true dienophile partner should be the alkene"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Diels-Alder: dienophile alkene promoted to reactive_electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=dienophile_like; reason: reassigned reactive_nucleophile \u2192 reactive_electrophile as dienophile by global Diels-Alder negotiation; avoids all-nucleophile assignment from Phase 5 flat taxonomy"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Dienophile alkene expected reactive; ester substituent usually spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Reacting pi partners are the alkene groups; EWG substituents are spectators in flat v0.1 roles.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::diels_alder::auto_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "reaction_smiles": "C=CC=C.C=CC(C)=O>>CC(=O)C1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol1_carbonyl_0",
+          "molecule_index": 1,
+          "group_type": "carbonyl",
+          "atom_indices": [
+            2,
+            4
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Diels-Alder: substituent groups modulate reactivity but are spectators in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.800; subrole=none; reason: pericyclic context: pi-system assigned reactive_electrophile (electrophilicity_score=0.70 > nucleophilicity_score=0.15); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile; auto_review_rule: Diels-Alder electrophilic substituent/EWG; true dienophile partner should be the alkene"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Diels-Alder: dienophile alkene promoted to reactive_electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=dienophile_like; reason: reassigned reactive_nucleophile \u2192 reactive_electrophile as dienophile by global Diels-Alder negotiation; avoids all-nucleophile assignment from Phase 5 flat taxonomy"
+        },
+        {
+          "group_id": "mol1_alpha_carbon_0",
+          "molecule_index": 1,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Diels-Alder: substituent groups modulate reactivity but are spectators in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: pericyclic context: no pi_bond detected (has_pi_bond=0.0)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Dienophile alkene expected reactive; carbonyl substituent usually spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Reacting pi partners are the alkene groups; EWG substituents are spectators in flat v0.1 roles.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::diels_alder::auto_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "reaction_smiles": "C=C(C)C=C.C=C>>CC1CCC=CC1",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_alkene_0",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol0_alkene_1",
+          "molecule_index": 0,
+          "group_type": "alkene",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Diels-Alder: diene alkene promoted to reactive_nucleophile in flat v0.1 taxonomy.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.450; subrole=diene_like; reason: confirmed as diene partner (reactive_nucleophile, confidence=0.45); pericyclic context: pi-system assigned reactive_nucleophile (nucleophilicity_score=0.35 >= electrophilicity_score=0.25); v0.1 flat taxonomy represents pericyclic partners as nucleophile/electrophile"
+        },
+        {
+          "group_id": "mol1_alkene_0",
+          "molecule_index": 1,
+          "group_type": "alkene",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_electrophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_electrophile; promotion_reason=Diels-Alder: dienophile alkene promoted to reactive_electrophile.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=dienophile_like; reason: reassigned reactive_nucleophile \u2192 reactive_electrophile as dienophile by global Diels-Alder negotiation; avoids all-nucleophile assignment from Phase 5 flat taxonomy"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "diels_alder_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 0,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Diene/dienophile alkene roles must be reviewed by group_id.",
+        "exclude_from_ground_truth_until_review": false,
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Reacting pi partners are the alkene groups; EWG substituents are spectators in flat v0.1 roles.",
+        "original_split": "test",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::diels_alder::auto_diels",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_toluene",
+      "reaction_smiles": "Cc1ccccc1.BrBr>>BrCc1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Benzylic radical bromination: aromatic ring remains spectator.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: radical context: no score exceeded threshold (radical_stability_score=0.50, threshold=0.55)"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_radical; promotion_reason=Benzylic radical bromination: benzylic_site is the radical center.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.800; subrole=none; reason: benzylic_site in radical context: resonance-stabilised radical (radical_stability_score=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Benzylic site should be reviewed as reactive_radical; Br2 unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "Br2 is not represented by the current schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Br2/radical chain carrier is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::benzylic_radical_bromination::auto_benzylic",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_ethylbenzene",
+      "reaction_smiles": "CCc1ccccc1.BrBr>>CC(Br)c1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Benzylic radical bromination: aromatic ring remains spectator.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: radical context: no score exceeded threshold (radical_stability_score=0.50, threshold=0.55)"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_radical; promotion_reason=Benzylic radical bromination: benzylic_site is the radical center.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.800; subrole=none; reason: benzylic_site in radical context: resonance-stabilised radical (radical_stability_score=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Benzylic site should be reviewed as reactive_radical; Br2 unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "Br2 is not represented by the current schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Br2/radical chain carrier is not represented by current functional-group schema.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::benzylic_radical_bromination::auto_benzylic",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_cumene",
+      "reaction_smiles": "CC(C)c1ccccc1.BrBr>>CC(Br)(C)c1ccccc1.Br",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Benzylic radical bromination: aromatic ring remains spectator.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: radical context: no score exceeded threshold (radical_stability_score=0.50, threshold=0.55)"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            1,
+            3
+          ],
+          "role": "reactive_radical",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_radical; promotion_reason=Benzylic radical bromination: benzylic_site is the radical center.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.800; subrole=none; reason: benzylic_site in radical context: resonance-stabilised radical (radical_stability_score=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        3
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "radical_bromination_like",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Benzylic site should be reviewed as reactive_radical; Br2 unsupported.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "Br2 is not represented by the current schema.",
+        "product_simplified": true,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "Br2/radical chain carrier is not represented by current functional-group schema.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::benzylic_radical_bromination::auto_benzylic",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_benzene_no_reaction",
+      "reaction_smiles": "c1ccccc1>>c1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; detected groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "reaction_smiles": "Cc1ccccc1>>Cc1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_benzylic_site_0",
+          "molecule_index": 0,
+          "group_type": "benzylic_site",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.35, elec=0.25, lg=0.05, acid=0.45, rad=0.80)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; detected groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_anisole_no_reaction",
+      "reaction_smiles": "COc1ccccc1>>COc1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; detected groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "reaction_smiles": "Oc1ccccc1>>Oc1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_phenol_0",
+          "molecule_index": 0,
+          "group_type": "phenol",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.45, elec=0.15, lg=0.05, acid=0.65, rad=0.40)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; detected groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_ethanol_no_reaction",
+      "reaction_smiles": "CCO>>CCO",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_alcohol_0",
+          "molecule_index": 0,
+          "group_type": "alcohol",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.50, elec=0.10, lg=0.05, acid=0.30, rad=0.20)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; detected groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "reaction_smiles": "O=[N+]([O-])c1ccccc1>>O=[N+]([O-])c1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_nitro_0",
+          "molecule_index": 0,
+          "group_type": "nitro",
+          "atom_indices": [
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.10)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Negative control; nitro and aromatic groups should usually be spectator.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::control::auto_control",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_methane_deprotonation",
+      "reaction_smiles": "C[N+](=O)[O-].[OH-]>>[CH2-][N+](=O)[O-].O",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_nitro_0",
+          "molecule_index": 0,
+          "group_type": "nitro",
+          "atom_indices": [
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Nitroalkane deprotonation: nitro group is curated as spectator in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.10)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Nitroalkane deprotonation: alpha carbon represents the nitronate-like nucleophilic center.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        }
+      ],
+      "reaction_center_atoms": [
+        0,
+        1
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Nitro/alpha-carbon role requires manual review.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "alpha carbon represents nitronate-like nucleophilic center after deprotonation in the flat v0.1 role taxonomy.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::nitroalkane_deprotonation::auto_nitro",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_ethane_deprotonation",
+      "reaction_smiles": "CC[N+](=O)[O-].[OH-]>>C[CH-][N+](=O)[O-].O",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "test",
+      "group_roles": [
+        {
+          "group_id": "mol0_nitro_0",
+          "molecule_index": 0,
+          "group_type": "nitro",
+          "atom_indices": [
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Nitroalkane deprotonation: nitro group is curated as spectator in flat v0.1 roles.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.10)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "reactive_nucleophile",
+          "confidence": "manual",
+          "notes": "original_draft_role=reactive_nucleophile; promotion_reason=Nitroalkane deprotonation: alpha carbon represents the nitronate-like nucleophilic center.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45)"
+        }
+      ],
+      "reaction_center_atoms": [
+        1,
+        2
+      ],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Nitro/alpha-carbon role requires manual review.",
+        "exclude_from_ground_truth_until_review": false,
+        "unsupported_reagent_note": "External reagent may not be represented by current functional-group schema.",
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "alpha carbon represents nitronate-like nucleophilic center after deprotonation in the flat v0.1 role taxonomy.",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::nitroalkane_deprotonation::auto_nitro",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "reaction_smiles": "CC(=O)OC>>CC(=O)OC",
+      "context": "unknown",
+      "mechanism_type": "ester_control",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            4,
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.650; subrole=none; reason: electrophilicity_score=0.65 >= threshold 0.55; auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            3,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Ester control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 2,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "2,4,1,0,3",
+        "center_cleanup_reason": "control/no-reaction mechanism should not have reaction-center atoms",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::ester_control::auto_ester",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "reaction_smiles": "CC(=O)OCC>>CC(=O)OCC",
+      "context": "unknown",
+      "mechanism_type": "ester_control",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            3,
+            5,
+            2,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.650; subrole=none; reason: electrophilicity_score=0.65 >= threshold 0.55; auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            4,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Ester control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 2,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "3,5,2,1,4",
+        "center_cleanup_reason": "control/no-reaction mechanism should not have reaction-center atoms",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::ester_control::auto_ester",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "reaction_smiles": "COC(=O)c1ccccc1>>COC(=O)c1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "ester_control",
+      "split": "val",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_ester_0",
+          "molecule_index": 0,
+          "group_type": "ester",
+          "atom_indices": [
+            2,
+            3,
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.650; subrole=none; reason: electrophilicity_score=0.65 >= threshold 0.55; auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Ester and aromatic control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "2,3,1,0",
+        "center_cleanup_reason": "control/no-reaction mechanism should not have reaction-center atoms",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::ester_control::auto_ester",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "reaction_smiles": "CC#N>>CC#N",
+      "context": "unknown",
+      "mechanism_type": "nitrile_control",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_nitrile_0",
+          "molecule_index": 0,
+          "group_type": "nitrile",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.15)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            0,
+            1
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Nitrile control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "0,1",
+        "center_cleanup_reason": "control/no-reaction mechanism should not have reaction-center atoms",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::nitrile_control::auto_nitrile",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "reaction_smiles": "N#Cc1ccccc1>>N#Cc1ccccc1",
+      "context": "unknown",
+      "mechanism_type": "nitrile_control",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_aromatic_0",
+          "molecule_index": 0,
+          "group_type": "aromatic",
+          "atom_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.30, elec=0.20, lg=0.05, acid=0.08, rad=0.50)"
+        },
+        {
+          "group_id": "mol0_nitrile_0",
+          "molecule_index": 0,
+          "group_type": "nitrile",
+          "atom_indices": [
+            1,
+            0
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.15)"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Nitrile control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "original_split": "val",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::nitrile_control::auto_nitrile",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "reaction_smiles": "CCC#N>>CCC#N",
+      "context": "unknown",
+      "mechanism_type": "nitrile_control",
+      "split": "train",
+      "group_roles": [
+        {
+          "group_id": "mol0_nitrile_0",
+          "molecule_index": 0,
+          "group_type": "nitrile",
+          "atom_indices": [
+            2,
+            3
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.500; subrole=none; reason: no heuristic score exceeded threshold (nuc=0.10, elec=0.50, lg=0.05, acid=0.20, rad=0.15)"
+        },
+        {
+          "group_id": "mol0_alpha_carbon_0",
+          "molecule_index": 0,
+          "group_type": "alpha_carbon",
+          "atom_indices": [
+            1,
+            2
+          ],
+          "role": "spectator",
+          "confidence": "manual",
+          "notes": "original_draft_role=spectator; promotion_reason=Control/no-reaction example: groups set to spectator conservatively.; draft_notes=draft_source: auto_candidate_template_draft; final_confidence=0.550; subrole=none; reason: alpha carbon represented as nucleophile after deprotonation in v0.1 flat taxonomy (acidity_score=0.55 >= threshold 0.45); auto_review_rule: control example; reactive draft label downgraded to spectator pending manual review"
+        }
+      ],
+      "reaction_center_atoms": [],
+      "metadata": {
+        "source": "auto_candidate_human_review_promoted",
+        "needs_manual_review": false,
+        "mechanism_hint": "unknown",
+        "generated_by": "MENDEL Phase 6.5",
+        "warning_count": 1,
+        "source_type": "local_template",
+        "license_note": "Generated from generic textbook-style reaction patterns; no external reaction dataset or copyrighted table used.",
+        "generation_method": "deterministic_template_v1",
+        "labeling_note": "Nitrile control; current labels should be spectator unless reviewed otherwise.",
+        "exclude_from_ground_truth_until_review": false,
+        "auto_review_adjusted": true,
+        "auto_review_adjustment_count": 1,
+        "original_source": "MENDELV template starter set",
+        "review_status": "promoted_manual_review",
+        "reviewed_by": "MENDELV Phase 8.6 conservative promotion",
+        "promotion_policy": "conservative_phase_8_6",
+        "promotion_note": "No-reaction control in v0.1: detected substrate groups are curated as spectators.",
+        "center_cleanup_applied": true,
+        "center_cleanup_phase": "8.12",
+        "original_reaction_center_atoms": "1,2",
+        "center_cleanup_reason": "control/no-reaction mechanism should not have reaction-center atoms",
+        "original_split": "train",
+        "leakage_split_strategy": "mechanism_balanced_template",
+        "leakage_group": "deterministic_template_v1::local_template::nitrile_control::auto_nitrile",
+        "split_warning": "mechanism_balanced_template could not place five mechanisms in test"
+      }
+    }
+  ]
+}

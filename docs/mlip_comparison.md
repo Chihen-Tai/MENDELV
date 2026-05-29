@@ -98,6 +98,41 @@ MENDEL 識別 reactive atoms
 
 ---
 
+## Route B 實驗結果：Reactive-site Weighted Fine-tuning
+
+### 多分子跨分子泛化實驗
+
+**設計**：
+- Train: ethanol (300) + malonaldehyde (300) + aspirin (300) = 900 conformers
+- Test（held-out）: salicylic acid 100 conformers（完全未見過的分子）
+- MENDEL reactive detection：heteroatom + 鄰近 heavy atom（cutoff 1.65 Å）
+- 對照組：相同設定但 `--reactive-weight 1.0`（uniform）
+
+**Per-group force RMSE on salicylic acid（held-out）**：
+
+| Atom group | MENDEL ×3 | Uniform ×1 | Δ | 勝負 |
+|------------|-----------|------------|---|------|
+| reactive（O, C-O 鄰, 10 atoms） | **0.2340** | 0.2461 | −0.0121 (−4.9%) | **MENDEL** |
+| spectator（H, 6 atoms） | 0.1511 | **0.1488** | +0.0023 (+1.5%) | uniform |
+| global | **0.2068** | 0.2148 | −0.0080 (−3.7%) | **MENDEL** |
+
+**結論**：改善集中在 MENDEL 標記的 reactive atoms（−4.9%），spectator 略差（+1.5%）。Functional group as agent 假設在跨分子泛化實驗中成立。
+
+Checkpoints: `models/ani2x_multimol_mendel.pt`、`models/ani2x_multimol_uniform.pt`
+Script: `scripts/finetune_ani2x_multimol.py`
+
+---
+
+## 更新結論
+
+| 問題 | 答案 |
+|------|------|
+| ANI-2x vs MACE-OFF-small？ | ANI-2x 勝，差距約 31% |
+| MENDEL 能改善 MLIP force 精度嗎？ | **可以**—— reactive atoms −4.9%（跨分子驗證） |
+| MENDEL 現在的角色 | 診斷工具 + 訓練正則化工具（reactive-site weighting） |
+
+---
+
 ## 產生的檔案
 
 | 檔案 | 內容 |
@@ -110,3 +145,7 @@ MENDEL 識別 reactive atoms
 | `reports/fg_force_ani2x_ethanol.json` | ANI-2x functional group force analysis |
 | `reports/figures/mace_vs_ani2x_ethanol.png` | 整體比較圖（4 panels）|
 | `reports/figures/pure_vs_mendel_mlip.png` | Pure MLIP vs MENDEL 分解圖 |
+| `reports/finetune_ani2x_multimol_mendel.json` | Route B MENDEL ×3 訓練報告 |
+| `reports/finetune_ani2x_multimol_uniform.json` | Route B uniform 對照組報告 |
+| `models/ani2x_multimol_mendel.pt` | ANI-2x fine-tuned，reactive ×3 |
+| `models/ani2x_multimol_uniform.pt` | ANI-2x fine-tuned，uniform |

@@ -1,0 +1,1372 @@
+{
+  "candidates": [
+    {
+      "reaction_id": "center_expansion_sn2_00",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_00",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_00",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_00",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_00",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_00",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_00",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_00",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_00",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_sn2_01",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_01",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_01",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_01",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_01",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_01",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_01",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_01",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_01",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_01",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_01",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_01",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_sn2_02",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_02",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_02",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_02",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_02",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_02",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_02",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_02",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_02",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_02",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_02",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_02",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_sn2_03",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_03",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_03",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_03",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_03",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_03",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_03",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_03",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_03",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_03",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_03",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_03",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_sn2_04",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_04",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_04",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_04",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_04",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_04",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_04",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_04",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_04",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_04",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_04",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_04",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_sn2_05",
+      "reaction_smiles": "[CH3:1][Br:2].[I-:3]>>[CH3:1][I:3].[Br-:2]",
+      "context": "ionic",
+      "mechanism_type": "sn2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_sn2",
+        "mechanism_type": "sn2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "halide plus attached carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_e2_05",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH3:4].[OH-:5]>>[CH2:1]=[CH:2][CH3:4].[Br-:3].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "e2",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_e2",
+        "mechanism_type": "e2",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "leaving group and alkene-forming carbons",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_diels_alder_05",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1][CH:2][CH:3][CH2:4][CH2:5][CH:6][C:7]#[N:8]",
+      "context": "pericyclic",
+      "mechanism_type": "diels_alder",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_diels_alder",
+        "mechanism_type": "diels_alder",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alkene pi atoms only; nitrile spectator",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_carbonyl_addition_05",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "context": "ionic",
+      "mechanism_type": "carbonyl_addition",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_carbonyl_addition",
+        "mechanism_type": "carbonyl_addition",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "carbonyl carbon and oxygen",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_aldol_05",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([CH3:5])[CH3:8]",
+      "context": "ionic",
+      "mechanism_type": "aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_aldol",
+        "mechanism_type": "aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "donor alpha carbon and acceptor carbonyl",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_cross_aldol_05",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[H:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([O-:7])([H:8])[CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "cross_aldol",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_cross_aldol",
+        "mechanism_type": "cross_aldol",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "cross aldol donor and acceptor",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_benzylic_radical_bromination_05",
+      "reaction_smiles": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH3:7]>>[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7]",
+      "context": "radical",
+      "mechanism_type": "benzylic_radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_benzylic_radical_bromination",
+        "mechanism_type": "benzylic_radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "benzylic atom only",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_radical_bromination_05",
+      "reaction_smiles": "[CH3:1][CH2:2][CH3:3]>>[CH3:1][CH:2][CH3:3]",
+      "context": "radical",
+      "mechanism_type": "radical_bromination",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_radical_bromination",
+        "mechanism_type": "radical_bromination",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "radical carbon",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitroalkane_deprotonation_05",
+      "reaction_smiles": "[CH3:1][N+:2](=[O:3])[O-:4].[OH-:5]>>[CH2-:1][N+:2](=[O:3])[O-:4].[OH2:5]",
+      "context": "ionic",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitroalkane_deprotonation",
+        "mechanism_type": "nitroalkane_deprotonation",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "alpha carbon nitronate center",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_ester_control_05",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]>>[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "context": "ionic",
+      "mechanism_type": "ester_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_ester_control",
+        "mechanism_type": "ester_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_nitrile_control_05",
+      "reaction_smiles": "[CH3:1][C:2]#[N:3]>>[CH3:1][C:2]#[N:3]",
+      "context": "ionic",
+      "mechanism_type": "nitrile_control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_nitrile_control",
+        "mechanism_type": "nitrile_control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    },
+    {
+      "reaction_id": "center_expansion_control_05",
+      "reaction_smiles": "[CH3:1][CH3:2]>>[CH3:1][CH3:2]",
+      "context": "unknown",
+      "mechanism_type": "control",
+      "split": "draft",
+      "metadata": {
+        "source": "local_template_center_expansion",
+        "source_type": "textbook_template",
+        "license_note": "locally generated generic textbook-style template; no external source",
+        "generation_method": "center_expansion_template_v1",
+        "template_name": "center_expansion_control",
+        "mechanism_type": "control",
+        "needs_manual_review": true,
+        "center_label_focus": true,
+        "expected_center_policy": "empty center control",
+        "exclude_from_ground_truth_until_review": true
+      }
+    }
+  ]
+}

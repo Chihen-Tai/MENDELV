@@ -1,0 +1,788 @@
+{
+  "n_reactions": 71,
+  "n_group_labels": 133,
+  "role_distribution": {
+    "leaving_group": 25,
+    "reactive_electrophile": 21,
+    "reactive_nucleophile": 25,
+    "reactive_radical": 7,
+    "spectator": 55
+  },
+  "group_type_distribution": {
+    "alcohol": 1,
+    "alkene": 27,
+    "alpha_carbon": 25,
+    "aromatic": 15,
+    "benzylic_site": 10,
+    "carbonyl": 15,
+    "ester": 5,
+    "halide": 25,
+    "nitrile": 6,
+    "nitro": 3,
+    "phenol": 1
+  },
+  "mechanism_distribution": {
+    "aldol": 2,
+    "benzylic_radical_bromination": 7,
+    "carbonyl_addition": 9,
+    "control": 8,
+    "cross_aldol": 1,
+    "diels_alder": 9,
+    "e2": 10,
+    "ester_control": 3,
+    "nitrile_control": 3,
+    "nitroalkane_deprotonation": 3,
+    "radical_bromination": 1,
+    "sn2": 15
+  },
+  "split_distribution": {
+    "test": 8,
+    "train": 47,
+    "val": 16
+  },
+  "issues": [
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_carbonyl_0"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_alpha_carbon_1"
+      }
+    },
+    {
+      "reaction_id": "radical_bromination_methane",
+      "code": "no_group_roles",
+      "message": "Reaction has no labeled functional-group roles.",
+      "severity": "error",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "radical_bromination_methane",
+      "code": "radical_without_radical_label",
+      "message": "Radical reaction has no reactive_radical label.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_1"
+      }
+    },
+    {
+      "reaction_id": "supp_e2_cyclohexyl_bromide_hydroxide",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_carbonyl_0"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetone_cyanide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetaldehyde_hydride",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_ester_0"
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "code": "ionic_without_reactive_label",
+      "message": "Ionic reaction has no nucleophile/electrophile/leaving-group/reactive label.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "code": "ionic_without_reactive_label",
+      "message": "Ionic reaction has no nucleophile/electrophile/leaving-group/reactive label.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_benzylic_site_0"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_benzylic_site_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_hydride",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_1"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_cyanide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_1"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_cyanide",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_hydride",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_ester_0"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_carbonyl_0"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol1_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "code": "pericyclic_few_pi_labels",
+      "message": "Pericyclic reaction has fewer than two alkene-like labels.",
+      "severity": "warning",
+      "metadata": {
+        "n_pi_like_group_types": 1
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_toluene",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_ethylbenzene",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_cumene",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_benzene_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_benzene_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_benzylic_site_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_anisole_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_anisole_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_phenol_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_ethanol_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_ethanol_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alcohol_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitro_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_methane_deprotonation",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitro_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_ethane_deprotonation",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitro_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'ester_control' normalizes to 'ester_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "ester_control",
+        "canonical_mechanism_type": "ester_control"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_ester_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'ester_control' normalizes to 'ester_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "ester_control",
+        "canonical_mechanism_type": "ester_control"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_ester_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'ester_control' normalizes to 'ester_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "ester_control",
+        "canonical_mechanism_type": "ester_control"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_ester_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'nitrile_control' normalizes to 'nitrile_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "nitrile_control",
+        "canonical_mechanism_type": "nitrile_control"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "code": "empty_reaction_center_atoms",
+      "message": "Reaction has no reaction-center atom labels.",
+      "severity": "warning",
+      "metadata": {}
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'nitrile_control' normalizes to 'nitrile_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "nitrile_control",
+        "canonical_mechanism_type": "nitrile_control"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_aromatic_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "code": "noncanonical_mechanism_type",
+      "message": "Mechanism 'nitrile_control' normalizes to 'nitrile_control'.",
+      "severity": "info",
+      "metadata": {
+        "mechanism_type": "nitrile_control",
+        "canonical_mechanism_type": "nitrile_control"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_nitrile_0"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "code": "spectator_label_present",
+      "message": "Spectator label included; confirm benchmark intentionally includes inactive groups.",
+      "severity": "info",
+      "metadata": {
+        "group_id": "mol0_alpha_carbon_0"
+      }
+    }
+  ],
+  "metadata": {
+    "n_issues_by_severity": {
+      "warning": 22,
+      "info": 61,
+      "error": 1
+    },
+    "n_canonical_mechanisms": 10,
+    "recommended_min_labels_per_role": 20
+  }
+}

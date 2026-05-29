@@ -32,9 +32,18 @@ htmlcov/
 # Local data
 data/raw/
 data/processed/
+data/external/
+data/qo2mol/
 *.csv
 *.sdf
 *.mol2
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.tar
+*.tar.gz
+*.zip
 
 # Model checkpoints
 checkpoints/
@@ -58,3 +67,24 @@ reports/mlp_minimal_report.json
 .pytest_cache/
 __pycache__/
 *.pyc
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# uv cache
+.uv-cache/
+
+# Local plotting/font caches
+.matplotlib-cache/
+.cache/
+
+# ML / model artifacts
+models/
+*.pt
+*.pth
+
+# local reports from experiments
+reports/mlp_training_report.json
+reports/mlp_minimal_report.json

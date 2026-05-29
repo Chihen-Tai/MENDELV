@@ -1,0 +1,114 @@
+{
+  "records": [
+    {
+      "structure_id": "tiny_water_0",
+      "molecule_id": "tiny_water",
+      "dataset_name": "synthetic_tiny_reference",
+      "smiles": "O",
+      "xyz": [
+        [
+          "O",
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          "H",
+          0.0,
+          0.8,
+          0.6
+        ],
+        [
+          "H",
+          0.0,
+          -0.8,
+          0.6
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "reference_energy": -76.0,
+      "reference_energy_unit": "eV",
+      "reference_forces": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          -0.1,
+          0.0
+        ]
+      ],
+      "reference_force_unit": "eV/Angstrom",
+      "reference_method": "synthetic",
+      "split": "test",
+      "metadata": {
+        "synthetic_test_data": true,
+        "not_scientific_reference": true,
+        "scope_note": "Tiny made-up data for software tests only."
+      }
+    },
+    {
+      "structure_id": "tiny_methane_0",
+      "molecule_id": "tiny_methane",
+      "dataset_name": "synthetic_tiny_reference",
+      "smiles": "C",
+      "xyz": [
+        [
+          "C",
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          "H",
+          0.6,
+          0.6,
+          0.6
+        ],
+        [
+          "H",
+          -0.6,
+          -0.6,
+          0.6
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "reference_energy": -40.0,
+      "reference_energy_unit": "eV",
+      "reference_forces": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.0,
+          0.0
+        ],
+        [
+          -0.1,
+          0.0,
+          0.0
+        ]
+      ],
+      "reference_force_unit": "eV/Angstrom",
+      "reference_method": "synthetic",
+      "split": "test",
+      "metadata": {
+        "synthetic_test_data": true,
+        "not_scientific_reference": true,
+        "scope_note": "Tiny made-up data for software tests only."
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ from typing import Any
 from mendel.descriptor import build_descriptors
 from mendel.identifier import identify_functional_groups
 from mendel.labels import LabeledGroupRole, LabeledReaction
-from mendel.negotiator import negotiate_predictions
+from mendel.negotiator import NegotiatorConfig, negotiate_predictions
 from mendel.parser import parse_reaction_smiles
 from mendel.predictor import RolePrediction, predict_roles_for_reaction
 from mendel.types import FunctionalGroup, FunctionalGroupType, Role
@@ -315,6 +315,14 @@ def _reaction_record(
     n = len(records)
     n_correct = sum(1 for record in records if record.correct)
     center_metrics = {"precision": None, "recall": None, "f1": None}
+    record_metadata: dict[str, Scalar] = dict(metadata or {})
+    if predicted_center_atoms is not None or labeled_reaction.reaction_center_atoms:
+        record_metadata["true_reaction_center_atoms"] = ",".join(
+            str(atom) for atom in labeled_reaction.reaction_center_atoms
+        )
+        record_metadata["predicted_reaction_center_atoms"] = ",".join(
+            str(atom) for atom in (predicted_center_atoms or [])
+        )
     if predicted_center_atoms is not None or labeled_reaction.reaction_center_atoms:
         center_metrics = compute_reaction_center_metrics(
             predicted_center_atoms or [], labeled_reaction.reaction_center_atoms
@@ -334,7 +342,7 @@ def _reaction_record(
         reaction_center_recall=center_metrics["recall"],
         reaction_center_f1=center_metrics["f1"],
         warnings=warnings or [],
-        metadata=metadata or {},
+        metadata=record_metadata,
     )
 
 
@@ -513,6 +521,8 @@ def evaluate_mlp_predictor(
 def evaluate_negotiated_mlp_predictor(
     labeled_reactions: list[LabeledReaction],
     predictor: Any,
+    predictor_name: str = "mlp_negotiated",
+    negotiator_config: NegotiatorConfig | None = None,
 ) -> BenchmarkReport:
     """Evaluate MLP local predictions after Phase 6 negotiation.
 
@@ -520,12 +530,12 @@ def evaluate_negotiated_mlp_predictor(
     The MLP still provides only local roles; Phase 6 remains the global
     consistency layer.
     """
-    predictor_name = "mlp_negotiated"
     all_group_records: list[GroupBenchmarkRecord] = []
     reaction_records: list[ReactionBenchmarkRecord] = []
 
     for rxn in labeled_reactions:
         parsed = parse_reaction_smiles(rxn.reaction_smiles, context=rxn.context)
+        parsed.metadata["mechanism_type"] = rxn.mechanism_type
         groups = identify_functional_groups(parsed)
         descriptors = build_descriptors(parsed, groups)
         mlp_predictions = predictor.predict_descriptors(descriptors)
@@ -539,12 +549,19 @@ def evaluate_negotiated_mlp_predictor(
                 scores={},
                 metadata={
                     "source_predictor": "mlp_local",
+                    "prediction_source": "mlp",
+                    "predictor_name": predictor_name,
                     "model_version": str(getattr(pred, "metadata", {}).get("model_version", "")),
                 },
             )
             for pred in mlp_predictions
         ]
-        result = negotiate_predictions(parsed, groups, role_predictions)
+        result = negotiate_predictions(
+            parsed,
+            groups,
+            role_predictions,
+            config=negotiator_config,
+        )
         predictions = {
             assignment.group_id: (
                 assignment.final_role,
@@ -607,6 +624,8 @@ def evaluate_negotiated_mlp_checkpoint(
     labeled_reactions: list[LabeledReaction],
     checkpoint_path: str | Path,
     device: str = "cpu",
+    predictor_name: str = "mlp_negotiated",
+    negotiator_config: NegotiatorConfig | None = None,
 ) -> BenchmarkReport:
     """Load an MLP checkpoint and evaluate MLP predictions after negotiation."""
     path = Path(checkpoint_path)
@@ -616,7 +635,28 @@ def evaluate_negotiated_mlp_checkpoint(
     from mendel.mlp import MLPRolePredictor
 
     predictor = MLPRolePredictor.load(path, device=device)
-    return evaluate_negotiated_mlp_predictor(labeled_reactions, predictor)
+    return evaluate_negotiated_mlp_predictor(
+        labeled_reactions,
+        predictor,
+        predictor_name=predictor_name,
+        negotiator_config=negotiator_config,
+    )
+
+
+def evaluate_mlp_aware_negotiated_checkpoint(
+    labeled_reactions: list[LabeledReaction],
+    checkpoint_path: str | Path,
+    device: str = "cpu",
+    predictor_name: str = "new_mlp_aware_negotiated",
+) -> BenchmarkReport:
+    """Evaluate MLP predictions with Phase 8.9 MLP-aware negotiation."""
+    return evaluate_negotiated_mlp_checkpoint(
+        labeled_reactions,
+        checkpoint_path,
+        device=device,
+        predictor_name=predictor_name,
+        negotiator_config=NegotiatorConfig(mode="mlp_aware"),
+    )
 
 
 

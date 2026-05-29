@@ -1,0 +1,96 @@
+{
+  "predictor_names": [
+    "mlp_local",
+    "mlp_negotiated"
+  ],
+  "overall_role_accuracy": {
+    "mlp_local": 0.45112781954887216,
+    "mlp_negotiated": 0.45112781954887216
+  },
+  "per_role_accuracy": {
+    "reactive_nucleophile": {
+      "mlp_local": 0.0,
+      "mlp_negotiated": 0.0
+    },
+    "reactive_electrophile": {
+      "mlp_local": 0.0,
+      "mlp_negotiated": 0.0
+    },
+    "reactive_radical": {
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "leaving_group": {
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "spectator": {
+      "mlp_local": 0.509090909090909,
+      "mlp_negotiated": 0.509090909090909
+    }
+  },
+  "per_mechanism_accuracy": {
+    "aldol": {
+      "mlp_local": 0.3333333333333333,
+      "mlp_negotiated": 0.3333333333333333
+    },
+    "benzylic_radical_bromination": {
+      "mlp_local": 0.6363636363636364,
+      "mlp_negotiated": 0.6363636363636364
+    },
+    "carbonyl_addition": {
+      "mlp_local": 0.5263157894736842,
+      "mlp_negotiated": 0.5263157894736842
+    },
+    "control": {
+      "mlp_local": 0.5,
+      "mlp_negotiated": 0.5
+    },
+    "cross_aldol": {
+      "mlp_local": 0.0,
+      "mlp_negotiated": 0.0
+    },
+    "diels_alder": {
+      "mlp_local": 0.030303030303030304,
+      "mlp_negotiated": 0.030303030303030304
+    },
+    "e2": {
+      "mlp_local": 1.0,
+      "mlp_negotiated": 1.0
+    },
+    "ester_control": {
+      "mlp_local": 0.5,
+      "mlp_negotiated": 0.5
+    },
+    "nitrile_control": {
+      "mlp_local": 0.5,
+      "mlp_negotiated": 0.5
+    },
+    "nitroalkane_deprotonation": {
+      "mlp_local": 0.4,
+      "mlp_negotiated": 0.4
+    },
+    "sn2": {
+      "mlp_local": 0.7894736842105263,
+      "mlp_negotiated": 0.7894736842105263
+    }
+  },
+  "reaction_center": {
+    "mlp_local": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "mlp_negotiated": {
+      "precision": 0.49193548387096775,
+      "recall": 0.44808743169398907,
+      "f1": 0.4677595628415301
+    }
+  },
+  "best_predictor_by_overall_accuracy": "mlp_negotiated",
+  "notes": [
+    "Ground truth comes only from LabeledReaction.group_roles.",
+    "Unlabeled detected groups are ignored for role accuracy.",
+    "Missing labeled group IDs count as incorrect."
+  ]
+}

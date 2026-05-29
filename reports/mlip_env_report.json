@@ -1,0 +1,39 @@
+{
+  "python": {
+    "version": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:12:32) [Clang 20.1.8 ]",
+    "executable": "/opt/anaconda3/envs/mendel/bin/python",
+    "platform": "macOS-26.5-arm64-arm-64bit"
+  },
+  "torch": {
+    "installed": true,
+    "version": "2.12.0",
+    "error": null,
+    "cuda_available": false,
+    "mps_available": true
+  },
+  "ase": {
+    "installed": true,
+    "version": "3.28.0",
+    "error": null
+  },
+  "mace_torch": {
+    "installed": true,
+    "version": "0.3.16",
+    "error": null
+  },
+  "install_hint": "Install MLIP extras with: pip install -e '.[mlip]'",
+  "mendel_import": {
+    "ok": true,
+    "version": "0.1.0",
+    "error": null
+  },
+  "mendel_mlip_import": {
+    "ok": true,
+    "error": null
+  },
+  "resolve_device_auto": {
+    "ok": true,
+    "device": "mps",
+    "error": null
+  }
+}

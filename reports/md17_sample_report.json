@@ -1,0 +1,20 @@
+{
+  "dataset_name": "MD17/rMD17",
+  "input_path": "/Applications/codes/mendel/data/reference/md17_tiny_synthetic.npz",
+  "output_path": "data/reference/md17_sample.reference.json",
+  "n_records_read": 3,
+  "n_records_written": 3,
+  "n_skipped": 0,
+  "skipped_reasons": {},
+  "metadata": {
+    "dataset_name": "MD17/rMD17",
+    "source_url": "user-provided local path or explicit URL",
+    "reference_method": "dataset-provided DFT energies/forces",
+    "data_type": "molecular conformer energy/force",
+    "license_note": "verify source dataset license before redistribution",
+    "access_date": "2026-05-28",
+    "scope_note": "Local MD17/rMD17 NPZ conversion only; no MLIP training.",
+    "synthetic_test_data": true,
+    "not_scientific_reference": true
+  }
+}

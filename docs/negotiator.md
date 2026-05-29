@@ -114,6 +114,45 @@ Role enum value is introduced.
 
 ---
 
+## Phase 8.9: MLP-Aware Negotiation
+
+Phase 8.9 adds an explicit experimental mode:
+
+```python
+from mendel.negotiator import NegotiatorConfig, negotiate_predictions
+
+result = negotiate_predictions(
+    parsed_reaction,
+    groups,
+    mlp_role_predictions,
+    config=NegotiatorConfig(mode="mlp_aware"),
+)
+```
+
+The default remains `mode="rule_based"`, so existing rule-based behavior and
+tests are unchanged.
+
+MLP-aware negotiation preserves the existing MLP-negotiated role adjustments,
+then applies confidence- and mechanism-aware reaction-center selection. This is
+needed because group-level role accuracy and reaction-center F1 measure different
+things: a functional-group agent can have the correct role while its atom-level
+center is incomplete or over-broad.
+
+Key Phase 8.9 rules:
+
+- High-confidence spectators are excluded from reaction centers.
+- Control/no-reaction mechanisms suppress centers when spectator confidence dominates.
+- SN2/E2 centers focus on the leaving-group site and represented attached carbon.
+- Carbonyl addition centers focus on carbonyl atoms, not spectator alpha carbons.
+- Diels-Alder centers include alkene pi partners and exclude EWG substituents.
+- Nitroalkane deprotonation marks the alpha carbon as the nitronate-like center.
+- Assignment metadata preserves predictor provenance and `center_selection_reason`.
+
+`rule_based_negotiated` remains the conservative default unless benchmark evidence
+shows the MLP-aware mode also matches or beats reaction-center F1.
+
+---
+
 ## How Aldol Disambiguation Works
 
 Given two acetone molecules `CC(=O)C.CC(=O)C`:

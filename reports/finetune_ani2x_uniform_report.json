@@ -1,0 +1,170 @@
+{
+  "config": {
+    "lr": 5e-05,
+    "epochs": 30,
+    "force_weight": 1.0,
+    "energy_weight": 0.01,
+    "reactive_loss_weight": 1.0,
+    "batch_size": 8,
+    "device": "cpu"
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.07774236500263214,
+      "val_force_rmse": 0.18632221119237538
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.020068184845149516,
+      "val_force_rmse": 0.12900676100064748
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.009827932016924024,
+      "val_force_rmse": 0.09370671107312892
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.006932317279279232,
+      "val_force_rmse": 0.0769289435396559
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.005251667625270784,
+      "val_force_rmse": 0.06817118573489402
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.004239870049059391,
+      "val_force_rmse": 0.06569435633112741
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.0037550612119957804,
+      "val_force_rmse": 0.06400979062860092
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.0034739352064207195,
+      "val_force_rmse": 0.06255300860100471
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.003356976970098913,
+      "val_force_rmse": 0.06321750241476345
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.0031975632999092342,
+      "val_force_rmse": 0.06204500790011765
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.0029747463180683554,
+      "val_force_rmse": 0.06058141973109519
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.002717372658662498,
+      "val_force_rmse": 0.05889424425669051
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.0024810077622532843,
+      "val_force_rmse": 0.05881089316166601
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.00238458348903805,
+      "val_force_rmse": 0.05942550335705326
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.0023337901919148864,
+      "val_force_rmse": 0.059859668656564904
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.0022905221907421947,
+      "val_force_rmse": 0.0595444838667912
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.002119559212587774,
+      "val_force_rmse": 0.05769196074786803
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.0021084804902784526,
+      "val_force_rmse": 0.05781834014131372
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.0019895729376003144,
+      "val_force_rmse": 0.05800613158452525
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.001900660339742899,
+      "val_force_rmse": 0.055824558519830106
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.0018008206272497774,
+      "val_force_rmse": 0.055800088796479436
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.0017314238590188324,
+      "val_force_rmse": 0.05567217673821776
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.001716063730418682,
+      "val_force_rmse": 0.05541152832189705
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.0015730340266600252,
+      "val_force_rmse": 0.054677199749464736
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.0015446368255652488,
+      "val_force_rmse": 0.05606022664155622
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.0014370972407050432,
+      "val_force_rmse": 0.053985721613625304
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.0014261762029491366,
+      "val_force_rmse": 0.05446839246498331
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.0013856099219992756,
+      "val_force_rmse": 0.054003990762302216
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.0013559569721110164,
+      "val_force_rmse": 0.054790167641659525
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.0013672168483026327,
+      "val_force_rmse": 0.053390493141888845
+    }
+  ],
+  "final_train_loss": 0.0013672168483026327,
+  "final_val_force_rmse": 0.053390493141888845,
+  "reactive_indices_sample": [
+    0,
+    2
+  ],
+  "metadata": {}
+}

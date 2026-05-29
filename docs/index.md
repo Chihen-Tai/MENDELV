@@ -62,6 +62,16 @@ Only after enough curated labels exist in `data/reactions.json` should Phase 7 b
 The next phase after curation is **Phase 7 MLP role predictor training**. It is paused
 pending sufficient curated data. Phase 0–6 imports and validation must not require PyTorch.
 
+## Phase 10.5: Energy/Force Figures — [docs/figures.md](figures.md)
+
+Phase 10.5 generates fixed-conformer energy/force comparison figures from the
+rMD17 ethanol reference benchmark. It plots raw and mean-shifted DFT-vs-MACE-OFF
+energy parity, force RMSE by element, local force RMSE by group or pseudo-group,
+and atom-level force error distributions.
+
+This is benchmark visualization and MENDELV-local error decomposition. It does
+not train MLIP, run DFT, or evaluate reaction paths or barriers.
+
 ## Pre-training Freeze Checklist
 
 - `import mendel` works without `torch`.
@@ -117,6 +127,86 @@ best current pipeline while the MLP is data-limited.
 
 This phase improves data readiness only. It does not change role taxonomy,
 functional-group taxonomy, model architecture, or the rule-based default.
+
+## Phase 8.8: MLP Diagnostics — [docs/diagnostics.md](diagnostics.md)
+
+`mendel/diagnostics.py` analyzes saved benchmark reports to explain the gap
+between promoted MLP role accuracy and reaction-center F1. It reports
+rule/MLP disagreements, high-confidence MLP errors, calibration bins,
+spectator/reactive confusion, and reaction-center failure patterns.
+
+This phase is analysis only. It does not train, does not add MLIP/MACE, and
+does not replace `rule_based_negotiated` as the conservative default.
+
+## Phase 8.10: Atom-Level Reaction-Center Head — [docs/center_head.md](center_head.md)
+
+`mendel/center_head.py` adds an experimental atom binary classifier for
+reaction-center recovery. It predicts whether each reactant atom belongs to the
+reaction center using existing group membership, role predictions, confidence,
+and mechanism context.
+
+This phase targets the remaining gap between high promoted-MLP role accuracy
+and lower MLP-guided reaction-center F1. It is not MLIP training and does not
+predict energy, geometry, or barriers.
+
+## Phase 8.11: Leakage-Resistant Center Validation — [docs/center_validation.md](center_validation.md)
+
+`mendel/center_validation.py` audits `reaction_center_atoms` labels and creates
+template-aware, mechanism-aware, source-aware, or reaction-ID-prefix splits to
+test whether the atom-center head generalizes beyond generated templates.
+
+This phase validates center supervision before any Phase 9 MLIP work. It does
+not train MLIP and does not run energy, force, transition-state, IRC, NEB, MD,
+or barrier prediction.
+
+## Phase 8.13: Manual Center Expansion — [docs/center_expansion.md](center_expansion.md)
+
+`mendel/center_expansion_review.py` conservatively promotes center-focused
+candidate reactions and reruns mechanism-balanced strict validation on the
+expanded cleaned dataset.
+
+This phase broadens reaction-center supervision across mechanisms. It is still
+not MLIP training and does not predict energy or force.
+
+## Phase 8.14: Mapping-Aware Center Labels — [docs/mapping_center.md](mapping_center.md)
+
+`mendel/mapping_center.py` audits `reaction_center_atoms` against atom-mapped
+bond changes when mapped reaction SMILES are available. Phase 8.14 also adds a
+`val_test_balanced_template` split strategy so both validation and test can
+carry broader mechanism coverage.
+
+This phase improves label reliability and validation balance only. It does not
+train MLIP and does not predict energy or force.
+
+## Phase 9: Optional Pretrained MLIP Backend — [docs/mlip.md](mlip.md)
+
+`mendel/mlip.py` provides an optional single-point energy/force backend using
+ASE and pretrained MACE when the `mlip` extra is installed. MENDELV supplies
+reaction-center atoms, and the MLIP result is summarized over those atoms.
+
+This phase does not train MLIP, does not fine-tune MACE, does not use
+Transition1x, and does not run DFT, NEB, IRC, MD, transition-state search, or
+barrier prediction.
+
+## Phase 10: Reference Energy/Force Benchmark — [docs/reference_benchmark.md](reference_benchmark.md)
+
+`mendel/reference_data.py` defines open reference energy/force records and
+benchmark metrics. `mendel/qo2mol.py` provides a local QO2Mol sample adapter for
+JSON, JSONL, and simple NPZ samples. The benchmark compares pretrained MACE-OFF
+single-point predictions with reference molecular conformer energies/forces.
+
+This phase does not download the full dataset by default, commit raw data, train
+MLIP, run DFT, or claim reaction-path or barrier accuracy.
+
+## Phase 10.1: QO2Mol Sample Manager — [docs/qo2mol.md](qo2mol.md)
+
+`mendel/qo2mol_manager.py` and `scripts/qo2mol_sample_manager.py` inspect,
+register, sample, and summarize local QO2Mol data. The manager prepares capped
+MENDELV reference JSON files without committing raw QO2Mol data or requiring
+ASE/MACE.
+
+This phase is local data preparation only. It does not download the full
+dataset by default, train MLIP, run DFT, or benchmark reaction barriers.
 
 ---
 
@@ -206,3 +296,4 @@ No chemistry parsing, SMARTS matching, or ML is included in Phase 0.
 | 7 | MLP role predictor (paused — needs curated data) |
 | 8 | Benchmark evaluator |
 | 8.5 | Dataset normalization and MLP readiness diagnostics |
+| 8.8 | MLP diagnostics and reaction-center failure analysis |

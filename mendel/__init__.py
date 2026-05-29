@@ -68,6 +68,7 @@ _EXPORT_MODULES: dict[str, str] = {
     "get_reaction_center_group_ids": "mendel.negotiator",
     "negotiate_predictions": "mendel.negotiator",
     "run_full_rule_pipeline": "mendel.negotiator",
+    "run_pipeline_with_mlp": "mendel.negotiator",
     "summarize_negotiation_result": "mendel.negotiator",
     # Phase 8 benchmark (no torch required for these exports)
     "BenchmarkReport": "mendel.benchmark",

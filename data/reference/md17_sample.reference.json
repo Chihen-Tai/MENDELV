@@ -1,0 +1,187 @@
+{
+  "records": [
+    {
+      "structure_id": "md17_md17_tiny_synthetic_0",
+      "molecule_id": "md17_tiny_synthetic",
+      "dataset_name": "MD17/rMD17",
+      "smiles": null,
+      "xyz": [
+        [
+          "C",
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          "H",
+          0.0,
+          0.0,
+          1.09
+        ],
+        [
+          "H",
+          1.03,
+          0.0,
+          -0.36
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "reference_energy": -40.0,
+      "reference_energy_unit": "eV",
+      "reference_forces": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "reference_force_unit": "eV/Angstrom",
+      "reference_method": "dataset-provided DFT",
+      "split": null,
+      "metadata": {
+        "dataset_name": "MD17/rMD17",
+        "source_url": "user-provided local path or explicit URL",
+        "reference_method": "dataset-provided DFT energies/forces",
+        "data_type": "molecular conformer energy/force",
+        "license_note": "verify source dataset license before redistribution",
+        "access_date": "2026-05-28",
+        "source_path": "/Applications/codes/mendel/data/reference/md17_tiny_synthetic.npz",
+        "local_adapter": "md17_npz",
+        "molecule_conformer_benchmark_only": true
+      }
+    },
+    {
+      "structure_id": "md17_md17_tiny_synthetic_1",
+      "molecule_id": "md17_tiny_synthetic",
+      "dataset_name": "MD17/rMD17",
+      "smiles": null,
+      "xyz": [
+        [
+          "C",
+          0.02,
+          0.0,
+          0.0
+        ],
+        [
+          "H",
+          0.0,
+          0.03,
+          1.08
+        ],
+        [
+          "H",
+          1.02,
+          0.0,
+          -0.34
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "reference_energy": -39.98,
+      "reference_energy_unit": "eV",
+      "reference_forces": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "reference_force_unit": "eV/Angstrom",
+      "reference_method": "dataset-provided DFT",
+      "split": null,
+      "metadata": {
+        "dataset_name": "MD17/rMD17",
+        "source_url": "user-provided local path or explicit URL",
+        "reference_method": "dataset-provided DFT energies/forces",
+        "data_type": "molecular conformer energy/force",
+        "license_note": "verify source dataset license before redistribution",
+        "access_date": "2026-05-28",
+        "source_path": "/Applications/codes/mendel/data/reference/md17_tiny_synthetic.npz",
+        "local_adapter": "md17_npz",
+        "molecule_conformer_benchmark_only": true
+      }
+    },
+    {
+      "structure_id": "md17_md17_tiny_synthetic_2",
+      "molecule_id": "md17_tiny_synthetic",
+      "dataset_name": "MD17/rMD17",
+      "smiles": null,
+      "xyz": [
+        [
+          "C",
+          -0.01,
+          0.0,
+          0.0
+        ],
+        [
+          "H",
+          0.0,
+          -0.02,
+          1.1
+        ],
+        [
+          "H",
+          1.04,
+          0.0,
+          -0.35
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "reference_energy": -39.99,
+      "reference_energy_unit": "eV",
+      "reference_forces": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "reference_force_unit": "eV/Angstrom",
+      "reference_method": "dataset-provided DFT",
+      "split": null,
+      "metadata": {
+        "dataset_name": "MD17/rMD17",
+        "source_url": "user-provided local path or explicit URL",
+        "reference_method": "dataset-provided DFT energies/forces",
+        "data_type": "molecular conformer energy/force",
+        "license_note": "verify source dataset license before redistribution",
+        "access_date": "2026-05-28",
+        "source_path": "/Applications/codes/mendel/data/reference/md17_tiny_synthetic.npz",
+        "local_adapter": "md17_npz",
+        "molecule_conformer_benchmark_only": true
+      }
+    }
+  ]
+}

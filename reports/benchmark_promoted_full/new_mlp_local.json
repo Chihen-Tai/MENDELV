@@ -1,0 +1,3621 @@
+{
+  "predictor_name": "new_mlp_local",
+  "n_reactions": 71,
+  "n_group_labels": 133,
+  "overall_role_accuracy": 0.8872180451127819,
+  "role_accuracy_by_role": {
+    "leaving_group": 1.0,
+    "reactive_electrophile": 0.8095238095238095,
+    "reactive_nucleophile": 0.72,
+    "reactive_radical": 1.0,
+    "spectator": 0.9272727272727272
+  },
+  "role_accuracy_by_group_type": {
+    "alcohol": 1.0,
+    "alkene": 0.8518518518518519,
+    "alpha_carbon": 0.72,
+    "aromatic": 1.0,
+    "benzylic_site": 0.9,
+    "carbonyl": 0.8,
+    "ester": 1.0,
+    "halide": 1.0,
+    "nitrile": 1.0,
+    "nitro": 1.0,
+    "phenol": 1.0
+  },
+  "role_accuracy_by_mechanism": {
+    "aldol": 0.5555555555555556,
+    "benzylic_radical_bromination": 1.0,
+    "carbonyl_addition": 1.0,
+    "control": 0.9166666666666666,
+    "cross_aldol": 0.3333333333333333,
+    "diels_alder": 0.8484848484848485,
+    "e2": 1.0,
+    "ester_control": 1.0,
+    "nitrile_control": 1.0,
+    "nitroalkane_deprotonation": 0.4,
+    "sn2": 1.0
+  },
+  "split_accuracy": {
+    "test": 0.8666666666666667,
+    "train": 0.8863636363636364,
+    "val": 0.9
+  },
+  "confusion_matrix": {
+    "reactive_nucleophile": {
+      "reactive_nucleophile": 18,
+      "reactive_electrophile": 0,
+      "reactive_radical": 0,
+      "leaving_group": 0,
+      "spectator": 7
+    },
+    "reactive_electrophile": {
+      "reactive_nucleophile": 4,
+      "reactive_electrophile": 17,
+      "reactive_radical": 0,
+      "leaving_group": 0,
+      "spectator": 0
+    },
+    "reactive_radical": {
+      "reactive_nucleophile": 0,
+      "reactive_electrophile": 0,
+      "reactive_radical": 7,
+      "leaving_group": 0,
+      "spectator": 0
+    },
+    "leaving_group": {
+      "reactive_nucleophile": 0,
+      "reactive_electrophile": 0,
+      "reactive_radical": 0,
+      "leaving_group": 25,
+      "spectator": 0
+    },
+    "spectator": {
+      "reactive_nucleophile": 0,
+      "reactive_electrophile": 3,
+      "reactive_radical": 1,
+      "leaving_group": 0,
+      "spectator": 51
+    }
+  },
+  "reaction_center_precision": 0.0,
+  "reaction_center_recall": 0.0,
+  "reaction_center_f1": 0.0,
+  "group_records": [
+    {
+      "reaction_id": "sn2_methyl_bromide_oh",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9541225433349609,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "e2_ethyl_bromide_oh",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9542850255966187,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6920381188392639,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol0_alpha_carbon_1",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol1_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "group_id": "mol1_alpha_carbon_1",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8408495783805847,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292582869529724,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "sn2_methyl_iodide_cyanide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9401587843894958,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "test",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "group_id": "mol0_alpha_carbon_1",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_chloride_iodide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9467285871505737,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_bromide_azide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9541225433349609,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_benzyl_chloride_methoxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9472506046295166,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_ethyl_bromide_thiolate",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9542850255966187,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_e2_2_bromobutane_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.954413115978241,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_e2_cyclohexyl_bromide_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9502866864204407,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7785691022872925,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "cross_aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6106306314468384,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "cross_aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7753645777702332,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "cross_aldol",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetone_cyanide",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetone_cyanide",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetaldehyde_hydride",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7785691022872925,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetaldehyde_hydride",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6106306314468384,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol1_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5183258652687073,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.8584406971931458,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922581195831299,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6924254298210144,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6920381188392639,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.7229378819465637,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.7229378819465637,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "group_id": "mol1_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5183258652687073,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.8584406971931458,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_ethylbenzene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292346239089966,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_cumene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292115569114685,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_toluene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292582869529724,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8055253624916077,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6789560914039612,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6021301746368408,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "supp_nitromethane_base",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5041263103485107,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_iodide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9541225433349609,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_chloride_iodide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9467285871505737,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_bromide_methoxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9542850255966187,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_chloride_thiolate",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9469021558761597,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_cyanide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9541225433349609,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9982303977012634,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9472506046295166,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9823545217514038,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9982263445854187,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9545928835868835,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9822064638137817,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_iodide_azide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9402951598167419,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_isopropyl_bromide_iodide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9543853402137756,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "sn2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_bromide_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9543853402137756,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_chloride_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9470736384391785,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_bromide_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9544836282730103,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.954413115978241,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_cyclohexyl_bromide_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9502866864204407,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_methoxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.954413115978241,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_chloride_hydroxide",
+      "group_id": "mol0_halide_0",
+      "group_type": "halide",
+      "true_role": "leaving_group",
+      "predicted_role": "leaving_group",
+      "predicted_confidence": 0.9472429156303406,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "e2",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "halide"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_hydride",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7785691022872925,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_hydride",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6106306314468384,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "group_id": "mol0_alpha_carbon_1",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_cyanide",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7785691022872925,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_cyanide",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6106306314468384,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7774597406387329,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "group_id": "mol0_alpha_carbon_1",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6117056012153625,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_cyanide",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9170794486999512,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_cyanide",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7753645777702332,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_formaldehyde_hydride",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7796844840049744,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_hydride",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9170794486999512,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_hydride",
+      "group_id": "mol0_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7753645777702332,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6920381188392639,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol1_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5183258652687073,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.8584406971931458,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "group_id": "mol1_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8249278664588928,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.8578823804855347,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922748684883118,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "group_id": "mol1_carbonyl_0",
+      "group_type": "carbonyl",
+      "true_role": "spectator",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.7455011010169983,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "carbonyl"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_electrophile",
+      "predicted_confidence": 0.8625470399856567,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "group_id": "mol1_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6116363406181335,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "group_id": "mol0_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6922581195831299,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "group_id": "mol0_alkene_1",
+      "group_type": "alkene",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6924254298210144,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "group_id": "mol1_alkene_0",
+      "group_type": "alkene",
+      "true_role": "reactive_electrophile",
+      "predicted_role": "reactive_nucleophile",
+      "predicted_confidence": 0.6920381188392639,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alkene"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_toluene",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8408495783805847,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_toluene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292582869529724,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_ethylbenzene",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.841204047203064,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_ethylbenzene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292346239089966,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_cumene",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8415569067001343,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_cumene",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "reactive_radical",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.9292115569114685,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_control_benzene_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9721749424934387,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9724360704421997,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "group_id": "mol0_benzylic_site_0",
+      "group_type": "benzylic_site",
+      "true_role": "spectator",
+      "predicted_role": "reactive_radical",
+      "predicted_confidence": 0.7297381162643433,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "benzylic_site"
+      }
+    },
+    {
+      "reaction_id": "auto_control_anisole_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9629300832748413,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9628771543502808,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "group_id": "mol0_phenol_0",
+      "group_type": "phenol",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9120234251022339,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "phenol"
+      }
+    },
+    {
+      "reaction_id": "auto_control_ethanol_no_reaction",
+      "group_id": "mol0_alcohol_0",
+      "group_type": "alcohol",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.7608950138092041,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alcohol"
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9718889594078064,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "group_id": "mol0_nitro_0",
+      "group_type": "nitro",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.6762718558311462,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitro"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_methane_deprotonation",
+      "group_id": "mol0_nitro_0",
+      "group_type": "nitro",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.4445574879646301,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitro"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_methane_deprotonation",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.5041263103485107,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "val",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_ethane_deprotonation",
+      "group_id": "mol0_nitro_0",
+      "group_type": "nitro",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.44477394223213196,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitro"
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_ethane_deprotonation",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "reactive_nucleophile",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.504784107208252,
+      "predictor_name": "new_mlp_local",
+      "correct": false,
+      "split": "train",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9576863050460815,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8528801202774048,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9577203989028931,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.852889895439148,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9572477340698242,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "group_id": "mol0_ester_0",
+      "group_type": "ester",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9588329792022705,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "ester"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "group_id": "mol0_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8409305214881897,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.810704231262207,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "group_id": "mol0_aromatic_0",
+      "group_type": "aromatic",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.9571185111999512,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "aromatic"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "group_id": "mol0_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8455802202224731,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "val",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "group_id": "mol0_nitrile_0",
+      "group_type": "nitrile",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8412956595420837,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "nitrile"
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "group_id": "mol0_alpha_carbon_0",
+      "group_type": "alpha_carbon",
+      "true_role": "spectator",
+      "predicted_role": "spectator",
+      "predicted_confidence": 0.8107364177703857,
+      "predictor_name": "new_mlp_local",
+      "correct": true,
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "metadata": {
+        "model_version": "phase7_mlp_v1",
+        "detected_group_type": "alpha_carbon"
+      }
+    }
+  ],
+  "reaction_records": [
+    {
+      "reaction_id": "sn2_methyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][Br:2].[OH-:3]>>[CH3:1][OH:3].[Br-:2]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "e2_ethyl_bromide_oh",
+      "reaction_smiles": "[CH3:1][CH2:2][Br:3].[OH-:4]>>[CH2:1]=[CH2:2].[Br-:3].[OH2:4]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2,3,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "diels_alder_butadiene_ethylene",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH2:6]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1",
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 2,
+      "role_accuracy": 0.6666666666666666,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,2,3,4,5,6",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_self",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[CH3:5][C:6](=[O:7])[CH3:8]>>[CH3:1][C:2](=[O:3])[CH2:4][C:6]([OH])[CH3:8]",
+      "split": "train",
+      "mechanism_type": "aldol",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 6,
+      "n_correct_roles": 3,
+      "role_accuracy": 0.5,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 6,
+        "true_reaction_center_atoms": "2,4,6",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "radical_bromination_methane",
+      "reaction_smiles": "[CH4:1].[Br:2][Br:3]>>[CH3:1][Br:2].[Br:3]",
+      "split": "train",
+      "mechanism_type": "radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 0,
+      "n_correct_roles": 0,
+      "role_accuracy": 0.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 0,
+        "true_reaction_center_atoms": "1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "benzylic_radical_toluene_br2",
+      "reaction_smiles": "[CH3:1][c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:8][Br:9]>>[CH2:1]([Br:8])[c:2]1[cH:3][cH:4][cH:5][cH:6][cH:7]1.[Br:9]",
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,8,9",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "sn2_methyl_iodide_cyanide",
+      "reaction_smiles": "[CH3:1][I:2].[C-:3]#[N:4]>>[CH3:1][C:3]#[N:4].[I-:2]",
+      "split": "val",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "aldol_acetone_base_catalysed",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[OH-:5]>>[CH3:1][C:2](=[O:3])[CH2:4][C:2]([OH])[CH3:1]",
+      "split": "test",
+      "mechanism_type": "aldol",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 2,
+      "role_accuracy": 0.6666666666666666,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "2,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_chloride_iodide",
+      "reaction_smiles": "[CH3:1][Cl:2].[I-:3]>>[CH3:1][I:3].[Cl-:2]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_methyl_bromide_azide",
+      "reaction_smiles": "[CH3:1][Br:2].[N-:3]=[N+:4]=[N-:5]>>[CH3:1][N:3]=[N+:4]=[N-:5].[Br-:2]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_benzyl_chloride_methoxide",
+      "reaction_smiles": "[CH2:1]([Cl:2])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1.[O-:9][CH3:10]>>[CH2:1]([O:9][CH3:10])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1.[Cl-:2]",
+      "split": "val",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,2,9",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_sn2_ethyl_bromide_thiolate",
+      "reaction_smiles": "[CH3:1][CH2:2][Br:3].[S-:4][CH3:5]>>[CH3:1][CH2:2][S:4][CH3:5].[Br-:3]",
+      "split": "test",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "2,3,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_e2_2_bromobutane_hydroxide",
+      "reaction_smiles": "[CH3:1][CH:2]([Br:3])[CH2:4][CH3:5].[OH-:6]>>[CH3:1][CH:2]=[CH:4][CH3:5].[Br-:3].[OH2:6]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "2,3,4,6",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_e2_cyclohexyl_bromide_hydroxide",
+      "reaction_smiles": "C1CCC(Br)CC1.[OH-]>>C1=CCCCC1.[Br-].[OH2]",
+      "split": "val",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1
+      }
+    },
+    {
+      "reaction_id": "supp_aldol_acetaldehyde_benzaldehyde",
+      "reaction_smiles": "[CH3:1][CH:2]=[O:3].[O:4]=[CH:5][c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1>>[CH3:1][CH:2]([OH:4])[CH:5]([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)",
+      "split": "train",
+      "mechanism_type": "cross_aldol",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.3333333333333333,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "1,5",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetone_cyanide",
+      "reaction_smiles": "[CH3:1][C:2](=[O:3])[CH3:4].[C-:5]#[N:6]>>[CH3:1][C:2]([O-:3])([C:5]#[N:6])[CH3:4]",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "2,5",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_carbonyl_addition_acetaldehyde_hydride",
+      "reaction_smiles": "[CH3:1][CH:2]=[O:3].[H-:4]>>[CH3:1][CH:2]([O-:3])[H:4]",
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "2,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_butadiene_acrylonitrile",
+      "reaction_smiles": "[CH2:1]=[CH:2][CH:3]=[CH2:4].[CH2:5]=[CH:6][C:7]#[N:8]>>[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH:6]1[C:7]#[N:8]",
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 4,
+      "n_correct_roles": 4,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "1,2,3,4,5,6",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_isoprene_ethylene",
+      "reaction_smiles": "C=C(C)C=C.C=C>>CC1CCC=CC1",
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 2,
+      "role_accuracy": 0.6666666666666666,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_diels_alder_cyclopentadiene_acrylonitrile",
+      "reaction_smiles": "C1C=CC=C1.C=CC#N>>N#CC1CC2CC1C2",
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 4,
+      "n_correct_roles": 4,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "0,1,3,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_ethylbenzene",
+      "reaction_smiles": "CCc1ccccc1.BrBr>>CC(Br)c1ccccc1.Br",
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_cumene",
+      "reaction_smiles": "CC(C)c1ccccc1.BrBr>>CC(Br)(C)c1ccccc1.Br",
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_radical_bromination_toluene",
+      "reaction_smiles": "Cc1ccccc1.BrBr>>BrCc1ccccc1.Br",
+      "split": "test",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "supp_control_methyl_acetate",
+      "reaction_smiles": "CC(=O)OC>>CC(=O)OC",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "supp_control_acetonitrile",
+      "reaction_smiles": "CC#N>>CC#N",
+      "split": "val",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "supp_nitromethane_base",
+      "reaction_smiles": "C[N+](=O)[O-].[OH-]>>[CH2-][N+](=O)[O-].[OH2]",
+      "split": "train",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 0,
+      "role_accuracy": 0.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_iodide",
+      "reaction_smiles": "CBr.[I-]>>CI.[Br-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_chloride_iodide",
+      "reaction_smiles": "CCl.[I-]>>CI.[Cl-]",
+      "split": "test",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_bromide_methoxide",
+      "reaction_smiles": "CCBr.[O-]C>>CCOC.[Br-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_chloride_thiolate",
+      "reaction_smiles": "CCCl.[S-]C>>CCSC.[Cl-]",
+      "split": "test",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_methyl_bromide_cyanide",
+      "reaction_smiles": "CBr.[C-]#N>>CC#N.[Br-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_chloride_methoxide",
+      "reaction_smiles": "ClCc1ccccc1.[O-]C>>COCc1ccccc1.[Cl-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 3,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_benzyl_bromide_iodide",
+      "reaction_smiles": "BrCc1ccccc1.[I-]>>ICc1ccccc1.[Br-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 3,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_ethyl_iodide_azide",
+      "reaction_smiles": "CCI.[N-]=[N+]=[N-]>>CCN=[N+]=[N-].[I-]",
+      "split": "val",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_sn2_isopropyl_bromide_iodide",
+      "reaction_smiles": "CC(C)Br.[I-]>>CC(C)I.[Br-]",
+      "split": "train",
+      "mechanism_type": "sn2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_bromide_hydroxide",
+      "reaction_smiles": "CC(Br)C.[OH-]>>C=CC.[Br-].[OH2]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_isopropyl_chloride_hydroxide",
+      "reaction_smiles": "CC(Cl)C.[OH-]>>C=CC.[Cl-].[OH2]",
+      "split": "val",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_bromide_hydroxide",
+      "reaction_smiles": "CC(C)(C)Br.[OH-]>>CC(=C)C.[Br-].[OH2]",
+      "split": "test",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_hydroxide",
+      "reaction_smiles": "CCC(Br)C.[OH-]>>CC=CC.[Br-].[OH2]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "2,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_cyclohexyl_bromide_hydroxide",
+      "reaction_smiles": "C1CCC(Br)CC1.[OH-]>>C1=CCCCC1.[Br-].[OH2]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_2_bromobutane_methoxide",
+      "reaction_smiles": "CCC(Br)C.[O-]C>>CC=CC.[Br-].CO",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "2,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_e2_tertbutyl_chloride_hydroxide",
+      "reaction_smiles": "CC(C)(C)Cl.[OH-]>>CC(=C)C.[Cl-].[OH2]",
+      "split": "train",
+      "mechanism_type": "e2",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "1,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_hydride",
+      "reaction_smiles": "CC=O.[BH4-]>>CC[O-]",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_hydride",
+      "reaction_smiles": "CC(=O)C.[BH4-]>>CC(C)[O-]",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 3,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,3,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetaldehyde_cyanide",
+      "reaction_smiles": "CC=O.[C-]#N>>CC(O)C#N",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_acetone_cyanide",
+      "reaction_smiles": "CC(=O)C.[C-]#N>>CC(O)(C)C#N",
+      "split": "val",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 3,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "1,3,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_cyanide",
+      "reaction_smiles": "O=Cc1ccccc1.[C-]#N>>OC(C#N)c1ccccc1",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_formaldehyde_hydride",
+      "reaction_smiles": "C=O.[BH4-]>>C[O-]",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_carbonyl_addition_benzaldehyde_hydride",
+      "reaction_smiles": "O=Cc1ccccc1.[BH4-]>>[O-]Cc1ccccc1",
+      "split": "train",
+      "mechanism_type": "carbonyl_addition",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_ethylene",
+      "reaction_smiles": "C=CC=C.C=C>>C1CCC=CC1",
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 2,
+      "role_accuracy": 0.6666666666666666,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_acrylonitrile",
+      "reaction_smiles": "C=CC=C.C=CC#N>>N#CC1CCC=CC1",
+      "split": "val",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 4,
+      "n_correct_roles": 4,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_acrylate",
+      "reaction_smiles": "C=CC=C.C=CC(=O)OC>>COC(=O)C1CCC=CC1",
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 4,
+      "n_correct_roles": 4,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 4,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_butadiene_methyl_vinyl_ketone",
+      "reaction_smiles": "C=CC=C.C=CC(C)=O>>CC(=O)C1CCC=CC1",
+      "split": "train",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 5,
+      "n_correct_roles": 4,
+      "role_accuracy": 0.8,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 5,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_diels_alder_isoprene_ethylene",
+      "reaction_smiles": "C=C(C)C=C.C=C>>CC1CCC=CC1",
+      "split": "test",
+      "mechanism_type": "diels_alder",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 3,
+      "n_correct_roles": 2,
+      "role_accuracy": 0.6666666666666666,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 3,
+        "true_reaction_center_atoms": "0,1,2,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_toluene",
+      "reaction_smiles": "Cc1ccccc1.BrBr>>BrCc1ccccc1.Br",
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_ethylbenzene",
+      "reaction_smiles": "CCc1ccccc1.BrBr>>CC(Br)c1ccccc1.Br",
+      "split": "train",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_benzylic_bromination_cumene",
+      "reaction_smiles": "CC(C)c1ccccc1.BrBr>>CC(Br)(C)c1ccccc1.Br",
+      "split": "val",
+      "mechanism_type": "benzylic_radical_bromination",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_control_benzene_no_reaction",
+      "reaction_smiles": "c1ccccc1>>c1ccccc1",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1
+      }
+    },
+    {
+      "reaction_id": "auto_control_toluene_no_reaction",
+      "reaction_smiles": "Cc1ccccc1>>Cc1ccccc1",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.5,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "auto_control_anisole_no_reaction",
+      "reaction_smiles": "COc1ccccc1>>COc1ccccc1",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1
+      }
+    },
+    {
+      "reaction_id": "auto_control_phenol_no_reaction",
+      "reaction_smiles": "Oc1ccccc1>>Oc1ccccc1",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "auto_control_ethanol_no_reaction",
+      "reaction_smiles": "CCO>>CCO",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 1,
+      "n_correct_roles": 1,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 1
+      }
+    },
+    {
+      "reaction_id": "auto_control_nitrobenzene_no_reaction",
+      "reaction_smiles": "O=[N+]([O-])c1ccccc1>>O=[N+]([O-])c1ccccc1",
+      "split": "train",
+      "mechanism_type": "control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_methane_deprotonation",
+      "reaction_smiles": "C[N+](=O)[O-].[OH-]>>[CH2-][N+](=O)[O-].O",
+      "split": "val",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.5,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_nitro_ethane_deprotonation",
+      "reaction_smiles": "CC[N+](=O)[O-].[OH-]>>C[CH-][N+](=O)[O-].O",
+      "split": "train",
+      "mechanism_type": "nitroalkane_deprotonation",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 1,
+      "role_accuracy": 0.5,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_acetate_no_reaction",
+      "reaction_smiles": "CC(=O)OC>>CC(=O)OC",
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "2,4,1,0,3",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_ethyl_acetate_no_reaction",
+      "reaction_smiles": "CC(=O)OCC>>CC(=O)OCC",
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "3,5,2,1,4",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_ester_control_methyl_benzoate_no_reaction",
+      "reaction_smiles": "COC(=O)c1ccccc1>>COC(=O)c1ccccc1",
+      "split": "train",
+      "mechanism_type": "ester_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "2,3,1,0",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_acetonitrile_no_reaction",
+      "reaction_smiles": "CC#N>>CC#N",
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "0,1",
+        "predicted_reaction_center_atoms": ""
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_benzonitrile_no_reaction",
+      "reaction_smiles": "N#Cc1ccccc1>>N#Cc1ccccc1",
+      "split": "val",
+      "mechanism_type": "nitrile_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": null,
+      "reaction_center_recall": null,
+      "reaction_center_f1": null,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2
+      }
+    },
+    {
+      "reaction_id": "auto_nitrile_control_propionitrile_no_reaction",
+      "reaction_smiles": "CCC#N>>CCC#N",
+      "split": "train",
+      "mechanism_type": "nitrile_control",
+      "predictor_name": "new_mlp_local",
+      "n_labeled_groups": 2,
+      "n_correct_roles": 2,
+      "role_accuracy": 1.0,
+      "mechanism_hint": null,
+      "reaction_center_precision": 0.0,
+      "reaction_center_recall": 0.0,
+      "reaction_center_f1": 0.0,
+      "warnings": [],
+      "metadata": {
+        "n_detected_groups": 2,
+        "true_reaction_center_atoms": "1,2",
+        "predicted_reaction_center_atoms": ""
+      }
+    }
+  ],
+  "metadata": {
+    "benchmark_level": "group_role_mlp_local",
+    "original_predictor_name": "mlp_local",
+    "checkpoint_path": "models/role_mlp_promoted.pt"
+  }
+}
