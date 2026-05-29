@@ -393,6 +393,53 @@ def reactive_atom_indices_by_heteroatom(
     return sorted(reactive)
 
 
+_ANI2X_SUPPORTED = frozenset({1, 6, 7, 8, 9, 16, 17})  # H C N O F S Cl
+
+
+def load_qo2mol_pkl_records(
+    path: "Path",
+    max_records: int = 300,
+    reactive_weight: float = 3.0,
+    seed: int = 42,
+) -> "list[ConformerRecord]":
+    """Load QO2Mol pkl into ConformerRecord list.
+
+    Filters molecules with unsupported ANI-2x elements (P, Br, I).
+    Energies/forces are already in eV / eV·Å⁻¹ — no conversion needed.
+    Reactive detection uses heteroatom-proximity heuristic per molecule.
+    """
+    import pickle
+
+    rng = random.Random(seed)
+    with open(path, "rb") as fh:
+        all_data = pickle.load(fh)  # noqa: S301
+
+    compatible = [
+        item for item in all_data
+        if all(int(z) in _ANI2X_SUPPORTED for z in item["elements"])
+    ]
+
+    sample = rng.sample(compatible, min(max_records, len(compatible)))
+
+    records: list[ConformerRecord] = []
+    for i, item in enumerate(sample):
+        atomic_numbers = [int(z) for z in item["elements"]]
+        symbols = [_ATOMIC_SYMBOL[z] for z in atomic_numbers]
+        positions = [tuple(float(v) for v in row) for row in item["coordinates"]]
+        forces = [[float(v) for v in row] for row in item["forces"]]
+        reactive = reactive_atom_indices_by_heteroatom(atomic_numbers, positions)
+        weights = build_atom_weights(len(symbols), reactive, reactive_weight=reactive_weight)
+        records.append(ConformerRecord(
+            structure_id=str(item.get("confid", f"qo2mol_{i}")),
+            symbols=symbols,
+            positions=[list(p) for p in positions],
+            energy=float(item["energy"]),
+            forces=forces,
+            atom_weights=weights,
+        ))
+    return records
+
+
 def load_md17_npz_records(
     path: Path,
     molecule_name: str,
