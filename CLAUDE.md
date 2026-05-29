@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
   tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
 ```
 
-**Phase 7 checkpoint updated (OOD expansion).** `models/role_mlp.pt` — **95.31% val accuracy**, 65-dim input, hidden_dim=64, 148 reactions on `reactions.center_balanced.cleaned.json`. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
+**Phase 7 checkpoint updated (best-weights fix).** `models/role_mlp.pt` — **93.75% val accuracy** (best checkpoint restored, not final epoch), 65-dim input, hidden_dim=64, 148 reactions. MLP+Negotiate benchmark: **98.14% overall**, aldol 89.66%, cross_aldol 85.71%. `tests/test_mlp.py` and `tests/test_mlp_aware_negotiation.py` are part of the normal test suite.
 
 **Do not run `tests/test_mlip.py`, `tests/test_mlip_env_scripts.py`, `tests/test_mlip_geometry_sanity.py`, or `tests/test_mlip_reference_benchmark.py` without Phase 9 deps installed.**
 

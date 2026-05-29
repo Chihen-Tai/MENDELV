@@ -689,6 +689,7 @@ def train_mlp_role_predictor(
     )
 
     best_val_loss = float("inf")
+    best_state_dict: dict | None = None
     patience_counter = 0
     epochs_run = 0
 
@@ -727,11 +728,15 @@ def train_mlp_role_predictor(
 
         if val_loss < best_val_loss - 1e-6:
             best_val_loss = val_loss
+            best_state_dict = {k: v.clone() for k, v in model.state_dict().items()}
             patience_counter = 0
         else:
             patience_counter += 1
             if patience_counter >= config.early_stopping_patience:
                 break
+
+    if best_state_dict is not None:
+        model.load_state_dict(best_state_dict)
 
     history.metadata["epochs_run"] = epochs_run
     history.metadata["stopped_early"] = epochs_run < config.epochs
