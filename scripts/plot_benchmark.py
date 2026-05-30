@@ -87,14 +87,25 @@ ax2.legend(framealpha=0.2, facecolor="#1a1a2e", edgecolor="#3a3a5c",
 
 # Panel 3: Reaction center P/R/F1
 ax3 = fig.add_subplot(3, 1, 3)
-style_ax(ax3, "Reaction Center Detection (Negotiated Models)")
-rc_models = ["rule_based_negotiated", "mlp_negotiated"]
+style_ax(ax3, "Reaction Center Detection")
+rc_entries = [
+    (LABELS["rule_based_negotiated"], d["reaction_center"]["rule_based_negotiated"]),
+    (LABELS["mlp_negotiated"], d["reaction_center"]["mlp_negotiated"]),
+]
+oof_path = Path("reports/center_head_oof_cv.json")
+if oof_path.exists():
+    o = json.loads(oof_path.read_text())["center_head_oof"]
+    rc_entries.append(("Center Head (OOF CV)", {
+        "precision": o["reaction_center_precision"],
+        "recall": o["reaction_center_recall"],
+        "f1": o["reaction_center_f1"],
+    }))
 metrics = ["precision", "recall", "f1"]
 metric_colors = ["#6ec6a0", "#e07b54", "#a78bfa"]
-x3 = np.arange(len(rc_models))
+x3 = np.arange(len(rc_entries))
 bar_w3 = 0.22
 for i, metric in enumerate(metrics):
-    vals = [d["reaction_center"][m][metric] * 100 for m in rc_models]
+    vals = [rc[metric] * 100 for _, rc in rc_entries]
     xpos = x3 - 0.3 + bar_w3 * i + bar_w3 / 2
     bars3 = ax3.bar(xpos, vals, width=bar_w3 * 0.9, color=metric_colors[i],
                     label=metric.upper(), edgecolor="#1a1a2e", linewidth=0.4)
@@ -102,7 +113,7 @@ for i, metric in enumerate(metrics):
         ax3.text(bar.get_x() + bar.get_width() / 2, v + 0.8, f"{v:.1f}",
                  ha="center", va="bottom", color="#e0e0e0", fontsize=9)
 ax3.set_xticks(x3)
-ax3.set_xticklabels([LABELS[m] for m in rc_models], color="#e0e0e0", fontsize=11)
+ax3.set_xticklabels([lbl for lbl, _ in rc_entries], color="#e0e0e0", fontsize=11)
 ax3.set_ylabel("Score (%)", color="#a0a0b0")
 ax3.set_ylim(0, 115)
 ax3.legend(framealpha=0.2, facecolor="#1a1a2e", edgecolor="#3a3a5c",
@@ -110,7 +121,7 @@ ax3.legend(framealpha=0.2, facecolor="#1a1a2e", edgecolor="#3a3a5c",
 
 fig.suptitle(
     "MENDEL Benchmark — Role Prediction & Reaction Center Detection\n"
-    "(148 reactions, 299 examples, data/reactions.center_balanced.cleaned.json)",
+    "(166 reactions, 388 examples, data/reactions.center_balanced.cleaned.json)",
     color="#ffffff", fontsize=13, y=0.998,
 )
 plt.tight_layout(rect=[0, 0, 1, 0.985])

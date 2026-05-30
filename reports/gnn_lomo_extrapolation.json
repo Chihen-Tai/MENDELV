@@ -1,0 +1,72 @@
+{
+  "aldol": {
+    "n_grp": 47,
+    "mlp_lomo": 0.8723404255319149,
+    "gnn_lomo": 0.7872340425531915
+  },
+  "benzylic_radical_bromination": {
+    "n_grp": 23,
+    "mlp_lomo": 0.43478260869565216,
+    "gnn_lomo": 0.43478260869565216
+  },
+  "carbonyl_addition": {
+    "n_grp": 37,
+    "mlp_lomo": 1.0,
+    "gnn_lomo": 0.5945945945945946
+  },
+  "control": {
+    "n_grp": 12,
+    "mlp_lomo": 0.9166666666666666,
+    "gnn_lomo": 0.75
+  },
+  "cross_aldol": {
+    "n_grp": 21,
+    "mlp_lomo": 0.8095238095238095,
+    "gnn_lomo": 0.6666666666666666
+  },
+  "diels_alder": {
+    "n_grp": 83,
+    "mlp_lomo": 0.37349397590361444,
+    "gnn_lomo": 0.0963855421686747
+  },
+  "e2": {
+    "n_grp": 16,
+    "mlp_lomo": 1.0,
+    "gnn_lomo": 1.0
+  },
+  "ester_control": {
+    "n_grp": 18,
+    "mlp_lomo": 1.0,
+    "gnn_lomo": 1.0
+  },
+  "hetero_diels_alder": {
+    "n_grp": 12,
+    "mlp_lomo": 0.5,
+    "gnn_lomo": 0.6666666666666666
+  },
+  "michael_addition": {
+    "n_grp": 48,
+    "mlp_lomo": 0.4791666666666667,
+    "gnn_lomo": 0.3958333333333333
+  },
+  "nitrile_control": {
+    "n_grp": 18,
+    "mlp_lomo": 1.0,
+    "gnn_lomo": 0.6111111111111112
+  },
+  "nitroalkane_deprotonation": {
+    "n_grp": 17,
+    "mlp_lomo": 0.47058823529411764,
+    "gnn_lomo": 0.47058823529411764
+  },
+  "reductive_amination": {
+    "n_grp": 11,
+    "mlp_lomo": 0.6363636363636364,
+    "gnn_lomo": 0.0
+  },
+  "sn2": {
+    "n_grp": 25,
+    "mlp_lomo": 1.0,
+    "gnn_lomo": 0.84
+  }
+}
