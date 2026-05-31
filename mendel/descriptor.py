@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from functools import lru_cache
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -50,7 +51,40 @@ FEATURE_SCHEMA_VERSION: str = "phase6_6_v1"
 # Feature schema — order fixed at module load time
 # ---------------------------------------------------------------------------
 
-_ONE_HOT_NAMES: list[str] = [f"is_{gt.value}" for gt in FunctionalGroupType]
+# --- MLP COMPATIBILITY CONTRACT ---------------------------------------------
+# The one-hot identity block is FROZEN to these 17 functional group types, in
+# this exact order. This is a hard compatibility contract with the trained MLP
+# checkpoint (models/role_mlp.pt), which expects a fixed 65-dim input whose
+# first 17 columns are this one-hot.
+#
+# DO NOT add new FunctionalGroupType members here. New members (isocyanide,
+# imine, azide, …) are intentionally absent: they contribute an all-zero
+# one-hot block and are instead handled via SMARTS detection, group metadata,
+# heuristic score priors, and negotiation rules. Extending this list would
+# change the descriptor dimension and silently invalidate role_mlp.pt — if a
+# future phase truly needs new identity columns, bump FEATURE_SCHEMA_VERSION
+# and retrain the MLP in the same change.
+_ONE_HOT_TYPES: tuple[FunctionalGroupType, ...] = (
+    FunctionalGroupType.alkene,
+    FunctionalGroupType.alkyne,
+    FunctionalGroupType.aromatic,
+    FunctionalGroupType.alcohol,
+    FunctionalGroupType.phenol,
+    FunctionalGroupType.ether,
+    FunctionalGroupType.carbonyl,
+    FunctionalGroupType.carboxylic_acid,
+    FunctionalGroupType.ester,
+    FunctionalGroupType.amine,
+    FunctionalGroupType.amide,
+    FunctionalGroupType.halide,
+    FunctionalGroupType.nitrile,
+    FunctionalGroupType.nitro,
+    FunctionalGroupType.alpha_carbon,
+    FunctionalGroupType.benzylic_site,
+    FunctionalGroupType.unknown,
+)
+
+_ONE_HOT_NAMES: list[str] = [f"is_{gt.value}" for gt in _ONE_HOT_TYPES]
 
 _IDENTITY_NAMES: list[str] = _ONE_HOT_NAMES + [
     "atom_count",
@@ -148,6 +182,10 @@ _NUCLEOPHILICITY_BASE: dict[FunctionalGroupType, float] = {
     FunctionalGroupType.nitro: 0.10,
     FunctionalGroupType.alpha_carbon: 0.50,
     FunctionalGroupType.benzylic_site: 0.35,
+    # Phase 12 types (excluded from one-hot; priors still drive rule predictor)
+    FunctionalGroupType.isocyanide: 0.70,  # terminal carbon is strongly nucleophilic
+    FunctionalGroupType.imine: 0.25,
+    FunctionalGroupType.azide: 0.45,        # terminal N is nucleophilic
     FunctionalGroupType.unknown: 0.20,
 }
 
@@ -168,6 +206,9 @@ _ELECTROPHILICITY_BASE: dict[FunctionalGroupType, float] = {
     FunctionalGroupType.nitro: 0.45,
     FunctionalGroupType.alpha_carbon: 0.20,
     FunctionalGroupType.benzylic_site: 0.25,
+    FunctionalGroupType.isocyanide: 0.30,
+    FunctionalGroupType.imine: 0.60,        # C=N carbon is electrophilic (iminium-like)
+    FunctionalGroupType.azide: 0.30,
     FunctionalGroupType.unknown: 0.20,
 }
 
@@ -188,6 +229,9 @@ _ACIDITY_BASE: dict[FunctionalGroupType, float] = {
     FunctionalGroupType.nitro: 0.20,
     FunctionalGroupType.alpha_carbon: 0.55,
     FunctionalGroupType.benzylic_site: 0.45,
+    FunctionalGroupType.isocyanide: 0.10,
+    FunctionalGroupType.imine: 0.10,
+    FunctionalGroupType.azide: 0.10,
     FunctionalGroupType.unknown: 0.10,
 }
 
@@ -208,6 +252,9 @@ _RADICAL_STABILITY_BASE: dict[FunctionalGroupType, float] = {
     FunctionalGroupType.nitro: 0.10,
     FunctionalGroupType.alpha_carbon: 0.40,
     FunctionalGroupType.benzylic_site: 0.80,
+    FunctionalGroupType.isocyanide: 0.20,
+    FunctionalGroupType.imine: 0.20,
+    FunctionalGroupType.azide: 0.25,
     FunctionalGroupType.unknown: 0.15,
 }
 
@@ -267,6 +314,17 @@ def _safe(value: object, default: float = 0.0) -> float:
         return default
 
 
+@lru_cache(maxsize=2048)
+def _mol_from_smiles(smiles: str) -> Chem.Mol | None:
+    """Parse a SMILES into an RDKit Mol, cached by canonical-string identity.
+
+    Descriptor builders only read from the returned Mol (Gasteiger charges are
+    computed on an RWMol copy in :func:`_gasteiger`), so sharing one cached Mol
+    across functional groups of the same molecule is safe.
+    """
+    return Chem.MolFromSmiles(smiles)
+
+
 def _find_mol(
     parsed_reaction: ParsedReaction, group: FunctionalGroup
 ) -> tuple[Chem.Mol | None, str]:
@@ -277,14 +335,14 @@ def _find_mol(
     pool = parsed_reaction.products if role == "product" else parsed_reaction.reactants
     for pm in pool:
         if pm.molecule_index == mol_idx:
-            return Chem.MolFromSmiles(pm.smiles), role
+            return _mol_from_smiles(pm.smiles), role
 
     for pm in parsed_reaction.reactants:
         if pm.molecule_index == mol_idx:
-            return Chem.MolFromSmiles(pm.smiles), "reactant"
+            return _mol_from_smiles(pm.smiles), "reactant"
     for pm in parsed_reaction.products:
         if pm.molecule_index == mol_idx:
-            return Chem.MolFromSmiles(pm.smiles), "product"
+            return _mol_from_smiles(pm.smiles), "product"
 
     return None, role
 
@@ -311,7 +369,9 @@ def _gasteiger(mol: Chem.Mol, indices: set[int]) -> tuple[float, float, float]:
 
 
 def _build_identity(group: FunctionalGroup, mol: Chem.Mol) -> list[float]:
-    one_hot = [1.0 if gt == group.group_type else 0.0 for gt in FunctionalGroupType]
+    # Frozen one-hot — iterate _ONE_HOT_TYPES, NOT the full enum. New enum
+    # members (isocyanide/imine/azide) map to an all-zero block by design.
+    one_hot = [1.0 if gt == group.group_type else 0.0 for gt in _ONE_HOT_TYPES]
     indices = {ref.atom_index for ref in group.atom_refs}
     n = len(indices)
     heteroatom_count = sum(
@@ -513,6 +573,16 @@ def _build_partner_context(
 def get_feature_names() -> list[str]:
     """Return the global feature schema in fixed order. Deterministic across calls."""
     return list(_FEATURE_NAMES)
+
+
+_FEATURE_NAME_TO_INDEX: dict[str, int] = {
+    name: i for i, name in enumerate(_FEATURE_NAMES)
+}
+
+
+def feature_index(feature_name: str) -> int:
+    """Return the column index of a feature, or -1 if unknown. O(1) cached lookup."""
+    return _FEATURE_NAME_TO_INDEX.get(feature_name, -1)
 
 
 def build_group_descriptor(

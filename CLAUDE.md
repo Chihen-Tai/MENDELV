@@ -11,7 +11,10 @@ conda create -n mendel python=3.12   # first time only
 conda activate mendel
 pip install -e ".[dev]"
 pip install -e ".[ml]"               # Phase 7 only — installs torch
-pip install -e ".[mlip]"             # Phase 9 only — installs mace-torch, ase
+pip install -e ".[mlip]"             # Phase 9 MACE backend — installs mace-torch, ase
+pip install -e ".[ani2x]"            # Phase 9 ANI-2x backend — installs torchani, torch, ase
+pip install -e ".[mlip-all]"         # both MLIP backends at once
+pip install -e ".[plot]"             # matplotlib report plots
 ```
 
 ## Commands
@@ -83,6 +86,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | 8 — Benchmark, center head, dataset ops | **Updated** — center_head retrained on 65-dim, atom F1=0.912, rxn-center F1=0.935 | `rdkit`, stdlib only |
 | 9 — MLIP single-point backend | **Concluded** — MACE/ANI-2x backends working; Route B reactive-weighted fine-tuning investigated on rMD17 (works) and QO2Mol (ineffective — lacks per-group systematic error). Design boundary confirmed. | `mace-torch`, `ase` |
 | 10 — Reference energy/force data (MD17, QO2Mol) | **QO2Mol OOD benchmarked** — pkl ingestion complete, MACE/ANI-2x benchmarks run, Route B boundary confirmed | stdlib only (no MLIP for ingestion) |
+| 12 — Reaction coverage (new group types + mechanism hints) | **Implemented** — added `isocyanide`/`imine`/`azide` group types (excluded from frozen one-hot → `role_mlp.pt` stays valid, **no retrain**), Michael-acceptor metadata, and `michael_like`/`click_like`/`giese_like`/`minisci_like`/`radical_addition_like` hints. Benchmark `data/reaction_coverage_benchmark.json` (30 rxns) + `scripts/reaction_coverage_benchmark.py`: 28 pass / 0 fail / 2 expected-fail | `rdkit`, stdlib only |
 
 ### Implemented modules
 
@@ -109,6 +113,7 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 | Mapping center | `mendel/mapping_center.py` | 8.14 | Atom-map-based reaction-center label audit and suggestion |
 | MLIP backend | `mendel/mlip.py` | 9 | Optional MACE/ASE single-point energy and forces; lazy import |
 | Local force analysis | `mendel/local_force_analysis.py` | 9 | Functional-group-local force error analysis against reference MLIP |
+| Weighted fine-tune | `mendel/weighted_finetune.py` | 9 | Route B reactive-weighted MLIP fine-tuning (rMD17/QO2Mol experiments) |
 | Reference data | `mendel/reference_data.py` | 10 | `ReferenceStructureRecord` JSON schema and benchmark math |
 | MD17 adapter | `mendel/md17.py` | 10.2 | Converts local MD17/rMD17 NPZ arrays to `ReferenceStructureRecord` |
 | QO2Mol ingestion | `mendel/qo2mol.py` | 10 | Local QO2Mol sample → reference energy/force records (no download) |
@@ -123,9 +128,19 @@ result = run_pipeline_with_mlp("CCBr.[OH-]>>CCO.[Br-]", "models/role_mlp.pt", co
 
 65 features in fixed order (schema version `phase6_6_v1`):
 
+> **MLP compatibility contract (Phase 12).** The identity one-hot is **frozen** to the
+> original 17 `FunctionalGroupType` members via `descriptor._ONE_HOT_TYPES`. The Phase 12
+> additions `isocyanide`/`imine`/`azide` are **deliberately excluded** from the one-hot:
+> they map to an all-zero identity block and are handled by SMARTS detection, group
+> metadata, heuristic-score priors, and negotiation rules. The descriptor stays **65-dim**,
+> `FEATURE_SCHEMA_VERSION` stays `phase6_6_v1`, and `models/role_mlp.pt` (input_dim=65)
+> **remains valid — no retrain required.** Adding a new identity column would change the
+> dimension and invalidate the checkpoint; if a future phase needs that, bump
+> `FEATURE_SCHEMA_VERSION` and retrain the MLP in the same change.
+
 | Category | Count | Key features |
 |----------|-------|--------------|
-| A. Identity | 21 | One-hot over 17 `FunctionalGroupType` + atom/heteroatom counts |
+| A. Identity | 21 | Frozen one-hot over the original 17 `FunctionalGroupType` (`_ONE_HOT_TYPES`) + atom/heteroatom counts |
 | B. Electronic | 10 | Gasteiger charges, electronegativity, `has_pi_bond`, formal charge |
 | C. Local environment | 9 | Neighbor heteroatom count, distances, `env_alpha_carbon`, `in_reactant` |
 | D. Mechanistic heuristic scores | 5 | `nucleophilicity_score`, `electrophilicity_score`, `leaving_group_score`, `acidity_score`, `radical_stability_score` |
@@ -156,12 +171,20 @@ Key types: `NegotiationResult`, `NegotiatedRoleAssignment` (carries `raw_role`, 
 
 | `mechanism_hint` | Trigger condition |
 |---|---|
+| `click_like` | azide + alkyne present (checked first; beats pericyclic DA default) |
 | `sn2_or_e2_like` | ionic + halide or leaving_group predicted |
-| `aldol_like` | ionic + carbonyl + alpha_carbon |
-| `diels_alder_like` | pericyclic context |
-| `radical_bromination_like` | radical context |
+| `michael_like` | ionic + Michael-acceptor alkene (enone/acrylate/acrylonitrile/nitroalkene); **checked before `aldol_like`** |
+| `aldol_like` | ionic + carbonyl + alpha_carbon (and no Michael acceptor) |
+| `diels_alder_like` | pericyclic context (no azide+alkyne) |
+| `giese_like` | radical + Michael-acceptor alkene (**checked before `radical_addition_like`**) |
+| `minisci_like` | radical + heteroaromatic-N ring (pyridine-like) |
+| `radical_addition_like` | radical + plain alkene |
+| `radical_bromination_like` | radical context, none of the above (benzylic / Br2 default) |
+| `ester_hydrolysis_like` | ionic + acyl group + alcohol/water |
 | `ionic_addition_like` | ionic + nucleophile + electrophile, no halide |
-| `unknown` | no rule matched; raw roles preserved |
+| `unknown` | no rule matched; raw roles preserved. A literal no-op (products == reactants) marks no reaction center. |
+
+Phase 12 adds `michael_like`, `click_like`, `giese_like`, `minisci_like`, `radical_addition_like`. Michael runs before aldol; click before Diels-Alder; Giese before generic radical addition. Michael-acceptor alkenes are detected in `identifier.py` and tagged with metadata (`is_michael_acceptor`, `activating_group`, `beta_carbon_atom_index`) — not new descriptor columns.
 
 Each helper mutates `assign_by_id` in place (the dict of `NegotiatedRoleAssignment`); input `groups` and `predictions` are never mutated.
 

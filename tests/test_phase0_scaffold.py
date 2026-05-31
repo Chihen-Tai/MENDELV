@@ -49,7 +49,11 @@ def test_functional_group_type_enum_members() -> None:
     expected = {
         "alkene", "alkyne", "aromatic", "alcohol", "phenol", "ether",
         "carbonyl", "carboxylic_acid", "ester", "amine", "amide",
-        "halide", "nitrile", "nitro", "alpha_carbon", "benzylic_site", "unknown",
+        "halide", "nitrile", "nitro", "alpha_carbon", "benzylic_site",
+        # Phase 12 additions (detected/scored/negotiated; excluded from the
+        # frozen descriptor one-hot — see mendel.descriptor._ONE_HOT_TYPES).
+        "isocyanide", "imine", "azide",
+        "unknown",
     }
     actual = {m.value for m in FunctionalGroupType}
     assert actual == expected

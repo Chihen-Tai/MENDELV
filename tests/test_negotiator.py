@@ -326,7 +326,9 @@ def test_unknown_mechanism_assignments_returned() -> None:
 
 
 def test_unknown_mechanism_warning_code_present() -> None:
-    result = _run("CCO>>CCO", ReactionContext.unknown)
+    # Non-no-op unknown reaction: a literal no-op (CCO>>CCO) now short-circuits
+    # to "no_reaction_no_center", so use a reaction whose product differs.
+    result = _run("CCO>>CC=O", ReactionContext.unknown)
     assert _has_warning_code(result, "unknown_mechanism")
 
 

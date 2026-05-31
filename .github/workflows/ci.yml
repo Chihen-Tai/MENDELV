@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: lint + types (core)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: make lint
+      - run: make format-check
+      - run: make typecheck
+
+  test:
+    name: ${{ matrix.tier }} (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - tier: core
+            python: "3.10"
+            extras: ".[dev]"
+            target: test-core
+          - tier: core
+            python: "3.12"
+            extras: ".[dev]"
+            target: test-core
+          - tier: ml
+            python: "3.12"
+            extras: ".[dev,ml]"
+            target: test-ml
+          - tier: mlip-light
+            python: "3.12"
+            extras: ".[dev,ml]"
+            target: test-mlip-light
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: pip install -e "${{ matrix.extras }}"
+      - name: Run ${{ matrix.tier }} tests
+        run: make ${{ matrix.target }}
+
+  coverage:
+    name: coverage (ml)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev,ml]"
+      - run: make coverage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml

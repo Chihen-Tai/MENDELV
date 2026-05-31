@@ -684,6 +684,7 @@ def train_mlp_role_predictor(
             "n_examples": n,
             "device": device,
             "fallback_split": fallback_split,
+            "val_is_holdout": not fallback_split,
             "split_strategy": "stratified_train_val_split",
             "role_counts": role_counts,
             "missing_roles": ",".join(missing_roles),

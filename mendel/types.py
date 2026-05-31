@@ -58,6 +58,13 @@ class FunctionalGroupType(str, Enum):
     nitro = "nitro"
     alpha_carbon = "alpha_carbon"
     benzylic_site = "benzylic_site"
+    # --- Phase 12 additions (NOT part of the frozen descriptor one-hot) ---
+    # These are detected, scored, and negotiated, but deliberately excluded
+    # from the 65-dim descriptor identity block to preserve MLP checkpoint
+    # compatibility. See mendel.descriptor._ONE_HOT_TYPES.
+    isocyanide = "isocyanide"
+    imine = "imine"
+    azide = "azide"
     unknown = "unknown"
 
 

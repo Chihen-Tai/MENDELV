@@ -62,8 +62,6 @@ checkpoints/
 
 # MENDEL generated artifacts
 models/
-reports/mlp_training_report.json
-reports/mlp_minimal_report.json
 .pytest_cache/
 __pycache__/
 *.pyc
@@ -86,5 +84,9 @@ models/
 *.pth
 
 # local reports from experiments
-reports/mlp_training_report.json
-reports/mlp_minimal_report.json
+
+# CodeGraph local index / daemon runtime
+.codegraph/
+
+# Experiment outputs (not version-controlled)
+reports/

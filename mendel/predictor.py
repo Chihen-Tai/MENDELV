@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from mendel.descriptor import GroupDescriptor, build_descriptors
+from mendel.descriptor import GroupDescriptor, build_descriptors, feature_index
 from mendel.labels import LabeledReaction
 from mendel.parser import ParsedReaction
 from mendel.types import FunctionalGroup, FunctionalGroupType, ReactionContext, Role
@@ -33,6 +33,11 @@ def get_feature_value(
     default: float = 0.0,
 ) -> float:
     """Return a feature value by name; return *default* when absent.  Never raises."""
+    # Fast path: standard schema uses the shared O(1) index map.
+    idx = feature_index(feature_name)
+    if 0 <= idx < len(descriptor.values) and descriptor.feature_names[idx] == feature_name:
+        return descriptor.values[idx]
+    # Fallback for non-standard / reordered feature_names.
     try:
         idx = descriptor.feature_names.index(feature_name)
         return descriptor.values[idx]

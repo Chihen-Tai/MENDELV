@@ -153,10 +153,19 @@ def main() -> None:
     val_acc_final = history.val_accuracy[-1] if history.val_accuracy else float("nan")
     epochs_run = int(history.metadata.get("epochs_run", len(history.train_loss)))
 
+    val_is_holdout = bool(
+        history.metadata.get(
+            "val_is_holdout", not history.metadata.get("fallback_split", False)
+        )
+    )
     print(f"  Epochs run:         {epochs_run}")
     print(f"  Final train loss:   {train_loss_final:.4f}")
-    print(f"  Final val loss:     {val_loss_final:.4f}")
-    print(f"  Final val accuracy: {val_acc_final:.4f}")
+    if val_is_holdout:
+        print(f"  Final val loss:     {val_loss_final:.4f}")
+        print(f"  Final val accuracy: {val_acc_final:.4f}")
+    else:
+        print("  Validation:         NONE (fallback split — train data mirrored as val).")
+        print("                      val_loss/val_accuracy are NOT held-out KPIs; suppressed.")
     dataset_warnings = str(history.metadata.get("dataset_warnings", ""))
     if dataset_warnings:
         print(f"  Dataset warnings:    {dataset_warnings}")

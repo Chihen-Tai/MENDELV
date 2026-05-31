@@ -221,29 +221,31 @@ conda run -n mendel python scripts/train_mlp.py \
 
 ---
 
-## Testing
+## Testing & Quality
+
+The manual quality flow is mechanised in the `Makefile`; CI (`.github/workflows/ci.yml`)
+runs the same targets across a **core / ml / mlip-light** matrix. Run `make help` to list targets.
 
 ```bash
-# Full suite
-pytest
+# One-shot local gate: lint + format-check + typecheck + core tests
+make quality
 
-# Phases 0–6 only (no PyTorch)
-PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider \
-  tests/test_phase0_scaffold.py tests/test_parser.py \
-  tests/test_identifier.py tests/test_descriptor.py \
-  tests/test_labels.py tests/test_predictor.py tests/test_negotiator.py
+# Test tiers (CI matrix mirrors these)
+make test-core         # phases 0–8, no torch/ASE (ml/mlip tests self-skip)
+make test-ml           # MLP / torch suite        (needs pip install -e ".[ml]")
+make test-mlip-light   # MLIP unit tests          (live MACE/torchani parts self-skip)
 
-# Phase 7 — MLP (requires pip install -e ".[ml]")
-pytest tests/test_mlp.py tests/test_mlp_aware_negotiation.py -q
+# Coverage (term + coverage.xml)
+make coverage
 
-# Phase 9 — MLIP unit tests (no live MACE/torchani required)
-pytest tests/test_mlip.py -q
-
-# Lint / format / type check
-ruff check mendel/ tests/
-ruff format mendel/ tests/
-mypy mendel/
+# Individual quality steps
+make lint              # ruff check mendel/ tests/
+make format-check      # ruff format --check mendel/ tests/
+make typecheck         # mypy mendel/
 ```
+
+Tools resolve from the active environment. To run targets through a managed env, override the
+tool vars, e.g. `make test-core PYTEST="conda run -n mendel pytest"`.
 
 ---
 

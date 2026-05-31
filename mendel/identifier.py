@@ -25,6 +25,13 @@ FUNCTIONAL_GROUP_SMARTS: dict[FunctionalGroupType, str] = {
     FunctionalGroupType.nitrile: "[CX2]#[NX1]",
     FunctionalGroupType.halide: "[CX4][F,Cl,Br,I]",
     FunctionalGroupType.amine: "[NX3;!$(NC=O);!$([NX3+])]",
+    # Phase 12 heteroatom groups (distinct anchors → no clash with nitrile/amine).
+    # Isocyanide anchors on the terminal carbanion-like carbon (R-N#C:).
+    FunctionalGroupType.isocyanide: "[CX1-]#[NX2+]",
+    # Imine / Schiff base C=N (anchors on the electrophilic carbon).
+    FunctionalGroupType.imine: "[CX3]=[NX2]",
+    # Organic azide R-N3 (anchors on the N bonded to the rest of the molecule).
+    FunctionalGroupType.azide: "[NX2]=[NX2+]=[NX1-]",
     # Unsaturated carbon
     FunctionalGroupType.alkene: "[CX3]=[CX3]",
     FunctionalGroupType.alkyne: "[CX2]#[CX2]",
@@ -50,6 +57,9 @@ _GROUP_PRIORITY: dict[FunctionalGroupType, int] = {
     FunctionalGroupType.nitrile: 9,
     FunctionalGroupType.halide: 10,
     FunctionalGroupType.amine: 11,
+    FunctionalGroupType.isocyanide: 16,
+    FunctionalGroupType.imine: 17,
+    FunctionalGroupType.azide: 18,
     FunctionalGroupType.alkene: 12,
     FunctionalGroupType.alkyne: 13,
     FunctionalGroupType.alpha_carbon: 14,
@@ -64,9 +74,12 @@ _PRIMARY_ORDER: list[FunctionalGroupType] = [
     FunctionalGroupType.phenol,
     FunctionalGroupType.alcohol,
     FunctionalGroupType.ether,
+    FunctionalGroupType.azide,
     FunctionalGroupType.nitro,
+    FunctionalGroupType.isocyanide,
     FunctionalGroupType.nitrile,
     FunctionalGroupType.halide,
+    FunctionalGroupType.imine,
     FunctionalGroupType.amine,
     FunctionalGroupType.alkene,
     FunctionalGroupType.alkyne,
@@ -168,12 +181,21 @@ def _detect_aromatic_groups(
             anchor = min(ring)
             atom_indices = sorted(ring)
 
+            # Flag pyridine-like rings so the negotiator can recognise Minisci-type
+            # radical additions to heteroaromatic nitrogen systems.
+            heteroaromatic_n = any(
+                mol.GetAtomWithIdx(idx).GetSymbol() == "N"
+                and mol.GetAtomWithIdx(idx).GetIsAromatic()
+                for idx in ring
+            )
+
             meta: dict = {
                 "source": "ring_detection",
                 "ring_size": len(ring),
                 "anchor_atom_index": anchor,
                 "atom_indices": atom_indices,
                 "priority": _GROUP_PRIORITY[FunctionalGroupType.aromatic],
+                "heteroaromatic_n": heteroaromatic_n,
             }
             if molecule_role is not None:
                 meta["molecule_role"] = molecule_role
@@ -251,6 +273,53 @@ def _match_smarts_groups(
     return groups
 
 
+# Michael-acceptor (conjugate-addition) systems. For each pattern the first two
+# atoms are the alkene: match[0] = beta-carbon (electrophilic 1,4-addition site),
+# match[1] = alpha-carbon (bonded to the activating EWG). Ester is checked before
+# the generic carbonyl pattern so acrylates report activating_group="ester".
+_MICHAEL_ACCEPTOR_SMARTS: list[tuple[str, str]] = [
+    ("ester", "[CX3]=[CX3][CX3](=[OX1])[OX2]"),
+    ("carbonyl", "[CX3]=[CX3][CX3]=[OX1]"),
+    ("nitrile", "[CX3]=[CX3][CX2]#[NX1]"),
+    ("nitro", "[CX3]=[CX3][$([NX3](=O)=O),$([N+](=O)[O-])]"),
+]
+_MICHAEL_QUERIES: list[tuple[str, rdchem.Mol]] = [
+    (name, q)
+    for name, smarts in _MICHAEL_ACCEPTOR_SMARTS
+    if (q := Chem.MolFromSmarts(smarts)) is not None
+]
+
+
+def _annotate_michael_acceptors(
+    mol: rdchem.Mol, groups: list[FunctionalGroup]
+) -> None:
+    """Tag alkene groups that are Michael acceptors with metadata (in place).
+
+    Sets on the matching alkene FunctionalGroup.metadata:
+      is_michael_acceptor=True, activating_group (carbonyl/ester/nitrile/nitro),
+      beta_carbon_atom_index, and beta_carbon_atom_map_num when an atom map exists.
+    Does not change the descriptor schema — these are metadata signals consumed by
+    the negotiator, not new feature columns.
+    """
+    alkene_groups = [g for g in groups if g.group_type == FunctionalGroupType.alkene]
+    if not alkene_groups:
+        return
+    for activating, query in _MICHAEL_QUERIES:
+        for match in mol.GetSubstructMatches(query):
+            beta_idx, alpha_idx = match[0], match[1]
+            for group in alkene_groups:
+                idxs = {ref.atom_index for ref in group.atom_refs}
+                if beta_idx in idxs and alpha_idx in idxs:
+                    if group.metadata.get("is_michael_acceptor"):
+                        continue  # first (most specific) activating group wins
+                    group.metadata["is_michael_acceptor"] = True
+                    group.metadata["activating_group"] = activating
+                    group.metadata["beta_carbon_atom_index"] = beta_idx
+                    amap = mol.GetAtomWithIdx(beta_idx).GetAtomMapNum()
+                    if amap:
+                        group.metadata["beta_carbon_atom_map_num"] = amap
+
+
 def identify_functional_groups_in_mol(
     mol: rdchem.Mol,
     molecule_index: int,
@@ -291,6 +360,7 @@ def identify_functional_groups_in_mol(
                 _molecule_role,
             )
         )
+    _annotate_michael_acceptors(mol, groups)
     return groups
 
 

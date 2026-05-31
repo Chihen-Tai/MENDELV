@@ -1533,7 +1533,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -1565,7 +1565,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -1597,7 +1597,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -1643,7 +1643,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -1689,7 +1689,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -1735,7 +1735,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2687,25 +2687,22 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0",
-        "mol0_ester_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2741,25 +2738,22 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0",
-        "mol0_ester_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2801,17 +2795,15 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_ester_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2853,17 +2845,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2909,7 +2899,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -2951,17 +2941,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4358,7 +4346,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4374,7 +4362,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4390,7 +4378,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4406,7 +4394,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4422,7 +4410,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -4438,7 +4426,7 @@
       "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5591,17 +5579,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5643,17 +5629,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5695,17 +5679,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5747,17 +5729,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5799,17 +5779,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -5851,17 +5829,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
@@ -6760,12 +6736,12 @@
           "group_id": "mol0_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -6774,21 +6750,21 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_2",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -6807,22 +6783,22 @@
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol0_alpha_carbon_1",
+        "mol0_alpha_carbon_2",
+        "mol0_carbonyl_0",
+        "mol0_carbonyl_1"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "ambiguous_aldol_donor_acceptor_center",
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
@@ -6836,21 +6812,21 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_2",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -6860,21 +6836,19 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_acetylacetone_mvk": {
@@ -6885,12 +6859,12 @@
           "group_id": "mol0_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -6899,26 +6873,26 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_2",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -6930,31 +6904,33 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol0_alpha_carbon_1",
+        "mol0_alpha_carbon_2",
+        "mol0_carbonyl_0",
+        "mol0_carbonyl_1",
+        "mol1_alpha_carbon_0",
+        "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "ambiguous_aldol_donor_acceptor_center",
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
@@ -6968,52 +6944,50 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_2",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "reactive_electrophile",
+          "final_role": "spectator",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": null
+          "subrole": "michael_activating_group"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_cyclohexanone_mvk": {
@@ -7024,26 +6998,26 @@
           "group_id": "mol0_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7055,76 +7029,74 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol0_alpha_carbon_1",
+        "mol0_carbonyl_0",
+        "mol1_alpha_carbon_0",
+        "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "ambiguous_aldol_donor_acceptor_center",
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "reactive_electrophile",
+          "final_role": "spectator",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": null
+          "subrole": "michael_activating_group"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_diethylmalonate_acrylate": {
@@ -7172,7 +7144,7 @@
         "mol0_ester_1",
         "mol1_ester_0"
       ],
-      "mechanism_hint": "ionic_addition_like",
+      "mechanism_hint": "michael_like",
       "warning_codes": []
     },
     "rule": {
@@ -7180,9 +7152,9 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "ionic_electrophile_candidate"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
@@ -7196,28 +7168,28 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "ionic_nucleophile_candidate"
-        },
-        {
-          "final_role": "reactive_electrophile",
-          "group_id": "mol1_ester_0",
-          "is_reaction_center": false,
-          "raw_role": "reactive_electrophile",
-          "subrole": null
+          "subrole": "michael_donor_nucleophile"
         },
         {
           "final_role": "spectator",
-          "group_id": "mol1_alkene_0",
+          "group_id": "mol1_ester_0",
           "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
+        },
+        {
+          "final_role": "reactive_electrophile",
+          "group_id": "mol1_alkene_0",
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_ester_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "ionic_addition_like",
+      "mechanism_hint": "michael_like",
       "warning_codes": []
     }
   },
@@ -7227,14 +7199,14 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7243,14 +7215,14 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7260,21 +7232,22 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
+        "mol0_ester_0",
+        "mol0_ester_1",
+        "mol1_alpha_carbon_0",
         "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -7297,38 +7270,36 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
+        },
+        {
+          "final_role": "spectator",
+          "group_id": "mol1_carbonyl_0",
+          "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
         },
         {
           "final_role": "reactive_electrophile",
-          "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": true,
-          "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
-        },
-        {
-          "final_role": "spectator",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol1_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_ethyl_acetoacetate_acrylonitrile": {
@@ -7337,7 +7308,7 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7346,21 +7317,21 @@
           "group_id": "mol0_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7379,12 +7350,12 @@
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol0_alpha_carbon_1",
+        "mol0_carbonyl_0",
+        "mol0_ester_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -7398,23 +7369,23 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7424,21 +7395,19 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_ethyl_acetoacetate_mvk": {
@@ -7447,7 +7416,7 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7456,26 +7425,26 @@
           "group_id": "mol0_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7487,22 +7456,23 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol0_alpha_carbon_1",
+        "mol0_carbonyl_0",
+        "mol0_ester_0",
+        "mol1_alpha_carbon_0",
+        "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "ambiguous_aldol_donor_acceptor_center",
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -7516,54 +7486,52 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_carbonyl_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_1",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         },
         {
-          "final_role": "reactive_electrophile",
+          "final_role": "spectator",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": false,
           "raw_role": "reactive_electrophile",
-          "subrole": null
+          "subrole": "michael_activating_group"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol0_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_malonate_mvk": {
@@ -7572,14 +7540,14 @@
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol0_ester_1",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
           "subrole": null
         },
@@ -7588,14 +7556,14 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7605,21 +7573,22 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
+        "mol0_ester_0",
+        "mol0_ester_1",
+        "mol1_alpha_carbon_0",
         "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -7642,38 +7611,36 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
+        },
+        {
+          "final_role": "spectator",
+          "group_id": "mol1_carbonyl_0",
+          "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
         },
         {
           "final_role": "reactive_electrophile",
-          "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": true,
-          "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
-        },
-        {
-          "final_role": "spectator",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol1_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_malononitrile_acrylonitrile": {
@@ -7718,7 +7685,7 @@
       "center_group_ids": [
         "mol0_alpha_carbon_0"
       ],
-      "mechanism_hint": "unknown",
+      "mechanism_hint": "michael_like",
       "warning_codes": []
     },
     "rule": {
@@ -7742,7 +7709,7 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": null
+          "subrole": "michael_donor_nucleophile"
         },
         {
           "final_role": "spectator",
@@ -7752,20 +7719,19 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_electrophile",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         }
       ],
       "center_group_ids": [
-        "mol0_alpha_carbon_0"
+        "mol0_alpha_carbon_0",
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "unknown",
-      "warning_codes": [
-        "unknown_mechanism"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_malononitrile_mvk": {
@@ -7790,14 +7756,14 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7807,21 +7773,20 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
+        "mol1_alpha_carbon_0",
         "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -7844,38 +7809,36 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
+        },
+        {
+          "final_role": "spectator",
+          "group_id": "mol1_carbonyl_0",
+          "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
         },
         {
           "final_role": "reactive_electrophile",
-          "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": true,
-          "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
-        },
-        {
-          "final_role": "spectator",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol1_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "michael_nitromethane_acrylate": {
@@ -7914,7 +7877,7 @@
         "mol0_alpha_carbon_0",
         "mol1_ester_0"
       ],
-      "mechanism_hint": "ionic_addition_like",
+      "mechanism_hint": "michael_like",
       "warning_codes": []
     },
     "rule": {
@@ -7931,28 +7894,28 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "ionic_nucleophile_candidate"
-        },
-        {
-          "final_role": "reactive_electrophile",
-          "group_id": "mol1_ester_0",
-          "is_reaction_center": true,
-          "raw_role": "reactive_electrophile",
-          "subrole": "ionic_electrophile_candidate"
+          "subrole": "michael_donor_nucleophile"
         },
         {
           "final_role": "spectator",
-          "group_id": "mol1_alkene_0",
+          "group_id": "mol1_ester_0",
           "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
+        },
+        {
+          "final_role": "reactive_electrophile",
+          "group_id": "mol1_alkene_0",
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol1_ester_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "ionic_addition_like",
+      "mechanism_hint": "michael_like",
       "warning_codes": []
     }
   },
@@ -7971,14 +7934,14 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": null
         },
         {
           "final_role": "reactive_electrophile",
           "group_id": "mol1_carbonyl_0",
           "is_reaction_center": true,
           "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
+          "subrole": null
         },
         {
           "final_role": "spectator",
@@ -7988,21 +7951,20 @@
           "subrole": null
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
+        "mol1_alpha_carbon_0",
         "mol1_carbonyl_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     },
     "rule": {
       "assignments": [
@@ -8018,38 +7980,36 @@
           "group_id": "mol0_alpha_carbon_0",
           "is_reaction_center": true,
           "raw_role": "reactive_nucleophile",
-          "subrole": "aldol_donor_alpha_carbon"
+          "subrole": "michael_donor_nucleophile"
+        },
+        {
+          "final_role": "spectator",
+          "group_id": "mol1_carbonyl_0",
+          "is_reaction_center": false,
+          "raw_role": "reactive_electrophile",
+          "subrole": "michael_activating_group"
         },
         {
           "final_role": "reactive_electrophile",
-          "group_id": "mol1_carbonyl_0",
-          "is_reaction_center": true,
-          "raw_role": "reactive_electrophile",
-          "subrole": "aldol_acceptor_carbonyl"
-        },
-        {
-          "final_role": "spectator",
           "group_id": "mol1_alkene_0",
-          "is_reaction_center": false,
+          "is_reaction_center": true,
           "raw_role": "spectator",
-          "subrole": null
+          "subrole": "michael_acceptor_beta_carbon"
         },
         {
-          "final_role": "spectator",
+          "final_role": "reactive_nucleophile",
           "group_id": "mol1_alpha_carbon_0",
           "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
-          "subrole": "secondary_alpha_candidate"
+          "subrole": null
         }
       ],
       "center_group_ids": [
         "mol0_alpha_carbon_0",
-        "mol1_carbonyl_0"
+        "mol1_alkene_0"
       ],
-      "mechanism_hint": "aldol_like",
-      "warning_codes": [
-        "heuristic_donor_acceptor_assignment"
-      ]
+      "mechanism_hint": "michael_like",
+      "warning_codes": []
     }
   },
   "new_da_butadiene_acrolein": {
@@ -9189,17 +9149,15 @@
         {
           "final_role": "reactive_nucleophile",
           "group_id": "mol0_alpha_carbon_0",
-          "is_reaction_center": true,
+          "is_reaction_center": false,
           "raw_role": "reactive_nucleophile",
           "subrole": null
         }
       ],
-      "center_group_ids": [
-        "mol0_alpha_carbon_0"
-      ],
+      "center_group_ids": [],
       "mechanism_hint": "unknown",
       "warning_codes": [
-        "unknown_mechanism"
+        "no_reaction_no_center"
       ]
     }
   },
